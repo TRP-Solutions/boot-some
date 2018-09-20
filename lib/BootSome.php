@@ -43,7 +43,7 @@ trait BootSomeNodeParent {
 	public function navbar(){
 		$element = new BootSomeNavbarElement('nav');
 		$this->appendChild($element);
-		$element->at(['class'=>'navbar navbar-expand-md navbar-light']);
+		$element->at(['class'=>'navbar navbar-expand-md']);
 		return $element;
 	}
 	public function modal(){
