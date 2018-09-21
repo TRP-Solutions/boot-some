@@ -11,10 +11,10 @@ trait BootSomeFormsGroup {
 		else {
 			$element = new BootSomeFormsGroupWrapElement('div');
 		}
-		
+
 		$this->appendChild($element);
 		$element->type = $this->type;
-		
+
 		$element->at(['class'=>'form-group']);
 		if($element->type==BOOTSOME_FORM_HORIZONTAL) {
 			$element->at(['class'=>'row'], HEAL_ATTR_APPEND);
@@ -25,7 +25,7 @@ trait BootSomeFormsGroup {
 				$element->at(['class'=>'col-md-'.(int) $col], HEAL_ATTR_APPEND);
 			}
 		}
-		
+
 		return $element;
 	}
 }
@@ -38,6 +38,30 @@ trait BootSomeFormsBoxes {
 	public function input($name, $value = null) {
 		$input = parent::input($name, $value);
 		$input->at(['class'=>'form-control']);
+		return $input;
+	}
+
+	public function password($name) {
+		$input = parent::password($name);
+		$input->at(['class'=>'form-control']);
+		return $input;
+	}
+
+	public function file($name, $multiple = false) {
+		$div = $this->el('div',['class'=>'custom-file']);
+
+		$input = $div->el('input',['type'=>'file','id'=>$name]);
+		if($multiple) $input->at(['multiple'=>null])->at(['name'=>$name.'[]']);
+		else $input->at(['name'=>$name]);
+
+		$js = "this.value.substring(this.value.lastIndexOf('\\\\')+1,this.value.length)";
+		$js = "(this.value.lastIndexOf('\\\\'))?$js:this.value";
+		$js = "document.getElementById('filelabel_$name').innerHTML=$js;";
+		$input->at(['onchange'=>$js]);
+
+		$input->at(['class'=>'custom-file-input']);
+		$div->el('label',['class'=>'custom-file-label','for'=>$name,'id'=>'filelabel_'.$name])->te('Choose file');
+		return $input;
 	}
 
 	public function select($name) {
@@ -51,6 +75,7 @@ trait BootSomeFormsBoxes {
 		$textarea->at(['class'=>'form-control']);
 		return $textarea;
 	}
+
 	public function checkbox($name, $checked = false, $value = 'on', $text = null, $inline = false) {
 		$div = $this->el('div',['class'=>'form-check']);
 		if($inline) $div->at(['class'=>'form-check-inline'], HEAL_ATTR_APPEND);
@@ -64,7 +89,7 @@ trait BootSomeFormsBoxes {
 		}
 		return $checkbox;
 	}
-	
+
 	public function radio($name, $value, $checked = false, $text = null, $inline = false) {
 		$div = $this->el('div',['class'=>'form-check']);
 		if($inline) $div->at(['class'=>'form-check-inline'], HEAL_ATTR_APPEND);
@@ -78,11 +103,11 @@ trait BootSomeFormsBoxes {
 		}
 		return $radio;
 	}
-	
+
 	public function text($text) {
 		$this->el('small',['class'=>'form-text'])->te($text);
 	}
-	
+
 	public function inputgroup() {
 		$element = new BootSomeFormsInputGroup('div');
 		$this->appendChild($element);
@@ -93,7 +118,7 @@ trait BootSomeFormsBoxes {
 
 class BootSomeFormsElement extends BootSomeElement {
 	use BootSomeFormsGroup, BootSomeFormsType;
-	
+
 	public function row() {
 		$element = new BootSomeFormsRowElement('div');
 		$this->appendChild($element);
@@ -107,10 +132,11 @@ class BootSomeFormsGroupWrapElement extends BootSomeElement {
 	use BootSomeFormsType;
 	public $col = 3;
 	private $wrap = null;
-	
+
 	public function label($text = null, $for = null) {
 		$label = parent::label($text,$for);
 		$label->at(['class'=>'col-form-label col-sm-'.$this->col], HEAL_ATTR_APPEND);
+		return $label;
 	}
 
 	public function input($name, $value = NULL) {
@@ -118,6 +144,20 @@ class BootSomeFormsGroupWrapElement extends BootSomeElement {
 		$this->appendChild($element);
 		$element->at(['class'=>'col-sm-'.(12-$this->col)]);
 		return $element->input($name, $value);
+	}
+
+	public function password($name) {
+		$element = new BootSomeFormsGroupWrapBoxes('div');
+		$this->appendChild($element);
+		$element->at(['class'=>'col-sm-'.(12-$this->col)]);
+		return $element->password($name);
+	}
+
+	public function file($name, $multiple = false) {
+		$element = new BootSomeFormsGroupWrapBoxes('div');
+		$this->appendChild($element);
+		$element->at(['class'=>'col-sm-'.(12-$this->col)]);
+		return $element->file($name, $multiple);
 	}
 
 	public function select($name) {
@@ -133,7 +173,7 @@ class BootSomeFormsGroupWrapElement extends BootSomeElement {
 		$element->at(['class'=>'col-sm-'.(12-$this->col)]);
 		return $element->textarea($name, $content);
 	}
-	
+
 	public function checkbox($name, $checked = false, $value = 'on', $text = null, $inline = false) {
 		if(!$this->wrap) {
 			$element = new BootSomeFormsGroupWrapBoxes('div');
@@ -144,7 +184,7 @@ class BootSomeFormsGroupWrapElement extends BootSomeElement {
 		}
 		return $this->wrap->checkbox($name, $checked, $value, $text, $inline);
 	}
-	
+
 	public function radio($name, $value, $checked = false, $text = null, $inline = false) {
 		if(!$this->wrap) {
 			$element = new BootSomeFormsGroupWrapBoxes('div');
@@ -177,19 +217,21 @@ class BootSomeFormsGroupElement extends BootSomeElement {
 
 class BootSomeFormsInputGroup extends BootSomeElement {
 	use BootSomeFormsBoxes;
-	
+
 	public function append() {
 		$element = new BootSomeFormsInputGroup('div');
 		$this->appendChild($element);
 		$element->at(['class'=>'input-group-append']);
 		return $element;
 	}
+
 	public function prepend() {
 		$element = new BootSomeFormsInputGroup('div');
 		$this->appendChild($element);
 		$element->at(['class'=>'input-group-prepend']);
 		return $element;
 	}
+
 	public function text($text) {
 		return $this->el('div',['class'=>'input-group-text'])->te($text);
 	}

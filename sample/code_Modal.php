@@ -11,7 +11,7 @@ $main->button('Open','folder-open','info')->at(['onclick'=>$js]);
 $dialog = $body->el('dialog',['id'=>'dialog']);
 $modal = $dialog->modal();
 
-$header = $modal->header('Modal');
+$header = $modal->header();
 $header->title('Title');
 $js = "document.getElementById('dialog').style.display = 'none';";
 //$js .= "document.getElementById('dialog').innerHTML='';";

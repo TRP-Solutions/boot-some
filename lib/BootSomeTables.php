@@ -5,6 +5,7 @@ class BootSomeTableElement extends HealElement {
 		$this->appendChild($element);
 		return $element;
 	}
+
 	public function tbody() {
 		$element = new BootSomeTableNodeElement('tbody');
 		$this->appendChild($element);
@@ -28,6 +29,7 @@ class BootSomeTableTrElement extends HealElement {
 		if($color) $element->at(['class'=>'table-'.$color]);
 		return $element;
 	}
+
 	public function th($color = null) {
 		$element = new BootSomeElement('th');
 		$this->appendChild($element);
