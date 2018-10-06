@@ -19,28 +19,28 @@ $js .= "document.getElementById('body').classList.remove('modal-open');";
 $header->close()->at(['onclick'=>$js]);
 
 $body1 = $modal->body();
-$form = $body1->form(null,null,BOOTSOME_FORM_INLINE);
+$form = $body1->form()->form_inline();
 $form->label('Extended');
 $js = "window.location.href='?".$page."&Source'";
 $form->button('Source','code')->at(['onclick'=>$js]);
 
-$form = $body1->form(null,null,BOOTSOME_FORM_HORIZONTAL);
-$group = $form->group();
+$form = $body1->form();
+$group = $form->form_horizontal();
 $group->label('Input','input1');
 $group->input('input1','Value');
 
-$group = $form->group();
+$group = $form->form_horizontal();
 $group->label('Checkbox');
 $group->checkbox('check1',true,'On','Check1');
 $group->checkbox('check2',false,'On','Check2');
 
-$group = $form->group();
+$group = $form->form_horizontal();
 $group->label('Radio');
 $group->radio('radio1','radioA',true,'RadioA');
 $group->radio('radio1','radioB',false,'RadioB');
 
 $body2 = $modal->body();
-$form = $body2->form(null,null,BOOTSOME_FORM_INLINE);
+$form = $body2->form()->form_inline();
 $form->label('Basic');
 $form->input('hello');
 $form->button('Reset','file','warning');

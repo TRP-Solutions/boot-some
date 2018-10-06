@@ -7,11 +7,11 @@ $brand->el('img',['src'=>'http://trp.solutions/images/logo.svg','height'=>'22px'
 
 if($source) {
 	$js = "window.location.href='?".$page."'";
-	$navbar->form()->button('WYSIWYG','desktop')->at(['onclick'=>$js]);
+	$navbar->form()->form_inline()->button('WYSIWYG','desktop')->at(['onclick'=>$js]);
 }
 else {
 	$js = "window.location.href='?".$page."&Source'";
-	$navbar->form()->button('Source','code')->at(['onclick'=>$js]);
+	$navbar->form()->form_inline()->button('Source','code')->at(['onclick'=>$js]);
 }
 
 $navbar->toggler();

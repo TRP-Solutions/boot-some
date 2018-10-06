@@ -1,28 +1,28 @@
 <?php
-class BootSomeModalElement extends BootSomeElement {
-	public function header() {
-		$element = new BootSomeModalHeaderElement('div');
+class BootSomeModal extends BootSomeElement {
+	public function header(){
+		$element = new BootSomeModalHeader('div');
 		$this->appendChild($element);
 		$element->at(['class'=>'modal-header']);
 		return $element;
 	}
 
-	public function footer() {
+	public function footer(){
 		$element = $this->el('div',['class'=>'modal-footer']);
 		return $element;
 	}
 
-	public function body() {
+	public function body(){
 		return $this->el('div',['class'=>'modal-body']);
 	}
 }
 
-class BootSomeModalHeaderElement extends BootSomeElement {
-	public function title($text) {
+class BootSomeModalHeader extends BootSomeElement {
+	public function title($text){
 		$return = $this->el('h3',['class'=>'modal-title'])->te($text);
 	}
 
-	public function close() {
+	public function close(){
 		return $this->el('button',['class'=>'close'])->te('×');
 	}
 }

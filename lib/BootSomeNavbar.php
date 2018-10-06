@@ -1,33 +1,16 @@
 <?php
-trait BootSomeNavbarNodeParent {
+trait BootSomeNavbarCommon {
 	public function nav(){
-		$element = new BootSomeNavbarNavElement('div');
+		$element = new BootSomeNavbarNav('div');
 		$this->appendChild($element);
 
 		$element->at(['class'=>'navbar-nav']);
 		return $element;
 	}
-
-	public function form($action = '', $method = 'get', $type = BOOTSOME_FORM_NORMAL){
-		$element = new BootSomeFormsGroupWrapBoxes('form');
-		$this->appendChild($element);
-		$element->type = BOOTSOME_FORM_INLINE;
-
-		$attr = []; // Copy from HealHTML - TODO: Use native code
-		if(!empty($action)){
-			$attr['action'] = $action;
-			$attr['method'] = $method;
-		} else {
-			$attr['onsubmit'] = 'return false;';
-		}
-		$element->at($attr);
-		if($element->type==BOOTSOME_FORM_INLINE) $element->at(['class'=>'form-inline'], HEAL_ATTR_APPEND);
-		return $element;
-	}
 }
 
-class BootSomeNavbarElement extends BootSomeElement {
-	use BootSomeNavbarNodeParent;
+class BootSomeNavbar extends BootSomeElement {
+	use BootSomeNavbarCommon;
 
 	public function brand(){
 		$a = $this->el('a',['class'=>'navbar-brand']);
@@ -44,18 +27,18 @@ class BootSomeNavbarElement extends BootSomeElement {
 	}
 
 	public function collapse($id = 'navbarMain'){
-		$element = new BootSomeNavbarCollapseElement('div');
+		$element = new BootSomeNavbarCollapse('div');
 		$this->appendChild($element);
 		$element->at(['id'=>$id,'class'=>'collapse navbar-collapse']);
 		return $element;
 	}
 }
 
-class BootSomeNavbarCollapseElement extends BootSomeElement {
-	use BootSomeNavbarNodeParent;
+class BootSomeNavbarCollapse extends BootSomeElement {
+	use BootSomeNavbarCommon;
 }
 
-class BootSomeNavbarNavElement extends BootSomeElement {
+class BootSomeNavbarNav extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
 		$a = parent::a($href, $text);
 		$a->at(['class'=>'nav-item nav-link']);
@@ -67,14 +50,14 @@ class BootSomeNavbarNavElement extends BootSomeElement {
 		$div = $this->el('div', ['class'=>'nav-item dropdown']);
 		$div->el('a',['class'=>'nav-link dropdown-toggle','href'=>'#','data-toggle'=>'dropdown'])->te($text);
 
-		$element = new BootSomeNavbarDropDownElement('div');
+		$element = new BootSomeNavbarDropDown('div');
 		$div->appendChild($element);
 		$element->at(['class'=>'dropdown-menu dropdown-menu-right']);
 		return $element;
 	}
 }
 
-class BootSomeNavbarDropDownElement extends BootSomeElement {
+class BootSomeNavbarDropDown extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
 		$a = parent::a($href, $text);
 		$a->at(['class'=>'dropdown-item']);
