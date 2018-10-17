@@ -59,6 +59,11 @@ class BootSomeFormsHorizontal extends BootSomeElement {
 		return $this->wrap->radio($name, $value, $checked, $text, $inline);
 	}
 
+	public function button($text, $icon = NULL, $color = 'primary'){
+		$this->wrap();
+		return $this->wrap->button($text, $icon, $color);
+	}
+
 	public function inputgroup(){
 		$this->wrap();
 		return $this->wrap->inputgroup();
