@@ -81,7 +81,7 @@ trait BootSomeFormNode {
 		}
 		else {
 			$checkbox->at(['class'=>'form-check-input']);
-			$div->label($text,$checkbox->gat('id'))->at(['class'=>'form-check-label']);
+			$div->label($text,$name)->at(['class'=>'form-check-label']);
 		}
 		return $checkbox;
 	}
@@ -98,7 +98,7 @@ trait BootSomeFormNode {
 		}
 		else {
 			$radio->at(['class'=>'form-check-input']);
-			$div->label($text,$radio->gat('id'))->at(['class'=>'form-check-label']);
+			$div->label($text,$name.':'.$value)->at(['class'=>'form-check-label']);
 		}
 		return $radio;
 	}
