@@ -72,6 +72,11 @@ class BootSomeFormsHorizontal extends BootSomeElement {
 	public function text($text){
 		$this->wrap->el('small',['class'=>'form-text'])->te($text);
 	}
+
+	public function date($name, $value = null, $include_popover = true){
+		$this->wrap();
+		return $this->wrap->date($name, $value, $include_popover);
+	}
 }
 
 class BootSomeFormsInputGroup extends BootSomeElement {
