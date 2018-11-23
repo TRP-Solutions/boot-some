@@ -108,8 +108,8 @@ trait BootSomeFormNode {
 		$input = $this->el('input',['type'=>'date','name'=>$name,'id'=>$name,'class'=>'form-control','onclick'=>$onclick]);
 		if(isset($value)) $input->at(['value'=>$value]);
 		if($include_popover){
-			$popover = $this->el('div',['data-for'=>$name,'class'=>'popover fade','style'=>'display:none;width:276px;']);
-			//$popover->el('div',['class'=>'arrow']);
+			$popover = $this->el('div',['data-for'=>$name,'class'=>'popover fade bs-popover-bottom','style'=>'display:none;width:276px;']);
+			$popover->el('div',['class'=>'arrow','style'=>'left:130px;']);
 			$header = $popover->el('div',['class'=>'btn-group d-flex']);
 			$header->el('button',['class'=>'btn btn-primary','style'=>'border-bottom-left-radius:0;','data-action'=>'prev'])->el('span',['class'=>'fas fa-chevron-left']);
 			$header->el('span',['class'=>'input-group-text flex-grow-1 d-flex justify-content-center rounded-0','style'=>'z-index:2;','data-content'=>'month_year'])->te('month / year');
