@@ -103,39 +103,10 @@ trait BootSomeFormNode {
 		return $radio;
 	}
 
-	public function date($name, $value = null, $include_popover = true){
+	public function date($name, $value = null){
 		$onclick = "if(typeof BootSomeForms!='undefined'&&typeof BootSomeForms.date=='function')BootSomeForms.date(this);";
 		$input = $this->el('input',['type'=>'date','name'=>$name,'id'=>$name,'class'=>'form-control','onclick'=>$onclick]);
 		if(isset($value)) $input->at(['value'=>$value]);
-		if($include_popover){
-			$popover = $this->el('div',['data-for'=>$name,'class'=>'popover fade bs-popover-bottom','style'=>'display:none;width:276px;']);
-			$popover->el('div',['class'=>'arrow','style'=>'left:130px;']);
-			$header = $popover->el('div',['class'=>'btn-group d-flex']);
-			$header->el('button',['class'=>'btn btn-primary','style'=>'border-bottom-left-radius:0;','data-action'=>'prev'])->el('span',['class'=>'fas fa-chevron-left']);
-			$header->el('span',['class'=>'input-group-text flex-grow-1 d-flex justify-content-center rounded-0','style'=>'z-index:2;','data-content'=>'month_year'])->te('month / year');
-			$header->el('button',['class'=>'btn btn-primary','style'=>'border-bottom-right-radius:0;','data-action'=>'next'])->el('span',['class'=>'fas fa-chevron-right']);
-			$body = $popover->el('div',['class'=>'popover-body','data-calendar'=>null]);
-			$row = $body->row()->at(['class'=>'no-gutters'],HEAL_ATTR_APPEND);
-			$row->col('col',"d-flex justify-content-center");
-			$row->col('col',"d-flex justify-content-center")->te('M');
-			$row->col('col',"d-flex justify-content-center")->te('T');
-			$row->col('col',"d-flex justify-content-center")->te('W');
-			$row->col('col',"d-flex justify-content-center")->te('T');
-			$row->col('col',"d-flex justify-content-center")->te('F');
-			$row->col('col',"d-flex justify-content-center")->te('S');
-			$row->col('col',"d-flex justify-content-center")->te('S');
-			$template = $body->el('template',['data-name'=>'calendar-row']);
-			$row = $template->row()->at(['class'=>'no-gutters'],HEAL_ATTR_APPEND);
-			$row->at(['data-calendar-row'=>null]);
-			$row->el('div',['class'=>'col d-flex justify-content-center align-items-center']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-			$row->el('button',['class'=>'col btn btn-light rounded-0']);
-		}
 		return $input;
 	}
 
