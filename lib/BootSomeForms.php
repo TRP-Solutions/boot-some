@@ -1,7 +1,7 @@
 <?php
 class BootSomeFormsGroup extends BootSomeElement {
 	public function text($text){
-		$this->el('small',['class'=>'form-text'])->te($text);
+		return $this->el('small',['class'=>'form-text'])->te($text);
 	}
 }
 
