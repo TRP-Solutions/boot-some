@@ -19,8 +19,8 @@ $group->checkbox('check2',false,'On','Check2');
 
 $group = $row->form_group(4);
 $group->label('Radio');
-$group->radio('radio1','radioA',true,'RadioA');
-$group->radio('radio1','radioB',false,'RadioB');
+$group->radio('radio1','radioA',true,'RadioA',true);
+$group->radio('radio1','radioB',false,'RadioB',true);
 
 $group = $row->form_group(4);
 $group->label('Select','select1');

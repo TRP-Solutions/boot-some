@@ -29,7 +29,12 @@ class BootSomeNavbar extends BootSomeElement {
 	public function collapse($id = 'navbarMain'){
 		$element = new BootSomeNavbarCollapse('div');
 		$this->appendChild($element);
-		$element->at(['id'=>$id,'class'=>'collapse navbar-collapse']);
+		$element->at([
+			'id'=>$id,
+			'class'=>'collapse navbar-collapse',
+			'data-toggle'=>"collapse",
+			'data-target'=>'#'.$id.'.show'
+		]);
 		return $element;
 	}
 }

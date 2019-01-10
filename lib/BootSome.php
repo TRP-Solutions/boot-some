@@ -1,5 +1,7 @@
 <?php
 trait BootSomeFormNode {
+	private $inlinewrap = null; // https://github.com/twbs/bootstrap/issues/27987
+
 	public function form_row(){
 		$element = $this->el('div',['class'=>'form-row']);
 		return $element;
@@ -70,11 +72,22 @@ trait BootSomeFormNode {
 	}
 
 	public function checkbox($name, $checked = false, $value = 'on', $text = null, $inline = false){
-		$div = new HealHTMLElement('div');
-		$this->appendChild($div);
-		$div->at(['class'=>'form-check']);
+		if(!$inline) {
+			$div = new HealHTMLElement('div');
+			$this->appendChild($div);
+			$div->at(['class'=>'form-check']);
+			$this->inlinewrap = null;
+		}
+		else {
+			if(!$this->inlinewrap) {
+				$this->inlinewrap = new HealHTMLElement('div');
+				$this->appendChild($this->inlinewrap);
+			}
+			$div = new HealHTMLElement('div');
+			$this->inlinewrap->appendChild($div);
+			$div->at(['class'=>'form-check form-check-inline']);
+		}
 
-		if($inline) $div->at(['class'=>'form-check-inline'], HEAL_ATTR_APPEND);
 		$checkbox = $div->checkbox($name, $checked, $value);
 		if(empty($text)) {
 			$checkbox->at(['class'=>'form-check-input position-static']);
@@ -93,11 +106,22 @@ trait BootSomeFormNode {
 	}
 
 	public function radio($name, $value, $checked = false, $text = null, $inline = false){
-		$div = new HealHTMLElement('div');
-		$this->appendChild($div);
-		$div->at(['class'=>'form-check']);
+		if(!$inline) {
+			$div = new HealHTMLElement('div');
+			$this->appendChild($div);
+			$div->at(['class'=>'form-check']);
+			$this->inlinewrap = null;
+		}
+		else {
+			if(!$this->inlinewrap) {
+				$this->inlinewrap = new HealHTMLElement('div');
+				$this->appendChild($this->inlinewrap);
+			}
+			$div = new HealHTMLElement('div');
+			$this->inlinewrap->appendChild($div);
+			$div->at(['class'=>'form-check form-check-inline']);
+		}
 
-		if($inline) $div->at(['class'=>'form-check-inline'], HEAL_ATTR_APPEND);
 		$radio = $div->radio($name, $value, $checked);
 		if(empty($text)) {
 			$radio->at(['class'=>'form-check-input position-static']);
