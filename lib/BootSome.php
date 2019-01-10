@@ -80,8 +80,14 @@ trait BootSomeFormNode {
 			$checkbox->at(['class'=>'form-check-input position-static']);
 		}
 		else {
+			if(substr($name, -2)=='[]'){
+				$id = substr($name, 0, -2).'_'.mt_rand(10000,99999);
+				$checkbox->at(['id'=>$id]);
+			} else {
+				$id = $name;
+			}
 			$checkbox->at(['class'=>'form-check-input']);
-			$div->label($text,$name)->at(['class'=>'form-check-label']);
+			$div->label($text,$id)->at(['class'=>'form-check-label']);
 		}
 		return $checkbox;
 	}
@@ -97,8 +103,14 @@ trait BootSomeFormNode {
 			$radio->at(['class'=>'form-check-input position-static']);
 		}
 		else {
+			if(substr($name, -2)=='[]'){
+				$id = substr($name, 0, -2).'_'.mt_rand(10000,99999);
+				$checkbox->at(['id'=>$id.':'.$value]);
+			} else {
+				$id = $name;
+			}
 			$radio->at(['class'=>'form-check-input']);
-			$div->label($text,$name.':'.$value)->at(['class'=>'form-check-label']);
+			$div->label($text,$id.':'.$value)->at(['class'=>'form-check-label']);
 		}
 		return $radio;
 	}
