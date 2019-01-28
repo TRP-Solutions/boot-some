@@ -142,7 +142,7 @@ trait BootSomeFormNode {
 	}
 
 	public function button($text, $icon = null, $color = 'primary'){
-		$button = $this->el('button',['class'=>'btn btn-'.$color]);
+		$button = $this->el('button',['class'=>'btn btn-'.$color,'type'=>'button']);
 		if($icon) {
 			$button->el('i',['class'=>'fas fa-'.$icon]);
 		}
