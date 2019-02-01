@@ -19,7 +19,7 @@ class BootSomeModal extends BootSomeElement {
 
 class BootSomeModalHeader extends BootSomeElement {
 	public function title($text){
-		$return = $this->el('h3',['class'=>'modal-title'])->te($text);
+		return $this->el('h3',['class'=>'modal-title'])->te($text);
 	}
 
 	public function close(){
