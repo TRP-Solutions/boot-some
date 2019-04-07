@@ -268,6 +268,12 @@ trait BootSomeNodeParent {
 	public function icon($icon){
 		return $this->el('i',['class'=>'fas fa-'.$icon]);
 	}
+
+	public function display(...$class){
+		if(!$class) return;
+		$class = 'd-'.implode(' d-',$class);
+		return $this->at(['class'=>$class],HEAL_ATTR_APPEND);
+	}
 }
 
 class BootSome extends HealHTML {

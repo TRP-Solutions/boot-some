@@ -25,6 +25,7 @@ $dropdown->a('.','Index',$page=='Index');
 $dropdown->a('?Alerts','Alerts',$page=='Alerts');
 $dropdown->a('?Badge','Badge',$page=='Badge');
 $dropdown->a('?Carousel','Carousel',$page=='Carousel');
+$dropdown->a('?Display','Display',$page=='Display');
 $dropdown->a('?Embed','Embed',$page=='Embed');
 $dropdown->a('?Forms','Forms',$page=='Forms');
 $dropdown->a('?Modal','Modal',$page=='Modal');
@@ -34,5 +35,5 @@ $dropdown->a('?Tables','Tables',$page=='Tables');
 
 $dropdown = $nav->dropdown('Links');
 $dropdown->a('https://fontawesome.com/icons','Icons | Font Awesome')->at(['target'=>'_blank']);
-$dropdown->a('https://getbootstrap.com/docs/4.1/','Introduction · Bootstrap')->at(['target'=>'_blank']);
+$dropdown->a('https://getbootstrap.com/docs/','Introduction · Bootstrap')->at(['target'=>'_blank']);
 ?>
