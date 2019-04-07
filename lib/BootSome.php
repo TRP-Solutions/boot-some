@@ -182,10 +182,12 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
-	public function navbar(){
-		$element = new BootSomeNavbar('nav');
-		$this->appendChild($element);
-		$element->at(['class'=>'navbar navbar-expand-md']);
+	public function navbar($fluid = true){
+		$nav = $this->el('nav',['class'=>'navbar navbar-expand-md']);
+
+		$element = new BootSomeNavbar('div');
+		$nav->appendChild($element);
+		$element->at(['class'=>$fluid?'container-fluid':'container']);
 		return $element;
 	}
 
