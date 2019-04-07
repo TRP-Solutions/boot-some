@@ -252,6 +252,11 @@ trait BootSomeNodeParent {
 		return $this->at(['class'=>'badge badge-'.$color],HEAL_ATTR_APPEND);
 	}
 
+	public function embed($url,$aspect = '16by9'){
+		$embed = $this->el('div',['class'=>'embed-responsive embed-responsive-'.$aspect]);
+		return $embed->el('iframe',['class'=>'embed-responsive-item','src'=>$url]);
+	}
+
 	public function table(){
 		$div = $this->el('div',['class'=>'table-responsive']);
 		$element = new BootSomeTable('table');
