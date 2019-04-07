@@ -203,6 +203,14 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
+	public function carousel($id = 'slide'){
+		$element = new BootSomeCarousel('div',$id);
+		$this->appendChild($element);
+		$element->at(['id'=>$id,'class'=>'carousel slide carousel-fade','data-ride'=>'carousel']);
+
+		return $element;
+	}
+
 	public function pagination($total, $limit, $page, $url){
 		$nav = $this->el('nav',['class'=>'pagination']);
 
@@ -272,6 +280,7 @@ class BootSomeRow extends BootSomeElement {
 	}
 }
 
+require_once(__DIR__.'/BootSomeCarousel.php');
 require_once(__DIR__.'/BootSomeNavbar.php');
 require_once(__DIR__.'/BootSomeForms.php');
 require_once(__DIR__.'/BootSomeModal.php');
