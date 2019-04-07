@@ -240,6 +240,10 @@ trait BootSomeNodeParent {
 		return $this->el('div',['class'=>'alert alert-'.$color]);
 	}
 
+	public function badge($color = 'primary'){
+		return $this->at(['class'=>'badge badge-'.$color],HEAL_ATTR_APPEND);
+	}
+
 	public function table(){
 		$div = $this->el('div',['class'=>'table-responsive']);
 		$element = new BootSomeTable('table');

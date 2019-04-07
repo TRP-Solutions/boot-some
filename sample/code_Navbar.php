@@ -23,6 +23,7 @@ $nav->a('https://github.com/TRP-Solutions','Github')->at(['target'=>'_blank']);
 $dropdown = $nav->dropdown('Documentation');
 $dropdown->a('.','Index',$page=='Index');
 $dropdown->a('?Alerts','Alerts',$page=='Alerts');
+$dropdown->a('?Badge','Badge',$page=='Badge');
 $dropdown->a('?Forms','Forms',$page=='Forms');
 $dropdown->a('?Modal','Modal',$page=='Modal');
 $dropdown->a('?Navbar','Navbar',$page=='Navbar');
