@@ -24,6 +24,7 @@ $dropdown = $nav->dropdown('Documentation');
 $dropdown->a('.','Index',$page=='Index');
 $dropdown->a('?Alerts','Alerts',$page=='Alerts');
 $dropdown->a('?Badge','Badge',$page=='Badge');
+$dropdown->a('?Card','Card',$page=='Card');
 $dropdown->a('?Carousel','Carousel',$page=='Carousel');
 $dropdown->a('?Display','Display',$page=='Display');
 $dropdown->a('?Embed','Embed',$page=='Embed');

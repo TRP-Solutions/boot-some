@@ -207,7 +207,13 @@ trait BootSomeNodeParent {
 		$element = new BootSomeCarousel('div',$id);
 		$this->appendChild($element);
 		$element->at(['id'=>$id,'class'=>'carousel slide carousel-fade','data-ride'=>'carousel']);
+		return $element;
+	}
 
+	public function card(){
+		$element = new BootSomeCard('div');
+		$this->appendChild($element);
+		$element->at(['class'=>'card']);
 		return $element;
 	}
 
@@ -292,6 +298,7 @@ class BootSomeRow extends BootSomeElement {
 }
 
 require_once(__DIR__.'/BootSomeCarousel.php');
+require_once(__DIR__.'/BootSomeCard.php');
 require_once(__DIR__.'/BootSomeNavbar.php');
 require_once(__DIR__.'/BootSomeForms.php');
 require_once(__DIR__.'/BootSomeModal.php');
