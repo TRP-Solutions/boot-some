@@ -14,11 +14,25 @@ class BootSomeCard extends HealElement {
 		return $element;
 	}
 
+	public function listgroup(){
+		$listgroup = new BootSomeCardListGroup('div');
+		$this->appendChild($listgroup);
+		$listgroup->at(['class'=>'list-group list-group-flush']);
+		return $listgroup;
+	}
+
 	public function footer(){
 		$element = new BootSomeElement('div');
 		$this->appendChild($element);
 		$element->at(['class'=>'card-footer']);
 		return $element;
+	}
+}
+
+class BootSomeCardListGroup extends BootSomeElement {
+	public function item(){
+		$item = $this->el('div',['class'=>'list-group-item']);
+		return $item;
 	}
 }
 ?>
