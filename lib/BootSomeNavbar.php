@@ -51,8 +51,9 @@ class BootSomeNavbarNav extends BootSomeElement {
 		return $a;
 	}
 
-	public function dropdown($text){
+	public function dropdown($text, $active = false){
 		$div = $this->el('div', ['class'=>'nav-item dropdown']);
+		if($active) $div->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		$div->el('a',['class'=>'nav-link dropdown-toggle','href'=>'#','data-toggle'=>'dropdown'])->te($text);
 
 		$element = new BootSomeNavbarDropDown('div');
