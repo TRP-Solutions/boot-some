@@ -1,8 +1,8 @@
 <?php
 $navbar = $body->navbar();
 
-$brand = $navbar->brand();
-$brand->at(['href'=>'http://trp.solutions','target'=>'_blank']);
+$brand = $navbar->brand('http://trp.solutions');
+$brand->at(['target'=>'_blank']);
 $brand->el('img',['src'=>'http://trp.solutions/images/logo.svg','height'=>'22px']);
 
 if($source) {

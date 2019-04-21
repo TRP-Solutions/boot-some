@@ -12,8 +12,9 @@ trait BootSomeNavbarCommon {
 class BootSomeNavbar extends BootSomeElement {
 	use BootSomeNavbarCommon;
 
-	public function brand(){
-		$a = $this->el('a',['class'=>'navbar-brand']);
+	public function brand($link = null){
+		$a = $this->el($link ? 'a' : 'div',['class'=>'navbar-brand']);
+		if($link) $a->at(['href'=>$link]);
 		return $a;
 	}
 
