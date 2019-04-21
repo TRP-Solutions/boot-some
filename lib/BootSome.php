@@ -263,6 +263,10 @@ trait BootSomeNodeParent {
 		return $embed->el('iframe',['class'=>'embed-responsive-item','src'=>$url]);
 	}
 
+	public function jumbotron($color = 'primary'){
+		return $this->el('div',['class'=>'jumbotron']);
+	}
+
 	public function table(){
 		$div = $this->el('div',['class'=>'table-responsive']);
 		$element = new BootSomeTable('table');
