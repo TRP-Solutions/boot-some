@@ -10,6 +10,7 @@ $group = $card->listgroup();
 $group->item()->te('Cras justo odio');
 $group->item()->te('Dapibus ac facilisis in');
 $group->item()->te('Vestibulum at eros');
+$group->item('https://www.google.com/search?q=This+is+a+link')->te('This is a link');
 
 $card->footer()->te('This is the end');
 ?>

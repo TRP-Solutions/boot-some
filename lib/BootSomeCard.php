@@ -30,8 +30,9 @@ class BootSomeCard extends HealElement {
 }
 
 class BootSomeCardListGroup extends BootSomeElement {
-	public function item(){
-		$item = $this->el('div',['class'=>'list-group-item']);
+	public function item($link = null){
+		$item = $this->el($link ? 'a' : 'div',['class'=>'list-group-item']);
+		if($link) $item->at(['href'=>$link]);
 		return $item;
 	}
 }
