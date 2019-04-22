@@ -27,6 +27,7 @@ $dropdown->a('?Badge','Badge',$page=='Badge');
 $dropdown->a('?Card','Card',$page=='Card');
 $dropdown->a('?Carousel','Carousel',$page=='Carousel');
 $dropdown->a('?Display','Display',$page=='Display');
+$dropdown->a('?Dropdown','Dropdown',$page=='Dropdown');
 $dropdown->a('?Embed','Embed',$page=='Embed');
 $dropdown->a('?Forms','Forms',$page=='Forms');
 $dropdown->a('?Jumbotron','Jumbotron',$page=='Jumbotron');

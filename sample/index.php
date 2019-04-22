@@ -10,7 +10,7 @@ else {
 require_once('code_Index.php');
 require_once('code_Navbar.php');
 
-$allowed = ['Alerts','Badge','Card','Carousel','Display','Embed','Forms','Index','Jumbotron','Modal','Navbar','Pagination','Tables'];
+$allowed = ['Alerts','Badge','Card','Carousel','Display','Dropdown','Embed','Forms','Index','Jumbotron','Modal','Navbar','Pagination','Tables'];
 if(in_array($page,$allowed)!==true) die('Error');
 
 if($source) {

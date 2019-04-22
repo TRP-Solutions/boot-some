@@ -258,12 +258,22 @@ trait BootSomeNodeParent {
 		return $this->at(['class'=>'badge badge-'.$color],HEAL_ATTR_APPEND);
 	}
 
+	public function dropdown($text,$color = 'primary'){
+		$div = $this->el('div', ['class'=>'dropdown']);
+		$div->el('button',['class'=>'btn btn-'.$color.' dropdown-toggle','data-toggle'=>'dropdown'])->te($text);
+
+		$element = new BootSomeDropDown('div');
+		$div->appendChild($element);
+		$element->at(['class'=>'dropdown-menu']);
+		return $element;
+	}
+
 	public function embed($url,$aspect = '16by9'){
 		$embed = $this->el('div',['class'=>'embed-responsive embed-responsive-'.$aspect]);
 		return $embed->el('iframe',['class'=>'embed-responsive-item','src'=>$url]);
 	}
 
-	public function jumbotron($color = 'primary'){
+	public function jumbotron(){
 		return $this->el('div',['class'=>'jumbotron']);
 	}
 
@@ -303,6 +313,7 @@ class BootSomeRow extends BootSomeElement {
 
 require_once(__DIR__.'/BootSomeCarousel.php');
 require_once(__DIR__.'/BootSomeCard.php');
+require_once(__DIR__.'/BootSomeDropdown.php');
 require_once(__DIR__.'/BootSomeNavbar.php');
 require_once(__DIR__.'/BootSomeForms.php');
 require_once(__DIR__.'/BootSomeModal.php');
