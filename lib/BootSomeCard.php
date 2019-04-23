@@ -21,6 +21,14 @@ class BootSomeCard extends HealElement {
 		return $listgroup;
 	}
 
+	public function table(){
+		$div = $this->el('div',['class'=>'table-responsive']);
+		$element = new BootSomeTable('table');
+		$div->appendChild($element);
+		$element->at(['class'=>'table']);
+		return $element;
+	}
+
 	public function footer(){
 		$element = new BootSomeElement('div');
 		$this->appendChild($element);

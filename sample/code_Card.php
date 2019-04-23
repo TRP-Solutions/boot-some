@@ -12,5 +12,28 @@ $group->item()->te('Dapibus ac facilisis in');
 $group->item()->te('Vestibulum at eros');
 $group->item('https://www.google.com/search?q=This+is+a+link')->te('This is a link');
 
+$table = $card->table();
+
+$tr = $table->thead()->tr();
+$tr->th()->te('TH1');
+$tr->th()->te('TH2');
+$tr->th()->te('TH3');
+
+$tbody = $table->tbody();
+$tr = $tbody->tr();
+$tr->td()->te('Beef leberkas kielbasa');
+$tr->td()->te('Shoulder doner pork');
+$tr->td()->te('Beef leberkas kielbasa kielbasa');
+
+$tr = $tbody->tr();
+$tr->td()->te('Beef leberkas kielbasa');
+$tr->td()->te('Shoulder doner doner pork');
+$tr->td()->te('Shoulder doner pork');
+
+$tr = $tbody->tr();
+$tr->td()->te('Beef leberkas leberkas kielbasa');
+$tr->td()->te('Beef leberkas kielbasa');
+$tr->td()->te('Shoulder doner pork');
+
 $card->footer()->te('This is the end');
 ?>
