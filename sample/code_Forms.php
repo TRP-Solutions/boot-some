@@ -62,7 +62,7 @@ $inputgroup->input('input3','Value');
 $append = $inputgroup->append();
 $append->button('E-mail','envelope');
 
-$form->button('Reset','exclamation-circle','danger');
+$form->button('Reload','exclamation-circle','danger','.');
 
 $main->el('h1')->te('Forms - Inline');
 $form = $main->form()->form_inline();

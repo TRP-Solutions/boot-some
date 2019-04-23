@@ -43,7 +43,7 @@ $body2 = $modal->body();
 $form = $body2->form()->form_inline();
 $form->label('Basic');
 $form->input('hello');
-$form->button('Reset','file','warning');
+$form->button('Reload','file','warning','.');
 $form->button('Save','save','danger');
 
 $table = $body2->table();
