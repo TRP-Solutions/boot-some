@@ -157,10 +157,8 @@ trait BootSomeFormNode {
 		$button = $this->el($link ? 'a' : 'button',['class'=>'btn btn-'.$color]);
 		if($link) $button->at(['href'=>$link]);
 		else $button->at(['type'=>'button']);
-		if($icon) {
-			$button->el('i',['class'=>'fas fa-'.$icon]);
-		}
-		$button->te($text);
+		if($icon) $button->el('i',['class'=>'fas fa-'.$icon]);
+		if($text) $button->el('span')->te($text);
 		return $button;
 	}
 }
