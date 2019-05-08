@@ -53,7 +53,7 @@ class BootSomeNavbarNav extends BootSomeElement {
 	}
 
 	public function dropdown($text, $active = false){
-		$div = $this->el('div', ['class'=>'nav-item dropdown']);
+		$div = $this->el('div',['class'=>'nav-item dropdown']);
 		if($active) $div->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		$div->el('a',['class'=>'nav-link dropdown-toggle','href'=>'#','data-toggle'=>'dropdown'])->te($text);
 
@@ -70,6 +70,9 @@ class BootSomeNavbarDropDown extends BootSomeElement {
 		$a->at(['class'=>'dropdown-item']);
 		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		return $a;
+	}
+	public function divider(){
+		$this->el('div',['class'=>'dropdown-divider']);
 	}
 }
 ?>
