@@ -57,11 +57,11 @@ trait BootSomeFormNode {
 
 		$js = "this.value.substring(this.value.lastIndexOf('\\\\')+1,this.value.length)";
 		$js = "(this.value.lastIndexOf('\\\\'))?$js:this.value";
-		$js = "document.getElementById('filelabel_$name').innerHTML=$js;";
+		$js = "this.parentElement.querySelector('label').textContent=$js;";
 		$input->at(['onchange'=>$js]);
 
 		$input->at(['class'=>'custom-file-input']);
-		$div->el('label',['class'=>'custom-file-label','for'=>$name,'id'=>'filelabel_'.$name])->te('Choose file');
+		$div->el('label',['class'=>'custom-file-label','for'=>$name])->te('Choose file');
 		return $input;
 	}
 
