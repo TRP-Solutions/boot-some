@@ -170,8 +170,8 @@ trait BootSomeNodeParent {
 		return new BootSomeElement($name);
 	}
 
-	public function container($fluid = true){
-		$head = $this->el('div')->at(['class'=>$fluid?'container-fluid':'container']);
+	public function container($fluid = true, $element = 'div'){
+		$head = $this->el($element)->at(['class'=>$fluid?'container-fluid':'container']);
 		return $head;
 	}
 
