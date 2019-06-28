@@ -218,6 +218,9 @@ trait BootSomeNodeParent {
 	}
 
 	public function pagination($total, $limit, $page, $url){
+		if($total<=$limit) return; 
+
+		$pages = (ceil($total/$limit));
 		$nav = $this->el('nav',['class'=>'pagination']);
 
 		$span = $nav->el('span',['class'=>'page-item']);
@@ -227,9 +230,42 @@ trait BootSomeNodeParent {
 		}
 		else {
 			$button->at($url($page-1));
+			$button->at(['accesskey'=>'p']);
 		}
 
-		for($i=1;($i*$limit)<=(ceil($total/$limit)*$limit);$i++) {
+		if($page>4 && $pages>7) {
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te('1');
+			$button->at($url(1));
+
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te('…');
+			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+
+			if($page<($pages-4)) {
+				$start = $page - 1;
+			}
+			else {
+				$start = ($page<($pages-3)) ? $page - 1 : $pages-4;
+			}
+		}
+		else {
+			$start = 1;
+		}
+
+		if($pages>7) {
+			if($page<5) {
+				$end = 5;
+			}
+			else {
+				$end = ($page<($pages-3)) ? $page + 1 : $pages;
+			}
+		}
+		else {
+			$end = $pages;
+		}
+
+		for($i=$start;$i<=$end;$i++) {
 			$span = $nav->el('span',['class'=>'page-item']);
 			$button = $span->el('button',['class'=>'page-link'])->te($i);
 			if($page==$i) {
@@ -240,6 +276,16 @@ trait BootSomeNodeParent {
 			}
 		}
 
+		if($page<($pages-3) && $pages>7) {
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te('…');
+			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te($pages);
+			$button->at($url($pages));
+		}
+
 		$span = $nav->el('span',['class'=>'page-item']);
 		$button = $span->el('button',['class'=>'page-link'])->te('»');
 		if($page==ceil($total/$limit)) {
@@ -247,6 +293,7 @@ trait BootSomeNodeParent {
 		}
 		else {
 			$button->at($url($page+1));
+			$button->at(['accesskey'=>'n']);
 		}
 	}
 
