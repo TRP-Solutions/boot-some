@@ -1,5 +1,5 @@
 <?php
-class BootSomeCard extends HealElement {
+class BootSomeCard extends BootSomeElement {
 	public function header(){
 		$element = new BootSomeElement('div');
 		$this->appendChild($element);
