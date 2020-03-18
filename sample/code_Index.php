@@ -19,4 +19,4 @@ $head->el('script',['src'=>'https://code.jquery.com/jquery-3.3.1.slim.min.js']);
 $head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js']);
 $head->el('script',['src'=>'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js']);
 
-$head->css('../../git_boot-theme/lib/theme.css'); // https://github.com/TRP-Solutions/boot-theme
+$head->css('../lib/BootSome.css');

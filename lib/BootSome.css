@@ -1,0 +1,200 @@
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
+body {
+	padding-bottom: .5rem;
+}
+h1 {
+	font-size: 2rem;
+	margin-top: .5rem;
+}
+button.btn i, a.btn i {
+	margin-right: .5rem;
+}
+label.custom-file-label::after {
+	content:'Browse';
+}
+input.custom-file-input {
+	cursor: pointer;
+}
+body.modal-open {
+	overflow: hidden;
+}
+div.modal {
+	display: block;
+	-webkit-overflow-scrolling: touch;
+}
+div.modal-backdrop {
+	opacity: .5;
+}
+div.modal-header, div.modal-footer {
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+}
+div.modal-body {
+	padding-top: .5rem;
+	padding-bottom: 0rem;
+}
+div.modal-body:not(:last-child) {
+	border-bottom: 1px solid #dee2e6;
+}
+div.modal-body .form-inline {
+	padding-bottom: .5rem;
+}
+div.modal-body .form-inline label {
+	margin-right: auto!important;
+	display: block;
+}
+@media (min-width: 992px) {
+	div.modal-dialog {
+		max-width: 950px;
+	}
+}
+@media (min-width: 576px) {
+	modal.modal-dialog {
+		max-width: 500px;
+		margin: 1.75rem auto;
+	}
+}
+dialog {
+	border-width: 0;
+}
+nav.navbar {
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+}
+nav.navbar .container-fluid {
+	padding: 0rem;
+}
+nav.navbar .navbar-nav {
+	margin-left: auto!important;
+}
+nav.navbar .navbar-brand {
+	height: calc(2em + 2px);
+	padding: .25rem 0rem;
+}
+nav.navbar .nav-link {
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+}
+nav.navbar .navbar-brand img {
+	height: 100%;
+}
+nav.navbar .form-inline {
+	margin-right: auto!important;
+}
+div.form-group {
+	margin-bottom: .5rem;
+}
+.form-inline {
+	margin-right: -.5rem;
+}
+.form-inline a.btn, 
+.form-inline label, 
+.form-inline input.form-control, 
+.form-inline select.custom-select, 
+.form-inline button.btn {
+	margin-right: .5rem;
+}
+.form-inline button.btn {
+	padding: .25rem .5rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	border-radius: .2rem;
+}
+.form-inline input.form-control {
+	height: calc(1.8125rem + 2px);
+	padding: .25rem .5rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	border-radius: .2rem;
+}
+.form-inline select.custom-select {
+	height: calc(1.8125rem + 2px);
+	padding-top: .375rem;
+	padding-bottom: .375rem;
+	font-size: 75%;
+}
+.form-inline a.btn {
+	padding: .25rem .5rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	border-radius: .2rem;
+}
+table.table {
+	margin-bottom: .5rem;
+}
+table.table td,
+table.table th {
+	padding: .3rem;
+	font-size: 0.8em;
+	white-space: nowrap;
+}
+table.table tr[onclick] {
+	cursor: pointer;
+}
+table.table tr td[wrap] {
+	min-width: 200px;
+	white-space: normal !important;
+}
+table tr td[right],
+table tr th[right] {
+	text-align: right !important;
+}
+table tr td[center],
+table tr th[center] {
+	text-align: center !important;
+}
+table tr td[monospace] {
+	font-family: "Fira Code", monospace;
+}
+table.table:not(.bs-datepicker) tbody tr:nth-of-type(odd) {
+	background-color: rgba(0,0,0,.05);
+}
+table.table:not(.bs-datepicker) tbody tr:hover>td {
+	background-color: rgba(0,0,0,.075);
+}
+table.bs-datepicker td.bs-datepicker-today {
+	background-color: #bee5eb;
+}
+table.bs-datepicker td.bs-datepicker-lastmonth,
+table.bs-datepicker td.bs-datepicker-nextmonth {
+	background-color: #d6d8db;
+}
+table.bs-datepicker td.bs-datepicker-selected {
+	background-color: #b8daff;
+}
+table.bs-datepicker td:hover {
+	background-color: rgba(0,0,0,.075);
+}
+div.bs-datepicker td {
+	cursor: pointer;
+}
+div.card table.table {
+	margin-bottom: 0rem;
+}
+div.card table.table tr td:first-child,
+div.card table.table tr th:first-child {
+	padding-left: 1.25rem;
+}
+div.card table.table tr td:last-child,
+div.card table.table tr th:last-child {
+	padding-right: 1.25rem;
+}
+nav.pagination {
+	-ms-flex-pack: center!important;
+	justify-content: center!important;
+	margin-bottom: .5rem;
+}
+nav.pagination button.page-link {
+	padding: .25rem .5rem;
+	font-size: .875rem;
+	line-height: 1.5;
+}
+nav.pagination span.page-item button {
+	width: 3rem;
+}
+div.alert {
+	margin-bottom: .5rem;
+}
