@@ -1,4 +1,8 @@
 <?php
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
 $head->el('script',['src'=>'../../git_popperjs/popper.js']);
 $head->el('script',['src'=>'../lib/BootSomeForms.js']);
 

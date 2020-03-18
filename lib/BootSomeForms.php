@@ -1,4 +1,8 @@
 <?php
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
 class BootSomeFormsGroup extends BootSomeElement {
 	public function text($text){
 		return $this->el('small',['class'=>'form-text'])->te($text);

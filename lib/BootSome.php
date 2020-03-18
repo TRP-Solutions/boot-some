@@ -1,4 +1,8 @@
 <?php
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
 trait BootSomeFormNode {
 	private $inlinewrap = null; // https://github.com/twbs/bootstrap/issues/27987
 

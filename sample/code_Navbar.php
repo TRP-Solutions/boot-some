@@ -1,4 +1,8 @@
 <?php
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
 $navbar = $body->navbar();
 
 $brand = $navbar->brand('http://trp.solutions');

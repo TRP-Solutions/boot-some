@@ -1,4 +1,8 @@
 <?php
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
 class BootSomeCard extends BootSomeElement {
 	public function header(){
 		$element = new BootSomeElement('div');

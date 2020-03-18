@@ -1,4 +1,8 @@
 <?php
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
 $head->el('style')->te('div.modal{display: block;} div.modal-backdrop {opacity: .5;}');
 $body->at(['class'=>'modal-open','id'=>'body']);
 
