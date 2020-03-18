@@ -57,11 +57,11 @@ trait BootSomeFormNode {
 
 		$js = "this.value.substring(this.value.lastIndexOf('\\\\')+1,this.value.length)";
 		$js = "(this.value.lastIndexOf('\\\\'))?$js:this.value";
-		$js = "document.getElementById('filelabel_$name').innerHTML=$js;";
+		$js = "this.parentElement.querySelector('label').textContent=$js;";
 		$input->at(['onchange'=>$js]);
 
 		$input->at(['class'=>'custom-file-input']);
-		$div->el('label',['class'=>'custom-file-label','for'=>$name,'id'=>'filelabel_'.$name])->te('Choose file');
+		$div->el('label',['class'=>'custom-file-label','for'=>$name])->te('Choose file');
 		return $input;
 	}
 
@@ -170,8 +170,8 @@ trait BootSomeNodeParent {
 		return new BootSomeElement($name);
 	}
 
-	public function container($fluid = true){
-		$head = $this->el('div')->at(['class'=>$fluid?'container-fluid':'container']);
+	public function container($fluid = true, $element = 'div'){
+		$head = $this->el($element)->at(['class'=>$fluid?'container-fluid':'container']);
 		return $head;
 	}
 
@@ -182,8 +182,8 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
-	public function navbar($fluid = true){
-		$nav = $this->el('nav',['class'=>'navbar navbar-expand-md']);
+	public function navbar($fluid = true, $nav_classes = ''){
+		$nav = $this->el('nav',['class'=>'navbar navbar-expand-md'.(!empty($nav_classes)?' '.$nav_classes:'')]);
 
 		$element = new BootSomeNavbar('div');
 		$nav->appendChild($element);
@@ -218,6 +218,9 @@ trait BootSomeNodeParent {
 	}
 
 	public function pagination($total, $limit, $page, $url){
+		if($total<=$limit) return; 
+
+		$pages = (ceil($total/$limit));
 		$nav = $this->el('nav',['class'=>'pagination']);
 
 		$span = $nav->el('span',['class'=>'page-item']);
@@ -227,9 +230,42 @@ trait BootSomeNodeParent {
 		}
 		else {
 			$button->at($url($page-1));
+			$button->at(['accesskey'=>'p']);
 		}
 
-		for($i=1;($i*$limit)<=(ceil($total/$limit)*$limit);$i++) {
+		if($page>4 && $pages>7) {
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te('1');
+			$button->at($url(1));
+
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te('…');
+			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+
+			if($page<($pages-4)) {
+				$start = $page - 1;
+			}
+			else {
+				$start = ($page<($pages-3)) ? $page - 1 : $pages-4;
+			}
+		}
+		else {
+			$start = 1;
+		}
+
+		if($pages>7) {
+			if($page<5) {
+				$end = 5;
+			}
+			else {
+				$end = ($page<($pages-3)) ? $page + 1 : $pages;
+			}
+		}
+		else {
+			$end = $pages;
+		}
+
+		for($i=$start;$i<=$end;$i++) {
 			$span = $nav->el('span',['class'=>'page-item']);
 			$button = $span->el('button',['class'=>'page-link'])->te($i);
 			if($page==$i) {
@@ -240,6 +276,16 @@ trait BootSomeNodeParent {
 			}
 		}
 
+		if($page<($pages-3) && $pages>7) {
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te('…');
+			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+
+			$span = $nav->el('span',['class'=>'page-item']);
+			$button = $span->el('button',['class'=>'page-link'])->te($pages);
+			$button->at($url($pages));
+		}
+
 		$span = $nav->el('span',['class'=>'page-item']);
 		$button = $span->el('button',['class'=>'page-link'])->te('»');
 		if($page==ceil($total/$limit)) {
@@ -247,6 +293,7 @@ trait BootSomeNodeParent {
 		}
 		else {
 			$button->at($url($page+1));
+			$button->at(['accesskey'=>'n']);
 		}
 	}
 
