@@ -23,12 +23,13 @@ $js .= "document.getElementById('body').classList.remove('modal-open');";
 $header->close()->at(['onclick'=>$js]);
 
 $body1 = $modal->body();
-$form = $body1->form()->form_inline();
-$form->label('Extended');
-$js = "window.location.href='?".$page."&Source'";
-$form->button('Source','code')->at(['onclick'=>$js]);
-
 $form = $body1->form();
+
+$inline = $form->el('div')->form_inline();
+$inline->label('Extended');
+$js = "window.location.href='?".$page."&Source'";
+$inline->button('Source','code')->at(['onclick'=>$js]);
+
 $group = $form->form_horizontal();
 $group->label('Input','input1');
 $group->input('input1','Value');
@@ -44,11 +45,12 @@ $group->radio('radio1','radioA',true,'RadioA');
 $group->radio('radio1','radioB',false,'RadioB');
 
 $body2 = $modal->body();
-$form = $body2->form()->form_inline();
-$form->label('Basic');
-$form->input('hello');
-$form->button('Reload','file','warning','.');
-$form->button('Save','save','danger');
+
+$inline = $body2->el('div')->form_inline();
+$inline->label('Basic');
+$inline->input('hello');
+$inline->button('Reload','file','warning','.');
+$inline->button('Save','save','danger');
 
 $table = $body2->table();
 $tr = $table->thead()->tr();
