@@ -16,4 +16,3 @@ $head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.1
 $head->el('script',['src'=>'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js']);
 
 $head->css('../../git_boot-theme/lib/theme.css'); // https://github.com/TRP-Solutions/boot-theme
-?>

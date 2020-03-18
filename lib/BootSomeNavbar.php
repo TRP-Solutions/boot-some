@@ -75,4 +75,3 @@ class BootSomeNavbarDropDown extends BootSomeElement {
 		$this->el('div',['class'=>'dropdown-divider']);
 	}
 }
-?>

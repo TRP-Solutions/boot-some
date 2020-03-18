@@ -318,5 +318,3 @@ require_once(__DIR__.'/BootSomeNavbar.php');
 require_once(__DIR__.'/BootSomeForms.php');
 require_once(__DIR__.'/BootSomeModal.php');
 require_once(__DIR__.'/BootSomeTables.php');
-
-?>

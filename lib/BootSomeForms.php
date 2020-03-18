@@ -98,4 +98,3 @@ class BootSomeFormsInputGroup extends BootSomeElement {
 		return $this->el('div',['class'=>'input-group-text'])->te($text);
 	}
 }
-?>

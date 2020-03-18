@@ -40,4 +40,3 @@ $dropdown->a('?Tables','Tables',$page=='Tables');
 $dropdown = $nav->dropdown('Links');
 $dropdown->a('https://fontawesome.com/icons','Icons | Font Awesome')->at(['target'=>'_blank']);
 $dropdown->a('https://getbootstrap.com/docs/','Introduction · Bootstrap')->at(['target'=>'_blank']);
-?>

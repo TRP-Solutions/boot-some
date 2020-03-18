@@ -52,4 +52,3 @@ class BootSomeCarouselItem extends BootSomeElement {
 		return $caption;
 	}
 }
-?>

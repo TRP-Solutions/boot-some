@@ -16,4 +16,3 @@ $carousel->item('https://scontent-arn2-1.cdninstagram.com/vp/8364b446bf1c27704dc
 
 $carousel->indicators();
 $carousel->control();
-?>

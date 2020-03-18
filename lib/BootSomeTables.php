@@ -37,4 +37,3 @@ class BootSomeTableTr extends HealElement {
 		return $element;
 	}
 }
-?>

@@ -44,4 +44,3 @@ class BootSomeCardListGroup extends BootSomeElement {
 		return $item;
 	}
 }
-?>

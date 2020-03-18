@@ -36,4 +36,3 @@ $tr->td()->te('Beef leberkas kielbasa');
 $tr->td()->te('Shoulder doner pork');
 
 $card->footer()->te('This is the end');
-?>

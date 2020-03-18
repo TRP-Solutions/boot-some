@@ -7,4 +7,3 @@ class BootSomeDropDown extends BootSomeElement {
 		return $a;
 	}
 }
-?>

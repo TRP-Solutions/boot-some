@@ -20,4 +20,3 @@ $url = function($i) {
 };
 
 $table = $main->pagination($total, $limit, $page, $url);
-?>

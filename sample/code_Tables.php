@@ -16,4 +16,3 @@ for($i=1;$i<=5;$i++) {
 	$tr->td()->te('Beef leberkas kielbasa, tri-tip flank sausage pork.');
 	$tr->td()->te('Shoulder doner pork belly, bresaola hamburger ground round');
 }
-?>
