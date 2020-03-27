@@ -152,21 +152,12 @@ table tr td[monospace] {
 table.table:not(.bs-datepicker) tbody tr:nth-of-type(odd) {
 	background-color: rgba(0,0,0,.05);
 }
-table.table:not(.bs-datepicker) tbody tr:hover>td {
-	background-color: rgba(0,0,0,.075);
-}
-table.bs-datepicker td.bs-datepicker-today {
-	background-color: #bee5eb;
-}
-table.bs-datepicker td.bs-datepicker-lastmonth,
-table.bs-datepicker td.bs-datepicker-nextmonth {
-	background-color: #d6d8db;
-}
-table.bs-datepicker td.bs-datepicker-selected {
-	background-color: #b8daff;
-}
+table.table:not(.bs-datepicker) tbody tr:hover>td,
 table.bs-datepicker td:hover {
 	background-color: rgba(0,0,0,.075);
+}
+div.bs-datepicker {
+	width: 100%;
 }
 div.bs-datepicker td {
 	cursor: pointer;
