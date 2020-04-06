@@ -309,6 +309,10 @@ trait BootSomeNodeParent {
 		return $this->at(['class'=>'badge badge-'.$color],HEAL_ATTR_APPEND);
 	}
 
+	public function spinner(){
+		return $this->el('i',['class'=>'fas fa-2x fa-spinner fa-spin'],HEAL_ATTR_APPEND);
+	}
+
 	public function dropdown($text,$color = 'primary'){
 		$div = $this->el('div', ['class'=>'dropdown']);
 		$div->el('button',['class'=>'btn btn-'.$color.' dropdown-toggle','data-toggle'=>'dropdown'])->te($text);

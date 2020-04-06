@@ -5,6 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 $main = $body->container();
 $main->el('h1')->te('Pagination');
+$main->spinner();
 
 /*
 $limit = 50;

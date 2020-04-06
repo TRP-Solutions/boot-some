@@ -6,8 +6,8 @@ h1 {
 	font-size: 2rem;
 	margin-top: .5rem;
 }
-button.btn i, a.btn i {
-	margin-right: .5rem;
+button.btn i + *, a.btn i + * {
+	margin-left: .5rem;
 }
 hr {
 	margin-bottom: .5rem;
