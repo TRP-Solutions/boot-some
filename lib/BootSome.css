@@ -96,12 +96,16 @@ div.form-group {
 .form-inline button.btn {
 	margin-right: .5rem;
 }
-.form-inline button.btn {
+.table button.btn,
+.table a.btn,
+.form-inline button.btn,
+.form-inline a.btn {
 	padding: .25rem .5rem;
 	font-size: .875rem;
 	line-height: 1.5;
 	border-radius: .2rem;
 }
+.table input.form-control,
 .form-inline input.form-control {
 	height: calc(1.8125rem + 2px);
 	padding: .25rem .5rem;
@@ -109,17 +113,12 @@ div.form-group {
 	line-height: 1.5;
 	border-radius: .2rem;
 }
+.table select.custom-select,
 .form-inline select.custom-select {
 	height: calc(1.8125rem + 2px);
 	padding-top: .375rem;
 	padding-bottom: .375rem;
 	font-size: 75%;
-}
-.form-inline a.btn {
-	padding: .25rem .5rem;
-	font-size: .875rem;
-	line-height: 1.5;
-	border-radius: .2rem;
 }
 table.table {
 	margin-bottom: .5rem;
@@ -150,6 +149,7 @@ table tr td[monospace] {
 }
 tr .badge {
 	vertical-align: text-bottom;
+	width: 100%;
 }
 table.table:not(.bs-datepicker) tbody tr:nth-of-type(odd) {
 	background-color: rgba(0,0,0,.05);
