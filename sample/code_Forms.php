@@ -76,3 +76,13 @@ $select = $form->select('select1');
 $select->options([1 => 'Option1',2 => 'Option2']);
 $form->button('Submit');
 $form->button('Link',null,'info','http://example.com');
+
+$main->el('hr');
+
+$form = $main->form()->form_inline();
+$form->input('input4','Value');
+
+$select = $form->select('select1');
+$select->options([1 => 'Option1',2 => 'Option2']);
+$form->button('Submit');
+$form->button('Link',null,'info','http://example.com');

@@ -39,6 +39,8 @@ $group->label('Checkbox');
 $group->checkbox('check1',true,'On','Check1');
 $group->checkbox('check2',false,'On','Check2');
 
+$form->el('hr');
+
 $group = $form->form_horizontal();
 $group->label('Radio');
 $group->radio('radio1','radioA',true,'RadioA');

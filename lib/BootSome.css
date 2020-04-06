@@ -2,15 +2,16 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-body {
-	padding-bottom: .5rem;
-}
 h1 {
 	font-size: 2rem;
 	margin-top: .5rem;
 }
 button.btn i, a.btn i {
 	margin-right: .5rem;
+}
+hr {
+	margin-bottom: .5rem;
+	margin-top: .5rem;
 }
 label.custom-file-label::after {
 	content:'Browse';
@@ -38,9 +39,6 @@ div.modal-body {
 }
 div.modal-body:not(:last-child) {
 	border-bottom: 1px solid #dee2e6;
-}
-div.modal-body .form-inline {
-	padding-bottom: .5rem;
 }
 div.modal-body .form-inline label {
 	margin-right: auto!important;
@@ -89,6 +87,7 @@ div.form-group {
 }
 .form-inline {
 	margin-right: -.5rem;
+	margin-bottom: .5rem;
 }
 .form-inline a.btn, 
 .form-inline label, 
@@ -148,6 +147,9 @@ table tr th[center] {
 }
 table tr td[monospace] {
 	font-family: "Fira Code", monospace;
+}
+tr .badge {
+	vertical-align: text-bottom;
 }
 table.table:not(.bs-datepicker) tbody tr:nth-of-type(odd) {
 	background-color: rgba(0,0,0,.05);
