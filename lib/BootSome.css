@@ -101,7 +101,7 @@ div.form-group {
 .form-inline button.btn,
 .form-inline a.btn {
 	padding: .25rem .5rem;
-	font-size: .875rem;
+	font-size: .85rem;
 	line-height: 1.5;
 	border-radius: .2rem;
 }
@@ -109,16 +109,16 @@ div.form-group {
 .form-inline input.form-control {
 	height: calc(1.8125rem + 2px);
 	padding: .25rem .5rem;
-	font-size: .875rem;
+	font-size: .85rem;
 	line-height: 1.5;
 	border-radius: .2rem;
 }
 .table select.custom-select,
 .form-inline select.custom-select {
 	height: calc(1.8125rem + 2px);
-	padding-top: .375rem;
-	padding-bottom: .375rem;
-	font-size: 75%;
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	font-size: .85rem;
 }
 table.table {
 	margin-bottom: .5rem;
@@ -126,7 +126,7 @@ table.table {
 table.table td,
 table.table th {
 	padding: .3rem;
-	font-size: 0.8em;
+	font-size: 0.85em;
 	white-space: nowrap;
 }
 table.table tr[onclick] {
