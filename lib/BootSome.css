@@ -81,6 +81,7 @@ nav.navbar .navbar-brand img {
 }
 nav.navbar .form-inline {
 	margin-right: auto!important;
+	margin-bottom: .0rem;
 }
 div.form-group {
 	margin-bottom: .5rem;
