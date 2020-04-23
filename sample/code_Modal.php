@@ -32,8 +32,7 @@ $tabs->item()->a('#','Tab4')->at(['onclick'=>'active();']);
 
 $modalgroup = $modal->modalgroup();
 
-$body1 = $modalgroup->body();
-$form = $body1->form();
+$form = $modalgroup->body('');
 
 $inline = $form->el('div')->form_inline();
 $inline->label('Extended');

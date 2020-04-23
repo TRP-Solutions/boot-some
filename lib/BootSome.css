@@ -33,20 +33,20 @@ div.modal-header, div.modal-footer {
 	padding-top: .5rem;
 	padding-bottom: .5rem;
 }
-div.modal-body {
+.modal-body {
 	padding-top: .5rem;
 	padding-bottom: 0rem;
 }
-div.modal-body:not(:first-child), div.modal-footer {
+.modal-body:not(:first-child), div.modal-footer {
 	border-top: 1px solid #dee2e6;
 }
-div.modal ul.nav-tabs + div.modal-body {
+div.modal ul.nav-tabs + .modal-body {
 	border-top: 0px;
 }
 div.modal-header {
 	border-bottom: 0px;
 }
-div.modal-body .form-inline label {
+.modal-body .form-inline label {
 	margin-right: auto!important;
 	display: block;
 }

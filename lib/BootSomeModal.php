@@ -16,8 +16,16 @@ trait BootSomeModalNode {
 		return $element;
 	}
 
-	public function body(){
-		return $this->el('div',['class'=>'modal-body']);
+	public function body($id = null){
+		if(!isset($id)) {
+			 $body = $this->el('div');
+		}
+		else {
+			$body = $this->form();
+			if(!empty($id)) $body->at(['id'=>$id]);
+		}
+		$body->at(['class'=>'modal-body']);
+		return $body;
 	}
 }
 
