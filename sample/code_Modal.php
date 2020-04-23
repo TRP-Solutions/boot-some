@@ -3,6 +3,8 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+$head->el('script',['src'=>'../lib/BootSome.js']);
+
 $head->el('style')->te('div.modal{display: block;} div.modal-backdrop {opacity: .5;}');
 $body->at(['class'=>'modal-open','id'=>'body']);
 
@@ -23,12 +25,14 @@ $js .= "document.getElementById('body').classList.remove('modal-open');";
 $header->close()->at(['onclick'=>$js]);
 
 $tabs = $modal->navs('tabs');
-$tabs->item()->a('#','Tab1');
-$tabs->item()->a('#','Tab2',true);
-$tabs->item()->a('#','Tab3');
-$tabs->item()->a('#','Tab4');
+$tabs->item()->a('#','Tab1')->at(['onclick'=>'active();']);
+$tabs->item()->a('#','Tab2',true)->at(['onclick'=>'active();']);
+$tabs->item()->a('#','Tab3')->at(['onclick'=>'active();']);
+$tabs->item()->a('#','Tab4')->at(['onclick'=>'active();']);
 
-$body1 = $modal->body();
+$modalgroup = $modal->modalgroup();
+
+$body1 = $modalgroup->body();
 $form = $body1->form();
 
 $inline = $form->el('div')->form_inline();
@@ -52,7 +56,7 @@ $group->label('Radio');
 $group->radio('radio1','radioA',true,'RadioA');
 $group->radio('radio1','radioB',false,'RadioB');
 
-$body2 = $modal->body();
+$body2 = $modalgroup->body();
 
 $inline = $body2->el('div')->form_inline();
 $inline->label('Basic');
