@@ -195,6 +195,14 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
+	public function navs($type = null){
+		$element = new BootSomeNavs('ul');
+		$this->appendChild($element);
+		$element->at(['class'=>'nav']);
+		if($type) $element->at(['class'=>'nav-'.$type],HEAL_ATTR_APPEND);
+		return $element;
+	}
+
 	public function modal(){
 		$dialog = $this->el('div',['class'=>'modal']);
 		$dialog = $dialog->el('div',['class'=>'modal-dialog']);
@@ -370,6 +378,7 @@ require_once(__DIR__.'/BootSomeCarousel.php');
 require_once(__DIR__.'/BootSomeCard.php');
 require_once(__DIR__.'/BootSomeDropdown.php');
 require_once(__DIR__.'/BootSomeNavbar.php');
+require_once(__DIR__.'/BootSomeNavs.php');
 require_once(__DIR__.'/BootSomeForms.php');
 require_once(__DIR__.'/BootSomeModal.php');
 require_once(__DIR__.'/BootSomeTables.php');

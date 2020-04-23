@@ -22,6 +22,12 @@ $js = "document.getElementById('dialog').style.display = 'none';";
 $js .= "document.getElementById('body').classList.remove('modal-open');";
 $header->close()->at(['onclick'=>$js]);
 
+$tabs = $modal->navs('tabs');
+$tabs->item()->a('#','Tab1');
+$tabs->item()->a('#','Tab2',true);
+$tabs->item()->a('#','Tab3');
+$tabs->item()->a('#','Tab4');
+
 $body1 = $modal->body();
 $form = $body1->form();
 
@@ -68,3 +74,6 @@ for($i=1;$i<=5;$i++) {
 	$tr->td()->te('Beef leberkas kielbasa, tri-tip flank sausage pork.');
 	$tr->td()->te('Shoulder doner pork belly, bresaola hamburger ground round');
 }
+
+$footer = $modal->footer();
+$footer->button('Close');
