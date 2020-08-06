@@ -7,7 +7,7 @@ $navbar = $body->navbar(true,'navbar-light bg-light');
 
 $brand = $navbar->brand('http://trp.solutions');
 $brand->at(['target'=>'_blank']);
-$brand->el('img',['src'=>'http://trp.solutions/images/logo.svg','height'=>'22px']);
+$brand->img('http://trp.solutions/images/logo.svg','brandlogo');
 
 if($source) {
 	$js = "window.location.href='?".$page."'";
