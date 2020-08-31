@@ -9,7 +9,7 @@ require_once('../lib/BootSome.php');
 $doc = new BootSome();
 list($head,$body) = $doc->html('BootSome() :: '.$page);
 
-$head->metadata('viewport','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+$head->metadata('viewport','width=device-width, initial-scale=1.0');
 $head->link('shortcut icon','#');
 
 $head->css('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
