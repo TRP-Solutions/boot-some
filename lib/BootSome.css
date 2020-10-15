@@ -88,6 +88,7 @@ nav.navbar .nav-link {
 }
 nav.navbar .navbar-brand img {
 	height: 100%;
+	margin-right: .5rem;
 }
 nav.navbar .form-inline {
 	margin-right: auto!important;
