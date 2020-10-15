@@ -56,7 +56,11 @@ $group->checkbox('check4',false,'On','Check4');
 
 $group = $form->form_horizontal(4);
 $group->label('Date');
-$group->date('date1');
+$group->date('date1')->at(['data-suggest'=>'date2']);
+
+$group = $form->form_horizontal(4);
+$group->label('Date');
+$group->date('date2')->at(['data-suggest'=>'01.01.2020']);
 
 $group = $form->form_horizontal(4);
 $group->label('Input','input3');
