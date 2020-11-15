@@ -108,6 +108,14 @@ div.form-group {
 .form-inline button.btn {
 	margin-right: .5rem;
 }
+.form-inline > :last-child {
+	margin-right: 0rem !important;
+}
+@media (max-width: 575px) {
+	.form-inline > :not(:last-child) {
+		margin-bottom: .5rem;
+	}
+}
 .table button.btn,
 .table a.btn,
 .form-inline button.btn,
