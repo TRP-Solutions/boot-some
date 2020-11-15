@@ -56,7 +56,7 @@ trait BootSomeFormNode {
 		$div = $this->el('div',['class'=>'custom-file']);
 
 		$input = $div->el('input',['type'=>'file','id'=>$name]);
-		if($multiple) $input->at(['multiple'=>null])->at(['name'=>$name.'[]']);
+		if($multiple) $input->at(['multiple'])->at(['name'=>$name.'[]']);
 		else $input->at(['name'=>$name]);
 
 		$js = "this.value.substring(this.value.lastIndexOf('\\\\')+1,this.value.length)";
