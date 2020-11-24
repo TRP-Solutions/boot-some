@@ -97,7 +97,7 @@ nav.navbar .form-inline {
 div.form-group {
 	margin-bottom: .5rem;
 }
-div.form-group button:not(:last-child) {
+div.form-group button:not(:last-child), div.form-group a:not(:last-child) {
 	margin-right: .5rem;
 }
 .form-inline {

@@ -37,7 +37,8 @@ $group->textarea('textarea1','Content');
 
 $group = $form->form_group();
 $group->button('Submit');
-$group->button('Cancel',null,'danger');
+$group->button('Reset',null,'danger')->at(['type'=>'reset']);
+$group->button('Cancel',null,'secondary','.');
 
 $main->el('h1')->te('Forms - Horizontal');
 $form = $main->form();
