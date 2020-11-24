@@ -37,6 +37,7 @@ $group->textarea('textarea1','Content');
 
 $group = $form->form_group();
 $group->button('Submit');
+$group->button('Cancel',null,'danger');
 
 $main->el('h1')->te('Forms - Horizontal');
 $form = $main->form();
@@ -72,7 +73,7 @@ $append = $inputgroup->append();
 $append->button('E-mail','envelope');
 
 $group = $form->form_horizontal(4);
-$group->button('Reload','exclamation-circle','danger','.');
+$group->button('Reload','exclamation-circle','warning','.');
 
 $main->el('h1')->te('Forms - Inline');
 $form = $main->form()->form_inline();
