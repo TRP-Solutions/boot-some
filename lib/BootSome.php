@@ -348,8 +348,8 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
-	public function icon($icon){
-		return $this->el('i',['class'=>'fas fa-'.$icon]);
+	public function icon($icon,$fullclass = false){
+		return $this->el('i',['class'=>$fullclass ? $icon : 'fas fa-'.$icon]);
 	}
 
 	public function display(...$class){

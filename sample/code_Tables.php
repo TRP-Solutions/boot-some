@@ -19,6 +19,7 @@ $tbody = $table->tbody();
 for($i=1;$i<=5;$i++) {
 	$tr = $tbody->tr();
 	$tr->td()->icon('piggy-bank');
+	$tr->td()->icon('fab fa-facebook-f',true);
 	$tr->td()->el('span')->te('New')->badge();
 	$tr->td()->checkbox('test_check');
 	$tr->td()->te('Beef leberkas kielbasa, tri-tip flank sausage pork.');
