@@ -170,6 +170,9 @@ table tr th[center] {
 table tr td[monospace] {
 	font-family: "Fira Code", monospace;
 }
+table.table td > ul {
+	margin: 0em;
+}
 tr .badge {
 	vertical-align: text-bottom;
 	width: 100%;

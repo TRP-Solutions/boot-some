@@ -24,6 +24,9 @@ for($i=1;$i<=5;$i++) {
 	$tr->td()->checkbox('test_check');
 	$tr->td()->te('Beef leberkas kielbasa, tri-tip flank sausage pork.');
 	$tr->td()->te('Shoulder doner pork belly, bresaola hamburger ground round');
+	$ul = $tr->td()->el('ul');
+	$ul->el('li')->te('Test 1');
+	$ul->el('li')->te('Test 2');
 }
 
 $table = $main->table();
