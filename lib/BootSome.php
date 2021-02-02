@@ -310,8 +310,11 @@ trait BootSomeNodeParent {
 		}
 	}
 
-	public function alert($color = 'primary'){
-		return $this->el('div',['class'=>'alert alert-'.$color]);
+	public function alert($color = null,$center = false){
+		if($color===null) $color = 'primary';
+		$alert = $this->el('div',['class'=>'alert alert-'.$color]);
+		if($center) $alert->at(['class'=>'text-center'],HEAL_ATTR_APPEND);
+		return $alert;
 	}
 
 	public function badge($color = 'primary'){
