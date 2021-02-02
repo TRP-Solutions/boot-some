@@ -11,10 +11,11 @@ trait BootSomeFormNode {
 		return $element;
 	}
 
-	public function form_group($col = null){
+	public function form_group($col = null,$left = false){
 		$element = new BootSomeFormsGroup('div');
 		$this->appendChild($element);
 		$element->at(['class'=>'form-group']);
+		if($left) $element->at(['class'=>'float-right'],HEAL_ATTR_APPEND);
 		if($col) {
 			$element->at(['class'=>'col-md-'.(int) $col], HEAL_ATTR_APPEND);
 		}

@@ -159,6 +159,11 @@ table.table tr td[wrap] {
 	min-width: 200px;
 	white-space: normal !important;
 }
+table.table tr td[ellipsis] {
+	max-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 table tr td[right],
 table tr th[right] {
 	text-align: right !important;
