@@ -152,7 +152,7 @@ table.table th {
 	font-size: 0.85em;
 	white-space: nowrap;
 }
-table.table tr[onclick] {
+table.table tr[onclick], div[onclick] {
 	cursor: pointer;
 }
 table.table tr td[wrap] {
