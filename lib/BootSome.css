@@ -219,6 +219,14 @@ nav.pagination button.page-link {
 nav.pagination span.page-item button {
 	width: 3rem;
 }
+nav.breadcrumb {
+	background-color: inherit;
+	padding: 0rem;
+	margin-bottom: .5rem;
+}
+h1 + nav.breadcrumb {
+	margin-top: -.5rem;
+}
 div.alert {
 	margin-bottom: .5rem;
 }

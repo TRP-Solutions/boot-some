@@ -30,6 +30,7 @@ $dropdown->a('.','Index',$page=='Index');
 $dropdown->divider();
 $dropdown->a('?Alerts','Alerts',$page=='Alerts');
 $dropdown->a('?Badge','Badge',$page=='Badge');
+$dropdown->a('?Breadcrumb','Breadcrumb',$page=='Breadcrumb');
 $dropdown->a('?Card','Card',$page=='Card');
 $dropdown->a('?Carousel','Carousel',$page=='Carousel');
 $dropdown->a('?Display','Display',$page=='Display');

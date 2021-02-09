@@ -325,6 +325,19 @@ trait BootSomeNodeParent {
 		return $this->el('i',['class'=>'fas fa-2x fa-spinner fa-spin'],HEAL_ATTR_APPEND);
 	}
 
+	public function breadcrumb($input = [],$prefix = '') {
+		$ul = $this->el('nav',['class'=>'breadcrumb']);
+
+		foreach($input as $item) {
+			if(isset($item['link'])) {
+				$a = $ul->el('li',['class'=>'breadcrumb-item'])->a($prefix.$item['link'])->te($item['name']);
+			}
+			else {
+				$a = $ul->el('li',['class'=>'breadcrumb-item active'])->te($item['name']);
+			}
+		}
+	}
+
 	public function dropdown($text,$color = 'primary'){
 		$div = $this->el('div', ['class'=>'dropdown']);
 		$div->el('button',['class'=>'btn btn-'.$color.' dropdown-toggle','data-toggle'=>'dropdown'])->te($text);
