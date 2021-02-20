@@ -220,6 +220,7 @@ nav.pagination span.page-item button {
 	width: 3rem;
 }
 nav.breadcrumb {
+	font-size: 0.85em;
 	background-color: inherit;
 	padding: 0rem;
 	margin-bottom: .5rem;
