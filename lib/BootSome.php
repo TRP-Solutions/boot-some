@@ -60,8 +60,7 @@ trait BootSomeFormNode {
 		if($multiple) $input->at(['multiple'])->at(['name'=>$name.'[]']);
 		else $input->at(['name'=>$name]);
 
-		$js = "this.value.substring(this.value.lastIndexOf('\\\\')+1,this.value.length)";
-		$js = "(this.value.lastIndexOf('\\\\'))?$js:this.value";
+		$js = "Array.from(this.files).map(function(f){return f.name}).join(', ')";
 		$js = "this.parentElement.querySelector('label').textContent=$js;";
 		$input->at(['onchange'=>$js]);
 
