@@ -6,7 +6,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 $head->el('script',['src'=>'../../git_popperjs/popper.js']);
 $head->el('script',['src'=>'../lib/BootSomeForms.js']);
 
-$main = $body->container(true);
+$main = $body->container();
 $main->el('h1')->te('Forms');
 
 $form = $main->form();
@@ -15,7 +15,7 @@ $group->label('Input','input1');
 $group->input('input1','Value');
 $group->text('Text');
 
-$row = $form->form_row();
+$row = $form->row();
 $group = $row->form_group(4);
 $group->label('Checkbox');
 $group->checkbox('check1',true,'On','Check1');
@@ -35,7 +35,7 @@ $group = $form->form_group();
 $group->label('Text','textarea1');
 $group->textarea('textarea1','Content');
 
-$group = $form->form_group();
+$group = $form->form_group(null,true);
 $group->button('Submit');
 $group->button('Reset',null,'danger')->at(['type'=>'reset']);
 $group->button('Cancel',null,'secondary','.');
@@ -58,20 +58,18 @@ $group->checkbox('check4',false,'On','Check4');
 
 $group = $form->form_horizontal(4);
 $group->label('Date');
-$group->date('date1')->at(['data-suggest'=>'date2']);
+$group->date('date1')->at(['data-suggest'=>date('Y-m-d',strtotime("+3 month"))]);
 
 $group = $form->form_horizontal(4);
 $group->label('Date');
-$group->date('date2')->at(['data-suggest'=>'01.01.2020']);
+$group->date('date2')->at(['data-suggest'=>'date1']);
 
 $group = $form->form_horizontal(4);
 $group->label('Input','input3');
 $inputgroup = $group->inputgroup();
-$prepend = $inputgroup->prepend();
-$prepend->text('Fisk');
+$inputgroup->text('Fisk');
 $inputgroup->input('input3','Value');
-$append = $inputgroup->append();
-$append->button('E-mail','envelope');
+$inputgroup->button('E-mail','envelope');
 
 $group = $form->form_horizontal(4);
 $group->button('Reload','exclamation-circle','warning','.');

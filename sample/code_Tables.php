@@ -13,10 +13,12 @@ $tr->th()->te('TH2');
 $tr->th()->te('TH3');
 $tr->th()->te('TH4');
 $tr->th()->te('TH5');
+$tr->th()->te('TH6');
+$tr->th()->te('TH7');
 
 $tbody = $table->tbody();
 
-for($i=1;$i<=5;$i++) {
+for($i=1;$i<=4;$i++) {
 	$tr = $tbody->tr();
 	$tr->td()->icon('piggy-bank');
 	$tr->td()->icon('fab fa-facebook-f',true);
@@ -36,7 +38,8 @@ for($i=1;$i<=2;$i++) {
 	$tr = $tbody->tr();
 	$tr->td()->te('Beef');
 	$tr->td()->checkbox('test_check');
-	$tr->td()->button('Push');
 	$tr->td()->input('Push');
 	$tr->td()->select('test_select')->options(['A' => 'OptionA','B' => 'OptionB']);
+	$tr->td()->el('span')->te('New')->badge();
+	$tr->td()->button('Push');
 }

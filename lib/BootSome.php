@@ -7,15 +7,16 @@ trait BootSomeFormNode {
 	private $inlinewrap = null; // https://github.com/twbs/bootstrap/issues/27987
 
 	public function form_row(){
-		$element = $this->el('div',['class'=>'form-row']);
+		//Legacy Support
+		$element = $this->el('div',['class'=>'row']);
 		return $element;
 	}
 
 	public function form_group($col = null,$left = false){
 		$element = new BootSomeFormsGroup('div');
 		$this->appendChild($element);
-		$element->at(['class'=>'form-group']);
-		if($left) $element->at(['class'=>'float-right'],HEAL_ATTR_APPEND);
+		$element->at(['class'=>'mb-2']);
+		if($left) $element->at(['class'=>'text-end'],HEAL_ATTR_APPEND);
 		if($col) {
 			$element->at(['class'=>'col-md-'.(int) $col], HEAL_ATTR_APPEND);
 		}
@@ -25,14 +26,22 @@ trait BootSomeFormNode {
 	public function form_horizontal($col = null){
 		$element = new BootSomeFormsHorizontal('div');
 		$this->appendChild($element);
-		$element->at(['class'=>'form-group form-row']);
+		$element->at(['class'=>'row']);
 		if($col) $element->col = (int) $col;
 		return $element;
 	}
 
 	public function form_inline(){
-		$this->at(['class'=>'form-inline'], HEAL_ATTR_APPEND);
-		return $this;
+		$element = new BootSomeFormsInline('div');
+		$this->appendChild($element);
+		$element->at(['class'=>'row row-cols-sm-auto gx-2 form-inline']);
+		return $element;
+	}
+
+	public function label($text = null, $for = null){
+		$label = parent::label($text, $for);
+		$label->at(['class'=>'form-label'], HEAL_ATTR_APPEND);
+		return $label;
 	}
 
 	public function input($name, $value = null){
@@ -43,7 +52,7 @@ trait BootSomeFormNode {
 
 	public function select($name){
 		$select = parent::select($name);
-		$select->at(['class'=>'custom-select']);
+		$select->at(['class'=>'form-select']);
 		return $select;
 	}
 
@@ -54,18 +63,9 @@ trait BootSomeFormNode {
 	}
 
 	public function file($name, $multiple = false){
-		$div = $this->el('div',['class'=>'custom-file']);
-
-		$input = $div->el('input',['type'=>'file','id'=>$name]);
+		$input = $this->el('input',['class'=>'form-control','type'=>'file','id'=>$name]);
 		if($multiple) $input->at(['multiple'])->at(['name'=>$name.'[]']);
 		else $input->at(['name'=>$name]);
-
-		$js = "Array.from(this.files).map(function(f){return f.name}).join(', ')";
-		$js = "this.parentElement.querySelector('label').textContent=$js;";
-		$input->at(['onchange'=>$js]);
-
-		$input->at(['class'=>'custom-file-input']);
-		$div->el('label',['class'=>'custom-file-label','for'=>$name])->te('Choose file');
 		return $input;
 	}
 
@@ -174,7 +174,7 @@ trait BootSomeNodeParent {
 		return new BootSomeElement($name);
 	}
 
-	public function container($fluid = true, $element = 'div'){
+	public function container($fluid = false, $element = 'div'){
 		$head = $this->el($element)->at(['class'=>$fluid?'container-fluid':'container']);
 		return $head;
 	}
@@ -218,7 +218,7 @@ trait BootSomeNodeParent {
 	public function carousel($id = 'slide'){
 		$element = new BootSomeCarousel('div',$id);
 		$this->appendChild($element);
-		$element->at(['id'=>$id,'class'=>'carousel slide carousel-fade','data-ride'=>'carousel']);
+		$element->at(['id'=>$id,'class'=>'carousel slide carousel-fade','data-bs-ride'=>'carousel']);
 		return $element;
 	}
 
@@ -233,12 +233,12 @@ trait BootSomeNodeParent {
 		if($total<=$limit) return; 
 
 		$pages = (ceil($total/$limit));
-		$nav = $this->el('nav',['class'=>'pagination']);
+		$nav = $this->el('nav')->el('ul',['class'=>'pagination']);
 
-		$span = $nav->el('span',['class'=>'page-item']);
-		$button = $span->el('button',['class'=>'page-link'])->te('«');
+		$li = $nav->el('li',['class'=>'page-item']);
+		$button = $li->el('button',['class'=>'page-link'])->te('«');
 		if($page==1) {
-			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
 		}
 		else {
 			$button->at($url($page-1));
@@ -246,13 +246,13 @@ trait BootSomeNodeParent {
 		}
 
 		if($page>4 && $pages>7) {
-			$span = $nav->el('span',['class'=>'page-item']);
-			$button = $span->el('button',['class'=>'page-link'])->te('1');
+			$li = $nav->el('li',['class'=>'page-item']);
+			$button = $li->el('button',['class'=>'page-link'])->te('1');
 			$button->at($url(1));
 
-			$span = $nav->el('span',['class'=>'page-item']);
-			$button = $span->el('button',['class'=>'page-link'])->te('…');
-			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li = $nav->el('li',['class'=>'page-item']);
+			$button = $li->el('button',['class'=>'page-link'])->te('…');
+			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
 
 			if($page<($pages-4)) {
 				$start = $page - 1;
@@ -278,10 +278,10 @@ trait BootSomeNodeParent {
 		}
 
 		for($i=$start;$i<=$end;$i++) {
-			$span = $nav->el('span',['class'=>'page-item']);
-			$button = $span->el('button',['class'=>'page-link'])->te($i);
+			$li = $nav->el('li',['class'=>'page-item']);
+			$button = $li->el('button',['class'=>'page-link'])->te($i);
 			if($page==$i) {
-				$span->at(['class'=>'active'],HEAL_ATTR_APPEND);
+				$li->at(['class'=>'active'],HEAL_ATTR_APPEND);
 			}
 			else {
 				$button->at($url($i));
@@ -289,19 +289,19 @@ trait BootSomeNodeParent {
 		}
 
 		if($page<($pages-3) && $pages>7) {
-			$span = $nav->el('span',['class'=>'page-item']);
-			$button = $span->el('button',['class'=>'page-link'])->te('…');
-			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li = $nav->el('li',['class'=>'page-item']);
+			$button = $li->el('button',['class'=>'page-link'])->te('…');
+			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
 
-			$span = $nav->el('span',['class'=>'page-item']);
-			$button = $span->el('button',['class'=>'page-link'])->te($pages);
+			$li = $nav->el('li',['class'=>'page-item']);
+			$button = $li->el('button',['class'=>'page-link'])->te($pages);
 			$button->at($url($pages));
 		}
 
-		$span = $nav->el('span',['class'=>'page-item']);
-		$button = $span->el('button',['class'=>'page-link'])->te('»');
+		$li = $nav->el('li',['class'=>'page-item']);
+		$button = $li->el('button',['class'=>'page-link'])->te('»');
 		if($page==ceil($total/$limit)) {
-			$span->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
 		}
 		else {
 			$button->at($url($page+1));
@@ -317,7 +317,7 @@ trait BootSomeNodeParent {
 	}
 
 	public function badge($color = 'primary'){
-		return $this->at(['class'=>'badge badge-'.$color],HEAL_ATTR_APPEND);
+		return $this->at(['class'=>'badge bg-'.$color],HEAL_ATTR_APPEND);
 	}
 
 	public function spinner(){
@@ -325,35 +325,35 @@ trait BootSomeNodeParent {
 	}
 
 	public function breadcrumb($input = [],$prefix = '') {
-		$ul = $this->el('nav',['class'=>'breadcrumb']);
+		$ol = $this->el('nav')->el('ol',['class'=>'breadcrumb']);
 
 		foreach($input as $item) {
 			if(isset($item['link'])) {
-				$a = $ul->el('li',['class'=>'breadcrumb-item'])->a($prefix.$item['link'])->te($item['name']);
+				$a = $ol->el('li',['class'=>'breadcrumb-item'])->a($prefix.$item['link'])->te($item['name']);
 			}
 			else {
-				$a = $ul->el('li',['class'=>'breadcrumb-item active'])->te($item['name']);
+				$a = $ol->el('li',['class'=>'breadcrumb-item active'])->te($item['name']);
 			}
 		}
 	}
 
 	public function dropdown($text,$color = 'primary'){
 		$div = $this->el('div', ['class'=>'dropdown']);
-		$div->el('button',['class'=>'btn btn-'.$color.' dropdown-toggle','data-toggle'=>'dropdown'])->te($text);
+		$div->el('button',['class'=>'btn btn-'.$color.' dropdown-toggle','data-bs-toggle'=>'dropdown'])->te($text);
 
-		$element = new BootSomeDropDown('div');
+		$element = new BootSomeDropDown('ul');
 		$div->appendChild($element);
 		$element->at(['class'=>'dropdown-menu']);
 		return $element;
 	}
 
-	public function embed($url,$aspect = '16by9'){
-		$embed = $this->el('div',['class'=>'embed-responsive embed-responsive-'.$aspect]);
-		return $embed->el('iframe',['class'=>'embed-responsive-item','src'=>$url]);
+	public function ratio($aspect = '16x9'){
+		return $this->el('div',['class'=>'ratio ratio-'.$aspect]);
 	}
 
 	public function jumbotron(){
-		return $this->el('div',['class'=>'jumbotron']);
+		//Legacy Support
+		return $this->el('div',['class'=>'px-4 py-5 mb-4 bg-light rounded-3']);
 	}
 
 	public function table(){

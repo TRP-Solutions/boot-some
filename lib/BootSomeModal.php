@@ -46,7 +46,7 @@ class BootSomeModalHeader extends BootSomeElement {
 	}
 
 	public function close(){
-		return $this->el('button',['class'=>'close','type'=>'button'])->te('×');
+		return $this->el('button',['class'=>'btn-close','type'=>'button']);
 	}
 }
 

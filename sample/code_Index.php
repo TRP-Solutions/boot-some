@@ -9,14 +9,12 @@ require_once('../lib/BootSome.php');
 $doc = new BootSome();
 list($head,$body) = $doc->html('BootSome() :: '.$page);
 
-$head->metadata('viewport','width=device-width, initial-scale=1.0');
+$head->metadata('viewport','width=device-width, initial-scale=1');
 $head->link('shortcut icon','#');
 
-$head->css('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-$head->css('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
+$head->css('https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css');
+$head->css('https://use.fontawesome.com/releases/v5.15.3/css/all.css');
 
-$head->el('script',['src'=>'https://code.jquery.com/jquery-3.3.1.slim.min.js']);
-$head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js']);
-$head->el('script',['src'=>'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js']);
+$head->el('script',['src'=>'https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js']);
 
 $head->css('../lib/BootSome.css');

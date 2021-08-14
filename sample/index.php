@@ -14,7 +14,7 @@ else {
 require_once('code_Index.php');
 require_once('code_Navbar.php');
 
-$allowed = ['Alerts','Badge','Breadcrumb','Card','Carousel','Display','Dropdown','Embed','Forms','Index','Jumbotron','Modal','Navbar','Pagination','Tables'];
+$allowed = ['Alerts','Badge','Breadcrumb','Card','Carousel','Display','Dropdown','Forms','Index','Jumbotron','Modal','Navbar','Pagination','Ratios','Tables'];
 if(in_array($page,$allowed)!==true) die('Error');
 
 if($source) {

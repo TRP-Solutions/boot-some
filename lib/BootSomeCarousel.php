@@ -33,18 +33,18 @@ class BootSomeCarousel extends BootSomeElement {
 	}
 
 	public function indicators(){
-		$indicators = $this->el('ol',['class'=>'carousel-indicators']);
+		$indicators = $this->el('div',['class'=>'carousel-indicators']);
 		for($i=0;$i<$this->items;$i++) {
-			$li = $indicators->el('li',['data-target'=>'#'.$this->id,'data-slide-to'=>$i]);
+			$li = $indicators->el('button',['type'=>'button','data-bs-target'=>'#'.$this->id,'data-bs-slide-to'=>$i]);
 			if($i==0) $li->at(['class'=>'active'],HEAL_ATTR_APPEND);
 		}
 	}
 
 	public function control(){
-		$a = $this->a('#'.$this->id)->at(['class'=>'carousel-control-prev','role'=>'button','data-slide'=>'prev']);
+		$a = $this->el('button',['type'=>'button','class'=>'carousel-control-prev','data-bs-slide'=>'prev','data-bs-target'=>'#'.$this->id]);
 		$a->el('span',['class'=>'carousel-control-prev-icon']);
 	
-		$a = $this->a('#'.$this->id)->at(['class'=>'carousel-control-next','role'=>'button','data-slide'=>'next']);
+		$a = $this->el('button',['type'=>'button','class'=>'carousel-control-next','data-bs-slide'=>'next','data-bs-target'=>'#'.$this->id]);
 		$a->el('span',['class'=>'carousel-control-next-icon']);
 	}
 }

@@ -25,8 +25,8 @@ class BootSomeNavbar extends BootSomeElement {
 	public function toggler($id = 'navbarMain'){
 		$toggle = $this->el('button',[
 			'class'=>'navbar-toggler',
-			'data-toggle'=>'collapse',
-			'data-target'=>'#'.$id
+			'data-bs-toggle'=>'collapse',
+			'data-bs-target'=>'#'.$id
 		]);
 		$toggle->el('span',['class'=>'navbar-toggler-icon']);
 	}
@@ -59,11 +59,11 @@ class BootSomeNavbarNav extends BootSomeElement {
 	public function dropdown($text, $active = false){
 		$div = $this->el('div',['class'=>'nav-item dropdown']);
 		if($active) $div->at(['class'=>'active'], HEAL_ATTR_APPEND);
-		$div->el('a',['class'=>'nav-link dropdown-toggle','href'=>'#','data-toggle'=>'dropdown'])->te($text);
+		$div->el('a',['class'=>'nav-link dropdown-toggle','href'=>'#','data-bs-toggle'=>'dropdown'])->te($text);
 
 		$element = new BootSomeNavbarDropDown('div');
 		$div->appendChild($element);
-		$element->at(['class'=>'dropdown-menu dropdown-menu-right']);
+		$element->at(['class'=>'dropdown-menu dropdown-menu-end']);
 		return $element;
 	}
 }

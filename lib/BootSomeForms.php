@@ -10,6 +10,8 @@ class BootSomeFormsGroup extends BootSomeElement {
 }
 
 class BootSomeFormsHorizontal extends BootSomeElement {
+	use BootSomeFormFields;
+
 	public $col = 3;
 	private $wrap = null;
 
@@ -17,17 +19,51 @@ class BootSomeFormsHorizontal extends BootSomeElement {
 		if(!$this->wrap){
 			$element = new BootSomeElement('div');
 			$this->appendChild($element);
-			$element->at(['class'=>'col-sm-'.(12-$this->col)]);
+			$element->at(['class'=>'mb-2 col-sm-'.(12-$this->col)]);
 			$this->wrap = $element;
 		}
 	}
 
 	public function label($text = null, $for = null){
 		$label = parent::label($text,$for);
-		$label->at(['class'=>'col-form-label col-sm-'.$this->col], HEAL_ATTR_APPEND);
+		$label->at(['class'=>'col-sm-'.$this->col], HEAL_ATTR_APPEND);
 		return $label;
 	}
 
+	public function text($text){
+		$this->wrap->el('class',['class'=>'form-text'])->te($text);
+	}
+}
+
+class BootSomeFormsInline extends BootSomeElement {
+	use BootSomeFormFields;
+
+	private $wrap = null;
+
+	private function wrap(){
+		$this->wrap = new BootSomeElement('div');
+		$this->appendChild($this->wrap);
+		$this->wrap->at(['class'=>'col-12']);
+	}
+}
+
+class BootSomeFormsInputGroup extends BootSomeElement {
+	public function append(){
+		//Legacy Support
+		return $this;
+	}
+
+	public function prepend(){
+		//Legacy Support
+		return $this;
+	}
+
+	public function text($text){
+		return $this->el('div',['class'=>'input-group-text'])->te($text);
+	}
+}
+
+trait BootSomeFormFields {
 	public function input($name, $value = NULL){
 		$this->wrap();
 		return $this->wrap->input($name, $value);
@@ -73,32 +109,8 @@ class BootSomeFormsHorizontal extends BootSomeElement {
 		return $this->wrap->inputgroup();
 	}
 
-	public function text($text){
-		$this->wrap->el('small',['class'=>'form-text'])->te($text);
-	}
-
 	public function date($name, $value = null, $include_popover = true){
 		$this->wrap();
 		return $this->wrap->date($name, $value, $include_popover);
-	}
-}
-
-class BootSomeFormsInputGroup extends BootSomeElement {
-	public function append(){
-		$element = new BootSomeFormsInputGroup('div');
-		$this->appendChild($element);
-		$element->at(['class'=>'input-group-append']);
-		return $element;
-	}
-
-	public function prepend(){
-		$element = new BootSomeFormsInputGroup('div');
-		$this->appendChild($element);
-		$element->at(['class'=>'input-group-prepend']);
-		return $element;
-	}
-
-	public function text($text){
-		return $this->el('div',['class'=>'input-group-text'])->te($text);
 	}
 }

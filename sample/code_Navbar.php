@@ -3,12 +3,12 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-$navbar = $body->navbar(true,'navbar-light bg-light');
+$navbar = $body->navbar(false,'navbar-light bg-light');
 
 $brand = $navbar->brand('http://trp.solutions');
 $brand->at(['target'=>'_blank']);
 $brand->img('http://trp.solutions/images/logo.svg','brandlogo');
-$brand->te('BootSome');
+$brand->el('span')->display('none','lg-inline')->te('BootSome');
 
 if($source) {
 	$js = "window.location.href='?".$page."'";
@@ -35,7 +35,7 @@ $dropdown->a('?Card','Card',$page=='Card');
 $dropdown->a('?Carousel','Carousel',$page=='Carousel');
 $dropdown->a('?Display','Display',$page=='Display');
 $dropdown->a('?Dropdown','Dropdown',$page=='Dropdown');
-$dropdown->a('?Embed','Embed',$page=='Embed');
+$dropdown->a('?Ratios','Ratios',$page=='Ratios');
 $dropdown->a('?Forms','Forms',$page=='Forms');
 $dropdown->a('?Jumbotron','Jumbotron',$page=='Jumbotron');
 $dropdown->a('?Modal','Modal',$page=='Modal');

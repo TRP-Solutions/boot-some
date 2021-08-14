@@ -8,7 +8,7 @@ $head->el('script',['src'=>'../lib/BootSome.js']);
 $head->el('style')->te('div.modal{display: block;} div.modal-backdrop {opacity: .5;}');
 $body->at(['class'=>'modal-open','id'=>'body']);
 
-$main = $body->container(false);
+$main = $body->container();
 $main->el('h1')->te('Modal');
 $js = "document.getElementById('dialog').style.display = 'block';";
 $js .= "document.getElementById('body').classList.add('modal-open');";

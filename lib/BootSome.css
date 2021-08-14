@@ -4,20 +4,12 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 h1 {
 	font-size: 2rem;
-	margin-top: .5rem;
 }
 button.btn i + *, a.btn i + * {
 	margin-left: .5rem;
 }
 hr {
-	margin-bottom: .5rem;
-	margin-top: .5rem;
-}
-label.custom-file-label::after {
-	content:'Browse';
-}
-input.custom-file-input {
-	cursor: pointer;
+	margin: .5rem 0;
 }
 body.modal-open {
 	overflow: hidden;
@@ -30,8 +22,10 @@ div.modal-backdrop {
 	opacity: .5;
 }
 div.modal-header, div.modal-footer {
-	padding-top: .5rem;
-	padding-bottom: .5rem;
+	padding: .5rem 1rem;
+}
+div.modal-header > *, div.modal-footer > * {
+	margin: 0rem;
 }
 .modal-body {
 	padding-top: .5rem;
@@ -40,19 +34,12 @@ div.modal-header, div.modal-footer {
 .modal-body:not(:first-child), div.modal-footer {
 	border-top: 1px solid #dee2e6;
 }
-div.modal ul.nav-tabs + .modal-body {
-	border-top: 0px;
-}
 div.modal-header {
 	border-bottom: 0px;
 }
 .modal-body .form-inline label {
 	margin-right: auto!important;
 	display: block;
-}
-div.modal ul.nav {
-	padding-left: 1rem;
-	padding-right: 1rem;
 }
 @media (min-width: 992px) {
 	div.modal-dialog {
@@ -65,83 +52,53 @@ div.modal ul.nav {
 		margin: 1.75rem auto;
 	}
 }
-dialog {
-	border-width: 0;
+div.modal-content ul.nav-tabs {
+	padding: 0rem 1rem;
 }
-nav.navbar {
-	padding-top: .5rem;
-	padding-bottom: .5rem;
-}
-nav.navbar .container-fluid {
-	padding: 0rem;
-}
-nav.navbar .navbar-nav {
-	margin-left: auto!important;
+nav.navbar{
+	margin-bottom: .5rem;
 }
 nav.navbar .navbar-brand {
-	height: calc(2em + 2px);
-	padding: .25rem 0rem;
-}
-nav.navbar .nav-link {
-	padding-top: .25rem;
-	padding-bottom: .25rem;
+	height: 2.5rem;
+	margin-right: .5rem;
 }
 nav.navbar .navbar-brand img {
 	height: 100%;
 	margin-right: .5rem;
 }
-nav.navbar .form-inline {
-	margin-right: auto!important;
-	margin-bottom: .0rem;
+nav.navbar .navbar-nav {
+	margin-left: auto!important;
 }
-div.form-group {
-	margin-bottom: .5rem;
-}
-div.form-group button:not(:last-child), div.form-group a:not(:last-child) {
+div button.btn:not(:last-child), div a.btn:not(:last-child) {
 	margin-right: .5rem;
 }
-.form-inline {
-	margin-right: -.5rem;
+div.form-inline {
 	margin-bottom: .5rem;
 }
-.form-inline a.btn, 
-.form-inline label, 
-.form-inline input.form-control, 
-.form-inline select.custom-select, 
-.form-inline button.btn {
-	margin-right: .5rem;
+nav.navbar div.form-inline {
+	margin-bottom: 0rem;
 }
-.form-inline > :last-child {
-	margin-right: 0rem !important;
-}
-@media (max-width: 575px) {
-	.form-inline > :not(:last-child) {
-		margin-bottom: .5rem;
-	}
-}
-.table button.btn,
-.table a.btn,
-.form-inline button.btn,
-.form-inline a.btn {
+table.table button.btn,
+table.table a.btn,
+div.form-inline button.btn,
+div.form-inline a.btn {
 	padding: .25rem .5rem;
-	font-size: .85rem;
-	line-height: 1.5;
+	font-size: .875rem;
 	border-radius: .2rem;
 }
-.table input.form-control,
-.form-inline input.form-control {
-	height: calc(1.8125rem + 2px);
+table.table input.form-control,
+div.form-inline input.form-control {
+	min-height: calc(1.5em + .5rem + 2px);
 	padding: .25rem .5rem;
-	font-size: .85rem;
-	line-height: 1.5;
+	font-size: .875rem;
 	border-radius: .2rem;
 }
-.table select.custom-select,
-.form-inline select.custom-select {
-	height: calc(1.8125rem + 2px);
+table.table select.form-select,
+div.form-inline select.form-select {
 	padding-top: .25rem;
 	padding-bottom: .25rem;
-	font-size: .85rem;
+	padding-left: .5rem;
+	font-size: .875rem;
 }
 table.table {
 	margin-bottom: .5rem;
@@ -151,6 +108,9 @@ table.table th {
 	padding: .3rem;
 	font-size: 0.85em;
 	white-space: nowrap;
+}
+table.table>:not(:last-child)>:last-child>* {
+	border-bottom-color: inherit;
 }
 table.table tr[onclick], div[onclick] {
 	cursor: pointer;
@@ -179,15 +139,17 @@ table.table td > ul {
 	margin: 0em;
 }
 tr .badge {
-	vertical-align: text-bottom;
+	vertical-align: top;
 	width: 100%;
 }
 table.table:not(.bs-datepicker) tbody tr:nth-of-type(odd) {
-	background-color: rgba(0,0,0,.05);
+	--bs-table-accent-bg: var(--bs-table-striped-bg);
+	color: var(--bs-table-striped-color);
 }
 table.table:not(.bs-datepicker) tbody tr:hover>td,
 table.bs-datepicker td:hover {
-	background-color: rgba(0,0,0,.075);
+	--bs-table-accent-bg: var(--bs-table-hover-bg);
+	color: var(--bs-table-hover-color);
 }
 div.bs-datepicker {
 	width: 100%;
@@ -196,38 +158,44 @@ div.bs-datepicker td {
 	cursor: pointer;
 }
 div.card table.table {
-	margin-bottom: 0rem;
+	margin-bottom: 0px;
+}
+div.card table.table tr:last-child td {
+	border-bottom: 0px;
 }
 div.card table.table tr td:first-child,
 div.card table.table tr th:first-child {
-	padding-left: 1.25rem;
+	padding-left: 1rem;
 }
 div.card table.table tr td:last-child,
 div.card table.table tr th:last-child {
-	padding-right: 1.25rem;
+	padding-right: 1rem;
 }
-nav.pagination {
-	-ms-flex-pack: center!important;
+nav ul.pagination {
 	justify-content: center!important;
 	margin-bottom: .5rem;
 }
-nav.pagination button.page-link {
+nav ul.pagination button.page-link {
 	padding: .25rem .5rem;
 	font-size: .875rem;
-	line-height: 1.5;
 }
-nav.pagination span.page-item button {
+nav ul.pagination li.page-item button {
 	width: 3rem;
 }
-nav.breadcrumb {
-	font-size: 0.85em;
+nav ol.breadcrumb {
+	font-size: .875rem;
 	background-color: inherit;
-	padding: 0rem;
+	text-decoration: none;
 	margin-bottom: .5rem;
 }
-h1 + nav.breadcrumb {
+nav ol.breadcrumb a {
+	text-decoration: none;
+}
+h1 + nav ol.breadcrumb {
 	margin-top: -.5rem;
 }
 div.alert {
 	margin-bottom: .5rem;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
 }

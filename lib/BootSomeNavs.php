@@ -5,7 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 class BootSomeNavs extends HealElement {
 	public function item(){
-		$element = new BootSomeNavsNode('item');
+		$element = new BootSomeNavsNode('li');
 		$this->appendChild($element);
 		$element->at(['class'=>'nav-item']);
 		return $element;
