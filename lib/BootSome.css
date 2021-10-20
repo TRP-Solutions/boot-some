@@ -157,6 +157,9 @@ div.bs-datepicker {
 div.bs-datepicker td {
 	cursor: pointer;
 }
+div.card div.row:last-child > * {
+	margin-bottom: 0px !important;
+}
 div.card table.table {
 	margin-bottom: 0px;
 }
