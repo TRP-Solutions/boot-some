@@ -44,5 +44,8 @@ $dropdown->a('?Pagination','Pagination',$page=='Pagination');
 $dropdown->a('?Tables','Tables',$page=='Tables');
 
 $dropdown = $nav->dropdown('Links');
-$dropdown->a('https://fontawesome.com/icons','Icons | Font Awesome')->at(['target'=>'_blank']);
-$dropdown->a('https://getbootstrap.com/docs/','Introduction · Bootstrap')->at(['target'=>'_blank']);
+$a = $dropdown->a('https://fontawesome.com/icons')->at(['target'=>'_blank']);
+$a->icon('fab fa-font-awesome fa-fw',true)->el('span')->te('Icons | Font Awesome');
+
+$a = $dropdown->a('https://getbootstrap.com/docs/')->at(['target'=>'_blank']);
+$a->icon('fab fa-bootstrap fa-fw',true)->el('span')->te('Introduction · Bootstrap');

@@ -5,7 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 h1 {
 	font-size: 2rem;
 }
-button.btn i + *, a.btn i + * {
+button.btn i + *, a.btn i + *,.dropdown-item i + * {
 	margin-left: .5rem;
 }
 hr {
