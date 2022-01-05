@@ -52,6 +52,7 @@ class BootSomeNavbarNav extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
 		$a = parent::a($href, $text);
 		$a->at(['class'=>'nav-item nav-link']);
+		$a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
 		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		return $a;
 	}
@@ -72,6 +73,7 @@ class BootSomeNavbarDropDown extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
 		$a = parent::a($href, $text);
 		$a->at(['class'=>'dropdown-item']);
+		$a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
 		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		return $a;
 	}
