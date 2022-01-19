@@ -49,10 +49,14 @@ class BootSomeNavbarCollapse extends BootSomeElement {
 }
 
 class BootSomeNavbarNav extends BootSomeElement {
-	public function a($href, $text = '', $active = false){
-		$a = parent::a($href, $text);
-		$a->at(['class'=>'nav-item nav-link']);
-		if(!isset($href)) $a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
+	public function a($href = null, $text = '', $active = false){
+		$a = $this->el('a',['class'=>'nav-item nav-link']);
+		if(!empty($text)) $a->te($text);
+		if(isset($href)){
+			$a->at(['href'=>$href]);
+		} else {
+			$a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
+		}
 		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		return $a;
 	}
@@ -71,9 +75,13 @@ class BootSomeNavbarNav extends BootSomeElement {
 
 class BootSomeNavbarDropDown extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
-		$a = parent::a($href, $text);
-		$a->at(['class'=>'dropdown-item']);
-		if(!isset($href)) $a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
+		$a = $this->el('a',['class'=>'dropdown-item']);
+		if(!empty($text)) $a->te($text);
+		if(isset($href)){
+			$a->at(['href'=>$href]);
+		} else {
+			$a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
+		}
 		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
 		return $a;
 	}

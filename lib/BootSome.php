@@ -77,17 +77,17 @@ trait BootSomeFormNode {
 
 	public function checkbox($name, $checked = false, $value = 'on', $text = null, $inline = false){
 		if(!$inline) {
-			$div = new HealHTMLElement('div');
+			$div = new HealElement('div');
 			$this->appendChild($div);
 			$div->at(['class'=>'form-check']);
 			$this->inlinewrap = null;
 		}
 		else {
 			if(!$this->inlinewrap) {
-				$this->inlinewrap = new HealHTMLElement('div');
+				$this->inlinewrap = new HealElement('div');
 				$this->appendChild($this->inlinewrap);
 			}
-			$div = new HealHTMLElement('div');
+			$div = new HealElement('div');
 			$this->inlinewrap->appendChild($div);
 			$div->at(['class'=>'form-check form-check-inline']);
 		}
@@ -111,17 +111,17 @@ trait BootSomeFormNode {
 
 	public function radio($name, $value, $checked = false, $text = null, $inline = false){
 		if(!$inline) {
-			$div = new HealHTMLElement('div');
+			$div = new HealElement('div');
 			$this->appendChild($div);
 			$div->at(['class'=>'form-check']);
 			$this->inlinewrap = null;
 		}
 		else {
 			if(!$this->inlinewrap) {
-				$this->inlinewrap = new HealHTMLElement('div');
+				$this->inlinewrap = new HealElement('div');
 				$this->appendChild($this->inlinewrap);
 			}
-			$div = new HealHTMLElement('div');
+			$div = new HealElement('div');
 			$this->inlinewrap->appendChild($div);
 			$div->at(['class'=>'form-check form-check-inline']);
 		}
@@ -376,11 +376,11 @@ trait BootSomeNodeParent {
 	}
 }
 
-class BootSome extends HealHTML {
+class BootSome extends HealDocument {
 	use BootSomeNodeParent;
 }
 
-class BootSomeElement extends HealHTMLElement {
+class BootSomeElement extends HealElement {
 	use BootSomeNodeParent;
 }
 
