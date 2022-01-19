@@ -48,16 +48,6 @@ class BootSomeFormsInline extends BootSomeElement {
 }
 
 class BootSomeFormsInputGroup extends BootSomeElement {
-	public function append(){
-		//Legacy Support
-		return $this;
-	}
-
-	public function prepend(){
-		//Legacy Support
-		return $this;
-	}
-
 	public function text($text){
 		return $this->el('div',['class'=>'input-group-text'])->te($text);
 	}
