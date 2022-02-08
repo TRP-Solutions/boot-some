@@ -16,9 +16,9 @@ trait BootSomeFormNode {
 		$element = new BootSomeFormsGroup('div');
 		$this->appendChild($element);
 		$element->at(['class'=>'mb-2']);
-		if($left) $element->at(['class'=>'text-end'],HEAL_ATTR_APPEND);
+		if($left) $element->at(['class'=>'text-end'],true);
 		if($col) {
-			$element->at(['class'=>'col-md-'.(int) $col], HEAL_ATTR_APPEND);
+			$element->at(['class'=>'col-md-'.(int) $col], true);
 		}
 		return $element;
 	}
@@ -39,27 +39,24 @@ trait BootSomeFormNode {
 	}
 
 	public function label($text = null, $for = null){
-		$label = parent::label($text, $for);
-		$label->at(['class'=>'form-label'], HEAL_ATTR_APPEND);
+		$label = $this->el('label',['class'=>'form-label']);
+		if(isset($text)) $label->te($text);
+		if(isset($for)) $label->at(['for'=>$for]);
 		return $label;
 	}
 
 	public function input($name, $value = null){
-		$input = parent::input($name, $value);
-		$input->at(['class'=>'form-control']);
+		$input = $this->el('input',['name'=>$name,'class'=>'form-control']);
+		if(isset($value)) $input->at(['value'=>$value]);
 		return $input;
 	}
 
 	public function select($name){
-		$select = parent::select($name);
-		$select->at(['class'=>'form-select']);
-		return $select;
+		return $this->el('select',['name'=>$name,'class'=>'form-select']);
 	}
 
 	public function password($name){
-		$input = parent::password($name);
-		$input->at(['class'=>'form-control']);
-		return $input;
+		return $this->el('input',['type'=>'password','name'=>$name,'class'=>'form-control']);
 	}
 
 	public function file($name, $multiple = false){
@@ -70,9 +67,7 @@ trait BootSomeFormNode {
 	}
 
 	public function textarea($name, $content = ''){
-		$textarea = parent::textarea($name, $content);
-		$textarea->at(['class'=>'form-control']);
-		return $textarea;
+		return $this->el('textarea',['name'=>$name,'class'=>'form-control'])->te($content);
 	}
 
 	public function checkbox($name, $checked = false, $value = 'on', $text = null, $inline = false){
@@ -92,19 +87,20 @@ trait BootSomeFormNode {
 			$div->at(['class'=>'form-check form-check-inline']);
 		}
 
-		$checkbox = $div->checkbox($name, $checked, $value);
+		$checkbox = $div->el('input',['type'=>'checkbox','name'=>$name,'class'=>'form-check-input']);
+		if($checked) $checkbox->at(['checked']);
+		if($value != 'on') $checkbox->at(['value'=>$value]);
 		if(empty($text)) {
-			$checkbox->at(['class'=>'form-check-input position-static']);
+			$checkbox->at(['class'=>'position-static'], true);
 		}
 		else {
 			if(substr($name, -2)=='[]'){
 				$id = substr($name, 0, -2).'_'.mt_rand(10000,99999);
-				$checkbox->at(['id'=>$id]);
 			} else {
 				$id = $name;
 			}
-			$checkbox->at(['class'=>'form-check-input']);
-			$div->label($text,$id)->at(['class'=>'form-check-label']);
+			$checkbox->at(['id'=>$id]);
+			$div->el('label', ['for'=>$id,'class'=>'form-check-label'])->te($text);
 		}
 		return $checkbox;
 	}
@@ -126,19 +122,18 @@ trait BootSomeFormNode {
 			$div->at(['class'=>'form-check form-check-inline']);
 		}
 
-		$radio = $div->radio($name, $value, $checked);
+		$id = "$name:$value";
+		$radio = $div->el('input',['type'=>'radio','name'=>$name,'id'=>$id,'value'=>$value,'class'=>'form-check-input']);
+		if($checked) $radio->at(['checked']);
 		if(empty($text)) {
-			$radio->at(['class'=>'form-check-input position-static']);
+			$radio->at(['class'=>'position-static'], true);
 		}
 		else {
 			if(substr($name, -2)=='[]'){
-				$id = substr($name, 0, -2).'_'.mt_rand(10000,99999);
-				$checkbox->at(['id'=>$id.':'.$value]);
-			} else {
-				$id = $name;
+				$id = substr($name, 0, -2).'_'.mt_rand(10000,99999).':'.$value;
+				$checkbox->at(['id'=>$id]);
 			}
-			$radio->at(['class'=>'form-check-input']);
-			$div->label($text,$id.':'.$value)->at(['class'=>'form-check-label']);
+			$div->el('label', ['for'=>$id,'class'=>'form-check-label'])->te($text);
 		}
 		return $radio;
 	}
@@ -199,7 +194,7 @@ trait BootSomeNodeParent {
 		$element = new BootSomeNavs('ul');
 		$this->appendChild($element);
 		$element->at(['class'=>'nav']);
-		if($type) $element->at(['class'=>'nav-'.$type],HEAL_ATTR_APPEND);
+		if($type) $element->at(['class'=>'nav-'.$type],true);
 		return $element;
 	}
 
@@ -238,7 +233,7 @@ trait BootSomeNodeParent {
 		$li = $nav->el('li',['class'=>'page-item']);
 		$button = $li->el('button',['class'=>'page-link'])->te('«');
 		if($page==1) {
-			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li->at(['class'=>'disabled'],true);
 		}
 		else {
 			$button->at($url($page-1));
@@ -252,7 +247,7 @@ trait BootSomeNodeParent {
 
 			$li = $nav->el('li',['class'=>'page-item']);
 			$button = $li->el('button',['class'=>'page-link'])->te('…');
-			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li->at(['class'=>'disabled'],true);
 
 			if($page<($pages-4)) {
 				$start = $page - 1;
@@ -281,7 +276,7 @@ trait BootSomeNodeParent {
 			$li = $nav->el('li',['class'=>'page-item']);
 			$button = $li->el('button',['class'=>'page-link'])->te($i);
 			if($page==$i) {
-				$li->at(['class'=>'active'],HEAL_ATTR_APPEND);
+				$li->at(['class'=>'active'],true);
 			}
 			else {
 				$button->at($url($i));
@@ -291,7 +286,7 @@ trait BootSomeNodeParent {
 		if($page<($pages-3) && $pages>7) {
 			$li = $nav->el('li',['class'=>'page-item']);
 			$button = $li->el('button',['class'=>'page-link'])->te('…');
-			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li->at(['class'=>'disabled'],true);
 
 			$li = $nav->el('li',['class'=>'page-item']);
 			$button = $li->el('button',['class'=>'page-link'])->te($pages);
@@ -301,7 +296,7 @@ trait BootSomeNodeParent {
 		$li = $nav->el('li',['class'=>'page-item']);
 		$button = $li->el('button',['class'=>'page-link'])->te('»');
 		if($page==ceil($total/$limit)) {
-			$li->at(['class'=>'disabled'],HEAL_ATTR_APPEND);
+			$li->at(['class'=>'disabled'],true);
 		}
 		else {
 			$button->at($url($page+1));
@@ -312,16 +307,16 @@ trait BootSomeNodeParent {
 	public function alert($color = null,$center = false){
 		if($color===null) $color = 'primary';
 		$alert = $this->el('div',['class'=>'alert alert-'.$color]);
-		if($center) $alert->at(['class'=>'text-center'],HEAL_ATTR_APPEND);
+		if($center) $alert->at(['class'=>'text-center'],true);
 		return $alert;
 	}
 
 	public function badge($color = 'primary'){
-		return $this->at(['class'=>'badge bg-'.$color],HEAL_ATTR_APPEND);
+		return $this->at(['class'=>'badge bg-'.$color],true);
 	}
 
 	public function spinner(){
-		return $this->el('i',['class'=>'fas fa-2x fa-spinner fa-spin'],HEAL_ATTR_APPEND);
+		return $this->el('i',['class'=>'fas fa-2x fa-spinner fa-spin'],true);
 	}
 
 	public function breadcrumb($input = [],$prefix = '') {
@@ -372,7 +367,7 @@ trait BootSomeNodeParent {
 	public function display(...$class){
 		if(!$class) return;
 		$class = 'd-'.implode(' d-',$class);
-		return $this->at(['class'=>$class],HEAL_ATTR_APPEND);
+		return $this->at(['class'=>$class],true);
 	}
 }
 

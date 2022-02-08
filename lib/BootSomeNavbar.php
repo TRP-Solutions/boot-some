@@ -57,13 +57,13 @@ class BootSomeNavbarNav extends BootSomeElement {
 		} else {
 			$a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
 		}
-		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
+		if($active) $a->at(['class'=>'active'], true);
 		return $a;
 	}
 
 	public function dropdown($text, $active = false){
 		$div = $this->el('div',['class'=>'nav-item dropdown']);
-		if($active) $div->at(['class'=>'active'], HEAL_ATTR_APPEND);
+		if($active) $div->at(['class'=>'active'], true);
 		$div->el('a',['class'=>'nav-link dropdown-toggle','data-bs-toggle'=>'dropdown'])->te($text);
 
 		$element = new BootSomeNavbarDropDown('div');
@@ -82,7 +82,7 @@ class BootSomeNavbarDropDown extends BootSomeElement {
 		} else {
 			$a->at(['data-bs-toggle'=>'collapse','data-bs-target'=>'.navbar-collapse.show']);
 		}
-		if($active) $a->at(['class'=>'active'], HEAL_ATTR_APPEND);
+		if($active) $a->at(['class'=>'active'], true);
 		return $a;
 	}
 	public function divider(){

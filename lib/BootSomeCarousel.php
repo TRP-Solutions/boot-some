@@ -18,7 +18,7 @@ class BootSomeCarousel extends BootSomeElement {
 		$item = new BootSomeCarouselItem('div');
 		$this->inner->appendChild($item);
 		$item->at(['class'=>'carousel-item']);
-		if($this->items++==0) $item->at(['class'=>'active'],HEAL_ATTR_APPEND);
+		if($this->items++==0) $item->at(['class'=>'active'],true);
 		$item->img($url,$alt)->at(['class'=>'d-block w-100']);
 		return $item;
 	}
@@ -36,7 +36,7 @@ class BootSomeCarousel extends BootSomeElement {
 		$indicators = $this->el('div',['class'=>'carousel-indicators']);
 		for($i=0;$i<$this->items;$i++) {
 			$li = $indicators->el('button',['type'=>'button','data-bs-target'=>'#'.$this->id,'data-bs-slide-to'=>$i]);
-			if($i==0) $li->at(['class'=>'active'],HEAL_ATTR_APPEND);
+			if($i==0) $li->at(['class'=>'active'],true);
 		}
 	}
 

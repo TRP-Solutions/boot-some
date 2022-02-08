@@ -26,7 +26,7 @@ class BootSomeFormsHorizontal extends BootSomeElement {
 
 	public function label($text = null, $for = null){
 		$label = parent::label($text,$for);
-		$label->at(['class'=>'col-sm-'.$this->col], HEAL_ATTR_APPEND);
+		$label->at(['class'=>'col-sm-'.$this->col], true);
 		return $label;
 	}
 
