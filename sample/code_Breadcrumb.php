@@ -11,6 +11,6 @@ $array[] = ['name' => 'Index','link' => '.'];
 $array[] = ['name' => 'Navbar','link' => '?Navbar'];
 $array[] = ['name' => 'End'];
 
-$main->breadcrumb($array,'../Sample/');
+$main->breadcrumb($array,'../sample/');
 
-$main->p('Example on using breadcrumb');
+$main->el('p')->te('Example on using breadcrumb');

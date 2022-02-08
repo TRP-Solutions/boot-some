@@ -21,7 +21,7 @@ trait BootSomeModalNode {
 			 $body = $this->el('div');
 		}
 		else {
-			$body = $this->form();
+			$body = $this->el('form');
 			if(!empty($id)) $body->at(['id'=>$id]);
 		}
 		$body->at(['class'=>'modal-body']);

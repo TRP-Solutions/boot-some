@@ -19,7 +19,7 @@ class BootSomeCarousel extends BootSomeElement {
 		$this->inner->appendChild($item);
 		$item->at(['class'=>'carousel-item']);
 		if($this->items++==0) $item->at(['class'=>'active'],true);
-		$item->img($url,$alt)->at(['class'=>'d-block w-100']);
+		$item->el('img',['src'=>$url,'alt'=>$alt,'class'=>'d-block w-100']);
 		return $item;
 	}
 
@@ -52,7 +52,7 @@ class BootSomeCarousel extends BootSomeElement {
 class BootSomeCarouselItem extends BootSomeElement {
 	public function caption($text = null){
 		$caption = $this->el('div',['class'=>'carousel-caption']);
-		if($text) $caption->p($text);
+		if($text) $caption->el('p')->te($text);
 		return $caption;
 	}
 }

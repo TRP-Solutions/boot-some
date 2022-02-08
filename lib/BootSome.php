@@ -324,7 +324,7 @@ trait BootSomeNodeParent {
 
 		foreach($input as $item) {
 			if(isset($item['link'])) {
-				$a = $ol->el('li',['class'=>'breadcrumb-item'])->a($prefix.$item['link'])->te($item['name']);
+				$a = $ol->el('li',['class'=>'breadcrumb-item'])->el('a',['href'=>$prefix.$item['link']])->te($item['name']);
 			}
 			else {
 				$a = $ol->el('li',['class'=>'breadcrumb-item active'])->te($item['name']);

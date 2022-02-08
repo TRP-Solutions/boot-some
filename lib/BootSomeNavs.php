@@ -14,8 +14,8 @@ class BootSomeNavs extends HealElement {
 
 class BootSomeNavsNode extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
-		$a = parent::a($href, $text);
-		$a->at(['class'=>'nav-link']);
+		$a = $this->el('a',['href'=>$href,'class'=>'nav-link']);
+		if(!empty($text)) $a->te($text);
 		if($active) $a->at(['class'=>'active'], true);
 		return $a;
 	}

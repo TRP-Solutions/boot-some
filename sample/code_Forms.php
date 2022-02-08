@@ -9,7 +9,7 @@ $head->el('script',['src'=>'../lib/BootSomeForms.js']);
 $main = $body->container();
 $main->el('h1')->te('Forms');
 
-$form = $main->form();
+$form = $main->el('form');
 $group = $form->form_group();
 $group->label('Input','input1');
 $group->input('input1','Value');
@@ -29,7 +29,8 @@ $group->radio('radio1','radioB',false,'RadioB',true);
 $group = $row->form_group(4);
 $group->label('Select','select1');
 $select = $group->select('select1');
-$select->options([1 => 'Option1',2 => 'Option2']);
+$select->el('option',['value'=>1])->te('Option1');
+$select->el('option',['value'=>2])->te('Option2');
 
 $group = $form->form_group();
 $group->label('Text','textarea1');
@@ -41,7 +42,7 @@ $group->button('Reset',null,'danger')->at(['type'=>'reset']);
 $group->button('Cancel',null,'secondary','.');
 
 $main->el('h1')->te('Forms - Horizontal');
-$form = $main->form();
+$form = $main->el('form');
 $group = $form->form_horizontal(4);
 $group->label('Input','input2');
 $group->input('input2','Value');
@@ -75,11 +76,12 @@ $group = $form->form_horizontal(4);
 $group->button('Reload','exclamation-circle','warning','.');
 
 $main->el('h1')->te('Forms - Inline');
-$form = $main->form()->form_inline();
+$form = $main->el('form')->form_inline();
 $form->input('input4','Value');
 
 $select = $form->select('select1');
-$select->options([1 => 'Option1',2 => 'Option2']);
+$select->el('option',['value'=>1])->te('Option1');
+$select->el('option',['value'=>2])->te('Option2');
 $form->button('Submit');
 $form->label('Søg');
 $form->input('search','Google');
@@ -88,9 +90,10 @@ $form->input('search','Google');
 
 $main->el('hr');
 
-$form = $main->form()->form_inline();
+$form = $main->el('form')->form_inline();
 $form->input('input4','Value');
 
 $select = $form->select('select1');
-$select->options([1 => 'Option1',2 => 'Option2']);
+$select->el('option',['value'=>1])->te('Option1');
+$select->el('option',['value'=>2])->te('Option2');
 $form->button('Link',null,'info','http://example.com');

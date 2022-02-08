@@ -11,7 +11,7 @@ $col = $main->row()->col('col-md-3');
 $carousel = $col->carousel('ExampleSlide');
 
 $item = $carousel->item('pics/josh-hild-ipJmvtivd2Q-unsplash.jpg','https://unsplash.com/photos/ipJmvtivd2Q');
-$item->caption()->a('https://unsplash.com/photos/ipJmvtivd2Q','unsplash.com');
+$item->caption()->el('a',['href'=>'https://unsplash.com/photos/ipJmvtivd2Q','unsplash.com']);
 
 $item = $carousel->item('pics/shawn-xu-zh3UNM03GLw-unsplash.jpg','https://unsplash.com/photos/zh3UNM03GLw');
 $item->caption('From unsplash.com');

@@ -5,7 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 class BootSomeDropDown extends BootSomeElement {
 	public function a($href, $text = '', $active = false){
-		$a = parent::el('li')->a($href, $text);
+		$a = parent::el('li')->el('a',['href'=>$href])->te($text);
 		$a->at(['class'=>'dropdown-item']);
 		if($active) $a->at(['class'=>'active'], true);
 		return $a;

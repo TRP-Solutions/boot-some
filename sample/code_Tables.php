@@ -39,7 +39,9 @@ for($i=1;$i<=2;$i++) {
 	$tr->td()->te('Beef');
 	$tr->td()->checkbox('test_check');
 	$tr->td()->input('Push');
-	$tr->td()->select('test_select')->options(['A' => 'OptionA','B' => 'OptionB']);
+	$select = $tr->td()->select('test_select');
+	$select->el('option',['value'=>'A'])->te('OptionA');
+	$select->el('option',['value'=>'B'])->te('OptionB');
 	$tr->td()->el('span')->te('New')->badge();
 	$tr->td()->button('Push');
 }

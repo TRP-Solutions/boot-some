@@ -14,4 +14,4 @@ $ratio->el('iframe',['src'=>'https://www.youtube.com/embed/zpOULjyy-n8?rel=0','t
 
 $col = $row->col('col-md-6')->ratio('16x9');
 
-$col->img('pics/shawn-xu-zh3UNM03GLw-unsplash.jpg','https://unsplash.com/photos/zh3UNM03GLw');
+$col->el('img',['src'=>'pics/shawn-xu-zh3UNM03GLw-unsplash.jpg','alt'=>'https://unsplash.com/photos/zh3UNM03GLw']);
