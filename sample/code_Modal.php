@@ -3,18 +3,18 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-$head->el('script',['src'=>'../lib/BootSome.js']);
+BootSome::$head->el('script',['src'=>'../lib/BootSome.js']);
+BootSome::$head->el('style')->te('div.modal{display: block;} div.modal-backdrop {opacity: .5;}');
 
-$head->el('style')->te('div.modal{display: block;} div.modal-backdrop {opacity: .5;}');
-$body->at(['class'=>'modal-open','id'=>'body']);
+BootSome::$body->at(['class'=>'modal-open','id'=>'body']);
 
-$main = $body->container();
+$main = BootSome::$body->container();
 $main->el('h1')->te('Modal');
 $js = "document.getElementById('dialog').style.display = 'block';";
 $js .= "document.getElementById('body').classList.add('modal-open');";
 $main->button('Open','folder-open','info')->at(['onclick'=>$js]);
 
-$dialog = $body->el('dialog',['id'=>'dialog']);
+$dialog = BootSome::$body->el('dialog',['id'=>'dialog']);
 $modal = $dialog->modal();
 
 $header = $modal->header();

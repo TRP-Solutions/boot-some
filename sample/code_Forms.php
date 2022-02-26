@@ -3,10 +3,10 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-$head->el('script',['src'=>'../../git_popperjs/popper.js']);
-$head->el('script',['src'=>'../lib/BootSomeForms.js']);
+BootSome::$head->el('script',['src'=>'../../git_popperjs/popper.js']);
+BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 
-$main = $body->container();
+$main = BootSome::$body->container();
 $main->el('h1')->te('Forms');
 
 $form = $main->el('form');

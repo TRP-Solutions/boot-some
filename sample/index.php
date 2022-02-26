@@ -18,7 +18,7 @@ $allowed = ['Alerts','Badge','Breadcrumb','Card','Carousel','Display','Dropdown'
 if(in_array($page,$allowed)!==true) die('Error');
 
 if($source) {
-	$main = $body->container();
+	$main = BootSome::$body->container();
 	$main->el('h1')->te($page.'::Source');
 	$text = file_get_contents('code_'.$page.'.php');
 	$main->el('pre')->el('code')->te($text);
@@ -27,8 +27,6 @@ elseif(!in_array($page,['Index','Navbar'])) {
 	require_once('code_'.$page.'.php');
 }
 else {
-	$main = $body->container();
+	$main = BootSome::$body->container();
 	$main->el('h1')->te($page);
 }
-
-echo $doc;

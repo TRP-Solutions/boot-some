@@ -3,7 +3,7 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-$main = $body->container();
+$main = BootSome::$body->container();
 $main->el('h1')->te('Carousel');
 
 $col = $main->row()->col('col-md-3');
