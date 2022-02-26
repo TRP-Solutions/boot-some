@@ -40,8 +40,8 @@ for($i=1;$i<=2;$i++) {
 	$tr->td()->checkbox('test_check');
 	$tr->td()->input('Push');
 	$select = $tr->td()->select('test_select');
-	$select->el('option',['value'=>'A'])->te('OptionA');
-	$select->el('option',['value'=>'B'])->te('OptionB');
+	$select->option('OptionA','A');
+	$select->option('OptionB','B');
 	$tr->td()->el('span')->te('New')->badge();
 	$tr->td()->button('Push');
 }

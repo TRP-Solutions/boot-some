@@ -29,8 +29,8 @@ $group->radio('radio1','radioB',false,'RadioB',true);
 $group = $row->form_group(4);
 $group->label('Select','select1');
 $select = $group->select('select1');
-$select->el('option',['value'=>1])->te('Option1');
-$select->el('option',['value'=>2])->te('Option2');
+$select->option('Option1',1);
+$select->option('Option2',2);
 
 $group = $form->form_group();
 $group->label('Text','textarea1');
@@ -80,8 +80,8 @@ $form = $main->el('form')->form_inline();
 $form->input('input4','Value');
 
 $select = $form->select('select1');
-$select->el('option',['value'=>1])->te('Option1');
-$select->el('option',['value'=>2])->te('Option2');
+$select->option('Option1',1);
+$select->option('Option2',2);
 $form->button('Submit');
 $form->label('Søg');
 $form->input('search','Google');
@@ -94,6 +94,6 @@ $form = $main->el('form')->form_inline();
 $form->input('input4','Value');
 
 $select = $form->select('select1');
-$select->el('option',['value'=>1])->te('Option1');
-$select->el('option',['value'=>2])->te('Option2');
+$select->option('Option1',1);
+$select->option('Option2',2);
 $form->button('Link',null,'info','http://example.com');

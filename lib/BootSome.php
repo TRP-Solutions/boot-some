@@ -46,17 +46,40 @@ trait BootSomeFormNode {
 	}
 
 	public function input($name, $value = null){
-		$input = $this->el('input',['name'=>$name,'class'=>'form-control']);
+		$input = $this->el('input',['id'=>$name,'name'=>$name,'class'=>'form-control']);
 		if(isset($value)) $input->at(['value'=>$value]);
 		return $input;
 	}
 
 	public function select($name){
-		return $this->el('select',['name'=>$name,'class'=>'form-select']);
+		return $this->el('select',['id'=>$name,'name'=>$name,'class'=>'form-select']);
+	}
+
+	public function option($text, $value = null, $selected = false){
+		$option = $this->el('option')->te($text);
+		if($selected) $option->at(['selected']);
+		if(isset($value)) $option->at(['value'=>$value]);
+		return $option;
+	}
+
+	public function options($iterable, $selected = null, $strict_compare = false){
+		$options = [];
+		if(is_a($iterable, 'mysqli_result')){
+			foreach($iterable as $row){
+				$is_selected = isset($selected) && ($strict_compare ? $selected === $row['id'] : $selected == $row['id']);
+				$options[] = $this->option($row['name'],$row['id'],$is_selected);
+			}
+		} else {
+			foreach($iterable as $value => $text){
+				$is_selected = isset($selected) && ($strict_compare ? $selected === $value : $selected == $value);
+				$options[] = $this->option($text, $value, $is_selected);
+			}
+		}
+		return $options;
 	}
 
 	public function password($name){
-		return $this->el('input',['type'=>'password','name'=>$name,'class'=>'form-control']);
+		return $this->el('input',['type'=>'password','id'=>$name,'name'=>$name,'class'=>'form-control']);
 	}
 
 	public function file($name, $multiple = false){
@@ -160,6 +183,10 @@ trait BootSomeFormNode {
 		if($text) $button->el('span')->te($text);
 		return $button;
 	}
+
+	public function hidden($name, $value){
+		return $this->el('input',['type'=>'hidden','name'=>$name,'value'=>$value,'id'=>$name]);
+	}
 }
 
 trait BootSomeNodeParent {
@@ -167,6 +194,46 @@ trait BootSomeNodeParent {
 
 	protected static function createElementHeal($name){
 		return new BootSomeElement($name);
+	}
+
+	public function html($title, $language=null, $charset='UTF-8'){
+		$html = $this->el('html');
+		if($language) $html->at(['lang'=>$language]);
+		return [$html->head($title, $charset),$html->el('body')];
+	}
+
+	public function head($title = null, $charset = 'UTF-8'){
+		$head = $this->el('head');
+		if(!empty($title)) $head->el('title')->te($title);
+		$head->el('meta',['charset'=>$charset]);
+		return $head;
+	}
+
+	public function metadata($name, $content){
+		return $this->el('meta',['name'=>$name,'content'=>$content]);
+	}
+
+	public function link($rel, $href){
+		return $this->el('link',['rel'=>$rel,'href'=>$href]);
+	}
+
+	public function css($path){
+		return $this->link('stylesheet',$path);
+	}
+
+	public function img($src, $alt){
+		return $this->el('img',['src'=>$src,'alt'=>$alt]);
+	}
+
+	public function form($action = '', $method = 'get'){
+		$attr = [];
+		if(!empty($action)){
+			$attr['action'] = $action;
+			$attr['method'] = $method;
+		} else {
+			$attr['onsubmit'] = 'return false;';
+		}
+		return $this->el('form', $attr);
 	}
 
 	public function container($fluid = false, $element = 'div'){
