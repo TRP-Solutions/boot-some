@@ -38,7 +38,7 @@ for($i=1;$i<=2;$i++) {
 	$tr = $tbody->tr();
 	$tr->td()->te('Beef');
 	$tr->td()->checkbox('test_check');
-	$tr->td()->input('Push');
+	$tr->td()->input('Push')->at(['right']);
 	$select = $tr->td()->select('test_select');
 	$select->option('OptionA','A');
 	$select->option('OptionB','B');

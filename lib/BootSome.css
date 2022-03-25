@@ -124,6 +124,7 @@ table.table tr td[ellipsis] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+input.form-control[right],
 table tr td[right],
 table tr th[right] {
 	text-align: right !important;
