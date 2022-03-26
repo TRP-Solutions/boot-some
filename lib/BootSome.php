@@ -379,7 +379,11 @@ trait BootSomeNodeParent {
 	}
 
 	public function badge($color = 'primary'){
-		return $this->at(['class'=>'badge bg-'.$color],true);
+		$this->at(['class'=>'badge bg-'.$color],true);
+		if(in_array($color,['warning','info','light'])) {
+			$this->at(['class'=>'text-dark'],true);
+		}
+		return $this;
 	}
 
 	public function spinner(){

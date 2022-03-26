@@ -9,3 +9,7 @@ $main->el('h1')->te('Badge');
 $main->el('span')->te('Information')->badge();
 $main->el('br');
 $main->el('span')->te('Important!')->badge('danger');
+$main->el('br');
+$main->el('span')->te('Important!')->badge('light');
+$main->el('br');
+$main->el('span')->te('Important!')->badge('warning');
