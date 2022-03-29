@@ -225,6 +225,12 @@ trait BootSomeNodeParent {
 		return $this->el('img',['src'=>$src,'alt'=>$alt]);
 	}
 
+	public function a($href, $text = ''){
+		$a = $this->el('a', ['href'=>$href]);
+		if(!empty($text)) $a->te($text);
+		return $a;
+	}
+
 	public function form($action = '', $method = 'get'){
 		$attr = [];
 		if(!empty($action)){
