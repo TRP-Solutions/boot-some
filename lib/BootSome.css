@@ -11,6 +11,9 @@ button.btn i + *, a.btn i + *,.dropdown-item i + * {
 hr {
 	margin: .5rem 0;
 }
+a {
+	text-decoration: none;
+}
 body.modal-open {
 	overflow: hidden;
 }
@@ -192,11 +195,7 @@ nav ul.pagination li.page-item button {
 nav ol.breadcrumb {
 	font-size: .875rem;
 	background-color: inherit;
-	text-decoration: none;
 	margin-bottom: .5rem;
-}
-nav ol.breadcrumb a {
-	text-decoration: none;
 }
 h1 + nav ol.breadcrumb {
 	margin-top: -.5rem;
