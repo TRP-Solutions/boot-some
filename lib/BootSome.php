@@ -40,7 +40,7 @@ trait BootSomeFormNode {
 
 	public function label($text = null, $for = null){
 		$label = $this->el('label',['class'=>'form-label']);
-		if(isset($text)) $label->te($text);
+		if(isset($text)) $label->te($text,true);
 		if(isset($for)) $label->at(['for'=>$for]);
 		return $label;
 	}
