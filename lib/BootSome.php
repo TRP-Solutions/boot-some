@@ -225,8 +225,8 @@ trait BootSomeNodeParent {
 		return $this->el('img',['src'=>$src,'alt'=>$alt]);
 	}
 
-	public function p(){
-		return $this->el('p');
+	public function p($text, $break_on_newline = true){
+		return $this->el('p')->te($text, $break_on_newline);
 	}
 
 	public function a($href, $text = ''){
