@@ -196,9 +196,9 @@ trait BootSomeNodeParent {
 		return new BootSomeElement($name);
 	}
 
-	public function html($title, $language=null, $charset='UTF-8'){
+	public function html($title, $language = null, $charset='UTF-8'){
 		$html = $this->el('html');
-		if($language) $html->at(['lang'=>$language]);
+		$html->at(['lang'=>$language ? $language : 'en']);
 		return [$html->head($title, $charset),$html->el('body')];
 	}
 
@@ -455,14 +455,14 @@ trait BootSomeNodeParent {
 class BootSome extends HealDocument {
 	use BootSomeNodeParent;
 
-	private static $doc;
-	static $head;
-	static $body;
+	public static $doc;
+	public static $head;
+	public static $body;
 
-	public static function document($title) {
+	public static function document($title,$language = null,$autoecho = true) {
 		self::$doc = new BootSome();
-		list(self::$head,self::$body) = self::$doc->html($title);
-		register_shutdown_function(['BootSome','document_end']);
+		list(self::$head,self::$body) = self::$doc->html($title,$language);
+		if($autoecho) register_shutdown_function(['BootSome','document_end']);
 	}
 
 	public static function document_end() {
