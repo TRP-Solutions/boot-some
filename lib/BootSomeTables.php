@@ -15,6 +15,12 @@ class BootSomeTable extends HealElement {
 		$this->appendChild($element);
 		return $element;
 	}
+
+	public function tfoot(){
+		$element = new BootSomeTableNode('tfoot');
+		$this->appendChild($element);
+		return $element;
+	}
 }
 
 class BootSomeTableNode extends HealElement {
