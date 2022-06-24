@@ -64,7 +64,7 @@ class BootSomeNavbarNav extends BootSomeElement {
 	public function dropdown($text, $active = false){
 		$div = $this->el('div',['class'=>'nav-item dropdown']);
 		if($active) $div->at(['class'=>'active'], true);
-		$div->el('a',['class'=>'nav-link dropdown-toggle','data-bs-toggle'=>'dropdown'])->te($text);
+		$div->el('a',['class'=>'nav-link dropdown-toggle','data-bs-toggle'=>'dropdown','role'=>'button'])->te($text);
 
 		$element = new BootSomeNavbarDropDown('div');
 		$div->appendChild($element);
