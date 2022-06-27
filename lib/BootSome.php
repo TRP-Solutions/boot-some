@@ -379,6 +379,8 @@ trait BootSomeNodeParent {
 			$button->at($url($page+1));
 			$button->at(['accesskey'=>'n']);
 		}
+		
+		return $nav;
 	}
 
 	public function alert($color = null,$center = false){
