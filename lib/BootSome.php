@@ -258,8 +258,20 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
-	public function navbar($fluid = true, $nav_classes = 'navbar-expand-md'){
-		$nav = $this->el('nav',['class'=>'navbar'.(!empty($nav_classes)?' '.$nav_classes:'')]);
+	public function navbar($fluid = true, $nav_classes = ''){
+		$classes = array_filter(explode(' ','navbar '.$nav_classes));
+		$add_expand = true;
+		foreach($classes as $class){
+			if(substr($class, 0, 14) == 'navbar-expand-'){
+				$add_expand = false;
+				break;
+			}
+		}
+		if($add_expand){
+			$classes[] = 'navbar-expand-md';
+		}
+
+		$nav = $this->el('nav',['class'=>implode(' ',$classes)]);
 
 		$element = new BootSomeNavbar('div');
 		$nav->appendChild($element);
