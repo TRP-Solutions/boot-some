@@ -30,6 +30,13 @@ class BootSomeTableNode extends HealElement {
 		if($color) $element->at(['class'=>'table-'.$color]);
 		return $element;
 	}
+
+	public function tr_template($arr){
+		$element = new BootSomeTableNode('template');
+		$this->appendChild($element);
+		$element->at($arr);
+		return $element;
+	}
 }
 
 class BootSomeTableTr extends HealElement {
