@@ -472,15 +472,16 @@ class BootSome extends HealDocument {
 	public static $doc;
 	public static $head;
 	public static $body;
+	public static $dialog;
 
 	public static function document($title,$language = null,$autoecho = true) {
 		self::$doc = new BootSome();
 		list(self::$head,self::$body) = self::$doc->html($title,$language);
+		self::$dialog = self::$body->el('dialog',['id'=>'dialog']);
 		if($autoecho) register_shutdown_function(['BootSome','document_end']);
 	}
 
 	public static function document_end() {
-		self::$body->el('dialog',['id'=>'dialog']);
 		echo self::$doc;
 	}
 }

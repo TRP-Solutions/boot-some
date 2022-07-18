@@ -19,7 +19,6 @@ body.modal-open {
 }
 div.modal {
 	display: block;
-	-webkit-overflow-scrolling: touch;
 }
 div.modal-backdrop {
 	opacity: .5;

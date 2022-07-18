@@ -4,25 +4,25 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 BootSome::$head->el('script',['src'=>'../lib/BootSome.js']);
-BootSome::$head->el('style')->te('div.modal{display: block;} div.modal-backdrop {opacity: .5;}');
 
-BootSome::$body->at(['class'=>'modal-open','id'=>'body']);
+// Open modal
+BootSome::$body->at(['class'=>'modal-open']);
+BootSome::$dialog->at(['open']);
 
 $main = BootSome::$body->container();
 $main->el('h1')->te('Modal');
-$js = "document.getElementById('dialog').style.display = 'block';";
-$js .= "document.getElementById('body').classList.add('modal-open');";
+$js = "document.body.classList.add('modal-open');";
+$js .= "document.getElementById('dialog').setAttribute('open','');";
 $main->button('Open','folder-open','info')->at(['onclick'=>$js]);
 
-$dialog = BootSome::$body->el('dialog',['id'=>'dialog']);
-$modal = $dialog->modal();
+$modal = BootSome::$dialog->modal();
 
 $header = $modal->header();
 $header->title('Title');
-$js = "document.getElementById('dialog').style.display = 'none';";
-//$js .= "document.getElementById('dialog').innerHTML='';";
-$js .= "document.getElementById('body').classList.remove('modal-open');";
-$header->close()->at(['onclick'=>$js]);
+$closejs = "document.getElementById('dialog').removeAttribute('open');";
+//$closejs .= "document.getElementById('dialog').innerHTML='';";
+$closejs .= "document.body.classList.remove('modal-open');";
+$header->close()->at(['onclick'=>$closejs]);
 
 $tabs = $modal->navs('tabs');
 $tabs->item()->a('#','Tab1')->at(['onclick'=>'active();']);
@@ -79,4 +79,4 @@ for($i=1;$i<=5;$i++) {
 }
 
 $footer = $modal->footer();
-$footer->button('Close');
+$footer->button('Close')->at(['onclick'=>$closejs]);
