@@ -20,7 +20,7 @@ $tbody = $table->tbody();
 
 for($i=1;$i<=4;$i++) {
 	$tr = $tbody->tr();
-	$tr->td()->icon('piggy-bank');
+	$tr->td()->icon('piggy-bank',false,'warning');
 	$tr->td()->icon('fab fa-facebook-f',true);
 	$tr->td()->el('span')->te('New')->badge();
 	$tr->td()->checkbox('test_check');

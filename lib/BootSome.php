@@ -454,8 +454,9 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
-	public function icon($icon,$fullclass = false){
-		$this->el('i',['class'=>$fullclass ? $icon : 'fas fa-'.$icon]);
+	public function icon($icon,$fullclass = false,$color = false){
+		$icon = $this->el('i',['class'=>$fullclass ? $icon : 'fas fa-'.$icon]);
+		if($color) $icon->at(['class'=>'text-'.$color],true);
 		return $this;
 	}
 
