@@ -320,7 +320,7 @@ trait BootSomeNodeParent {
 		$nav = $this->el('nav')->el('ul',['class'=>'pagination']);
 
 		$li = $nav->el('li',['class'=>'page-item']);
-		$button = $li->el('button',['class'=>'page-link'])->te('«');
+		$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te('«');
 		if($page==1) {
 			$li->at(['class'=>'disabled'],true);
 		}
@@ -331,11 +331,11 @@ trait BootSomeNodeParent {
 
 		if($page>4 && $pages>7) {
 			$li = $nav->el('li',['class'=>'page-item']);
-			$button = $li->el('button',['class'=>'page-link'])->te('1');
+			$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te('1');
 			$button->at($url(1));
 
 			$li = $nav->el('li',['class'=>'page-item']);
-			$button = $li->el('button',['class'=>'page-link'])->te('…');
+			$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te('…');
 			$li->at(['class'=>'disabled'],true);
 
 			if($page<($pages-4)) {
@@ -363,7 +363,7 @@ trait BootSomeNodeParent {
 
 		for($i=$start;$i<=$end;$i++) {
 			$li = $nav->el('li',['class'=>'page-item']);
-			$button = $li->el('button',['class'=>'page-link'])->te($i);
+			$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te($i);
 			if($page==$i) {
 				$li->at(['class'=>'active'],true);
 			}
@@ -374,16 +374,16 @@ trait BootSomeNodeParent {
 
 		if($page<($pages-3) && $pages>7) {
 			$li = $nav->el('li',['class'=>'page-item']);
-			$button = $li->el('button',['class'=>'page-link'])->te('…');
+			$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te('…');
 			$li->at(['class'=>'disabled'],true);
 
 			$li = $nav->el('li',['class'=>'page-item']);
-			$button = $li->el('button',['class'=>'page-link'])->te($pages);
+			$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te($pages);
 			$button->at($url($pages));
 		}
 
 		$li = $nav->el('li',['class'=>'page-item']);
-		$button = $li->el('button',['class'=>'page-link'])->te('»');
+		$button = $li->el('button',['type'=>'button','class'=>'page-link'])->te('»');
 		if($page==ceil($total/$limit)) {
 			$li->at(['class'=>'disabled'],true);
 		}
