@@ -71,6 +71,17 @@ class BootSomeNavbarNav extends BootSomeElement {
 		$element->at(['class'=>'dropdown-menu dropdown-menu-end']);
 		return $element;
 	}
+
+	public function dropdown_icon($icon, $active = false){
+		$div = $this->el('div',['class'=>'nav-item dropdown']);
+		if($active) $div->at(['class'=>'active'], true);
+		$div->el('a',['class'=>'nav-link dropdown-toggle','data-bs-toggle'=>'dropdown','role'=>'button'])->icon($icon);
+
+		$element = new BootSomeNavbarDropDown('div');
+		$div->appendChild($element);
+		$element->at(['class'=>'dropdown-menu dropdown-menu-end']);
+		return $element;
+	}
 }
 
 class BootSomeNavbarDropDown extends BootSomeElement {
