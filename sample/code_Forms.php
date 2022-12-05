@@ -9,7 +9,7 @@ BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 $main = BootSome::$body->container();
 $main->el('h1')->te('Forms');
 
-$form = $main->el('form');
+$form = $main->form('.','get');
 $group = $form->form_group();
 $group->label('Input','input1');
 $group->input('input1','Value');
@@ -42,7 +42,7 @@ $group->button('Reset',null,'danger')->at(['type'=>'reset']);
 $group->button('Cancel',null,'secondary','.');
 
 $main->el('h1')->te('Forms - Horizontal');
-$form = $main->el('form');
+$form = $main->form('.','get');
 $group = $form->form_horizontal(4);
 $group->label('Input','input2');
 $group->input('input2','Value');
@@ -76,7 +76,7 @@ $group = $form->form_horizontal(4);
 $group->button('Reload','exclamation-circle','warning','.');
 
 $main->el('h1')->te('Forms - Inline');
-$form = $main->el('form')->form_inline();
+$form = $main->form('.','post')->form_inline();
 $form->input('input4','Value');
 
 $select = $form->select('select1');
