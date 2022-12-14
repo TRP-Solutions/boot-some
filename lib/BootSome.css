@@ -43,6 +43,11 @@ div.modal-header {
 	margin-right: auto!important;
 	display: block;
 }
+dialog#dialog {
+	border: none;
+	height: 100%;
+	width: 100%;
+}
 @media (min-width: 992px) {
 	div.modal-dialog {
 		max-width: 950px;
