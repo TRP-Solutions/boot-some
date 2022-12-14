@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-BootSome::$head->el('script',['src'=>'../lib/BootSome.js']);
-
 // Open modal
 BootSome::$body->at(['class'=>'modal-open']);
 BootSome::$dialog->at(['open']);
