@@ -10,8 +10,8 @@ BootSome::document('BootSome() :: '.$page);
 
 BootSome::$head->metadata('viewport','width=device-width, initial-scale=1');
 BootSome::$head->link('shortcut icon','#');
-BootSome::$head->css('https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css');
+BootSome::$head->css('https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css');
 BootSome::$head->css('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
-BootSome::$head->el('script',['src'=>'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js']);
+BootSome::$head->el('script',['src'=>'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSome.js']);
 BootSome::$head->css('../lib/BootSome.css');
