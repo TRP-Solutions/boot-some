@@ -395,13 +395,6 @@ trait BootSomeNodeParent {
 		return $nav;
 	}
 
-	public function alert($color = null,$center = false){
-		if($color===null) $color = 'primary';
-		$alert = $this->el('div',['class'=>'alert alert-'.$color]);
-		if($center) $alert->at(['class'=>'text-center'],true);
-		return $alert;
-	}
-
 	public function badge($color = 'primary'){
 		$this->at(['class'=>'badge bg-'.$color],true);
 		if(in_array($color,['warning','info','light'])) {
@@ -508,3 +501,6 @@ require_once(__DIR__.'/BootSomeNavs.php');
 require_once(__DIR__.'/BootSomeForms.php');
 require_once(__DIR__.'/BootSomeModal.php');
 require_once(__DIR__.'/BootSomeTables.php');
+
+require_once(__DIR__.'/BootSomeAlert.php');
+HealDocument::register_plugin('BootSomeAlert');
