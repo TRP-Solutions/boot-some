@@ -29,4 +29,5 @@ elseif(!in_array($page,['Index','Navbar'])) {
 else {
 	$main = BootSome::$body->container();
 	$main->el('h1')->te($page);
+	$main->p('Welcome');
 }

@@ -196,37 +196,6 @@ trait BootSomeNodeParent {
 		return new BootSomeElement($name);
 	}
 
-	public function html($title, $language = null, $charset='UTF-8'){
-		$html = $this->el('html');
-		$html->at(['lang'=>$language ? $language : 'en']);
-		return [$html->head($title, $charset),$html->el('body')];
-	}
-
-	public function img($src, $alt){
-		return $this->el('img',['src'=>$src,'alt'=>$alt]);
-	}
-
-	public function p($text, $break_on_newline = true){
-		return $this->el('p')->te($text, $break_on_newline);
-	}
-
-	public function a($href, $text = ''){
-		$a = $this->el('a', ['href'=>$href]);
-		if(!empty($text)) $a->te($text);
-		return $a;
-	}
-
-	public function form($action = '', $method = 'get'){
-		$attr = [];
-		if(!empty($action)){
-			$attr['action'] = $action;
-			$attr['method'] = $method;
-		} else {
-			$attr['onsubmit'] = 'return false;';
-		}
-		return $this->el('form', $attr);
-	}
-
 	public function container($fluid = false, $element = 'div'){
 		$head = $this->el($element)->at(['class'=>$fluid?'container-fluid':'container']);
 		return $head;
@@ -458,6 +427,12 @@ class BootSome extends HealDocument {
 		if($autoecho) register_shutdown_function(['BootSome','document_end']);
 	}
 
+	public function html($title, $language = null, $charset='UTF-8'){
+		$html = $this->el('html');
+		$html->at(['lang'=>$language ? $language : 'en']);
+		return [$html->head($title, $charset),$html->el('body')];
+	}
+
 	public static function document_end() {
 		echo self::$doc;
 	}
@@ -482,6 +457,9 @@ require_once __DIR__.'/BootSomeNavs.php';
 require_once __DIR__.'/BootSomeForms.php';
 require_once __DIR__.'/BootSomeModal.php';
 require_once __DIR__.'/BootSomeTables.php';
+
+require_once __DIR__.'/BootSomeBasic.php';
+HealDocument::register_plugin('BootSomeBasic');
 
 require_once __DIR__.'/BootSomeHead.php';
 HealDocument::register_plugin('BootSomeHead');
