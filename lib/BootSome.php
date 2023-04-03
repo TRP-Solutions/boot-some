@@ -192,7 +192,7 @@ trait BootSomeFormNode {
 trait BootSomeNodeParent {
 	use BootSomeFormNode;
 
-	protected static function createElementHeal($name){
+	protected static function createElementHeal($name) : HealComponent {
 		return new BootSomeElement($name);
 	}
 
