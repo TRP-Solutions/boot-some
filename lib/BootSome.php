@@ -202,25 +202,6 @@ trait BootSomeNodeParent {
 		return [$html->head($title, $charset),$html->el('body')];
 	}
 
-	public function head($title = null, $charset = 'UTF-8'){
-		$head = $this->el('head');
-		if(!empty($title)) $head->el('title')->te($title);
-		$head->el('meta',['charset'=>$charset]);
-		return $head;
-	}
-
-	public function metadata($name, $content){
-		return $this->el('meta',['name'=>$name,'content'=>$content]);
-	}
-
-	public function link($rel, $href){
-		return $this->el('link',['rel'=>$rel,'href'=>$href]);
-	}
-
-	public function css($path){
-		return $this->link('stylesheet',$path);
-	}
-
 	public function img($src, $alt){
 		return $this->el('img',['src'=>$src,'alt'=>$alt]);
 	}
@@ -493,14 +474,17 @@ class BootSomeRow extends BootSomeElement {
 	}
 }
 
-require_once(__DIR__.'/BootSomeCarousel.php');
-require_once(__DIR__.'/BootSomeCard.php');
-require_once(__DIR__.'/BootSomeDropdown.php');
-require_once(__DIR__.'/BootSomeNavbar.php');
-require_once(__DIR__.'/BootSomeNavs.php');
-require_once(__DIR__.'/BootSomeForms.php');
-require_once(__DIR__.'/BootSomeModal.php');
-require_once(__DIR__.'/BootSomeTables.php');
+require_once __DIR__.'/BootSomeCarousel.php';
+require_once __DIR__.'/BootSomeCard.php';
+require_once __DIR__.'/BootSomeDropdown.php';
+require_once __DIR__.'/BootSomeNavbar.php';
+require_once __DIR__.'/BootSomeNavs.php';
+require_once __DIR__.'/BootSomeForms.php';
+require_once __DIR__.'/BootSomeModal.php';
+require_once __DIR__.'/BootSomeTables.php';
 
-require_once(__DIR__.'/BootSomeAlert.php');
+require_once __DIR__.'/BootSomeHead.php';
+HealDocument::register_plugin('BootSomeHead');
+
+require_once __DIR__.'/BootSomeAlert.php';
 HealDocument::register_plugin('BootSomeAlert');
