@@ -68,7 +68,9 @@ $group->date('date2')->at(['data-suggest'=>'date1']);
 $group = $form->form_horizontal(4);
 $group->label('Input','input3');
 $inputgroup = $group->inputgroup();
-$inputgroup->text('Fisk');
+$inputgroup->text('See');
+$inputgroup->button('E-mail','envelope');
+$inputgroup->select('Random');
 $inputgroup->input('input3','Value');
 $inputgroup->button('E-mail','envelope');
 

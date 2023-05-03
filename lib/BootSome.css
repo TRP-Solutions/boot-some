@@ -76,7 +76,9 @@ nav.navbar .navbar-brand img {
 nav.navbar .navbar-nav {
 	margin-left: auto!important;
 }
-div button.btn:not(:last-child), div a.btn:not(:last-child) {
+div:not(.input-group) > button.btn:not(:last-child),
+div:not(.input-group) > a.btn:not(:last-child),
+div:not(.input-group) > select.form-select:not(:last-child) {
 	margin-right: .5rem;
 }
 div.form-inline {
