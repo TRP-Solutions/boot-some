@@ -29,5 +29,7 @@ elseif(!in_array($page,['Index','Navbar'])) {
 else {
 	$main = BootSome::$body->container();
 	$main->el('h1')->te($page);
-	$main->p('Welcome');
+	$main->te('Welcome');
+	$main->el('hr');
+	$main->a('https://google.com','Visit Google.com');
 }

@@ -1,0 +1,24 @@
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
+div.card {
+	margin-bottom: $spacer;
+}
+div.card div.row:last-child > * {
+	margin-bottom: 0rem !important;
+}
+div.card table.table {
+	margin-bottom: 0rem;
+}
+div.card table.table tr:last-child td {
+	border-bottom: 0rem;
+}
+div.card table.table tr td:first-child,
+div.card table.table tr th:first-child {
+	padding-left: $spacer * 2;
+}
+div.card table.table tr td:last-child,
+div.card table.table tr th:last-child {
+	padding-right: $spacer * 2;
+}

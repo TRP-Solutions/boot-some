@@ -237,8 +237,10 @@ trait BootSomeNodeParent {
 		return $element;
 	}
 
-	public function modal(){
+	public function modal($xl = true){
 		$dialog = $this->el('div',['class'=>'modal']);
+		if($xl) $dialog->at(['class'=>'modal-xl'],true);
+
 		$dialog = $dialog->el('div',['class'=>'modal-dialog']);
 
 		$element = new BootSomeModal('div');

@@ -34,11 +34,11 @@ for($i=1;$i<=4;$i++) {
 $table = $main->table();
 $tbody = $table->tbody();
 
-for($i=1;$i<=2;$i++) {
+for($i=1;$i<=20;$i++) {
 	$tr = $tbody->tr();
 	$tr->td()->te('Beef');
 	$tr->td()->checkbox('test_check');
-	$tr->td()->input('Push')->at(['right']);
+	$tr->td()->input('Push','This is a value')->at(['right']);
 	$select = $tr->td()->select('test_select');
 	$select->option('OptionA','A');
 	$select->option('OptionB','B');

@@ -7,7 +7,7 @@ $navbar = BootSome::$body->navbar(false,'navbar-light bg-light');
 
 $brand = $navbar->brand('http://trp.solutions');
 $brand->at(['target'=>'_blank']);
-$brand->el('img',['src'=>'http://trp.solutions/images/logo.svg','alt'=>'brandlogo']);
+$brand->el('img',['src'=>'https://trp.solutions/images/logo.svg','alt'=>'brandlogo']);
 $brand->el('span')->display('none','lg-inline')->te('BootSome');
 
 if($source) {

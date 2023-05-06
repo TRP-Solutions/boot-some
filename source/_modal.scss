@@ -1,0 +1,28 @@
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
+body.modal-open {
+	overflow: hidden;
+}
+div.modal {
+	display: block;
+}
+div.modal-backdrop {
+	opacity: $modal-backdrop-opacity;
+}
+dialog#dialog {
+	border: none;
+	padding:0;
+	margin:0;
+}
+.modal-body:not(:first-child), div.modal-footer {
+	border-top: $modal-content-border-width solid $modal-content-border-color;
+}
+.modal-body .form-inline label {
+	margin-right: auto!important;
+	display: block;
+}
+.modal-body *:last-child {
+	margin-bottom: 0rem;
+}

@@ -1,0 +1,39 @@
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
+table.table button.btn,
+table.table a.btn,
+div.form-inline button.btn,
+div.form-inline a.btn {
+	padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+	font-size: $input-btn-font-size-sm;
+	border-radius: $border-radius-sm;
+}
+table.table input.form-control,
+div.form-inline input.form-control {
+	min-height: $input-height-sm;
+	padding: $input-padding-y-sm $input-padding-x-sm;
+	font-size: $input-font-size-sm;
+	border-radius: $input-border-radius-sm;
+}
+table.table select.form-select,
+div.form-inline select.form-select {
+	padding: $form-select-padding-y-sm $form-select-padding-x-sm;
+	font-size: $form-select-font-size-sm;
+	border-radius: $form-select-border-radius-sm;
+}
+a.btn, button.btn {
+	white-space: nowrap;
+}
+div:not(.input-group) > button.btn:not(:last-child),
+div:not(.input-group) > a.btn:not(:last-child),
+div:not(.input-group) > select.form-select:not(:last-child) {
+	margin-right: $spacer;
+}
+div.form-inline {
+	margin-bottom: $spacer;
+}
+nav.navbar div.form-inline {
+	margin-bottom: 0rem;
+}

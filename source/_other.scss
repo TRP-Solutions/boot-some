@@ -1,0 +1,33 @@
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
+ol, ul, dl {
+  margin-bottom: $spacer;
+}
+button.btn i + *, a.btn i + *,.dropdown-item i + * {
+	margin-left: $spacer;
+}
+h1 + nav ol.breadcrumb {
+	margin-top: -$spacer;
+}
+nav ol.breadcrumb {
+	font-size: $font-size-sm;
+	background-color: inherit;
+}
+div.bs-datepicker {
+	width: 100%;
+}
+div.bs-datepicker td {
+	cursor: pointer;
+}
+nav ul.pagination {
+	justify-content: center!important;
+}
+nav ul.pagination button.page-link {
+	padding: $pagination-padding-y-sm $pagination-padding-x-sm;
+	font-size: $font-size-sm;
+}
+nav ul.pagination li.page-item button {
+	width: 3rem;
+}

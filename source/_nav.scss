@@ -1,0 +1,18 @@
+/*
+BootSome is licensed under the Apache License 2.0 license
+https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
+*/
+nav.navbar .navbar-brand {
+	height: $navbar-brand-height + (2 * $navbar-brand-padding-y);
+}
+nav.navbar .navbar-brand img {
+	height: 100%;
+	vertical-align: top;
+	margin-right: $spacer;
+}
+nav.navbar{
+	margin-bottom: $spacer;
+}
+nav.navbar .navbar-nav {
+	margin-left: auto;
+}

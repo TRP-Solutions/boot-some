@@ -9,9 +9,15 @@ BootSome::$dialog->at(['open']);
 
 $main = BootSome::$body->container();
 $main->el('h1')->te('Modal');
+
 $js = "document.body.classList.add('modal-open');";
 $js .= "document.getElementById('dialog').setAttribute('open','');";
 $main->button('Open','folder-open','info')->at(['onclick'=>$js]);
+
+for($i = 1;$i < 50;$i++) {
+	$main->el('br');
+	$main->te('ScrollTestFill: '.$i);
+}
 
 $modal = BootSome::$dialog->modal();
 
