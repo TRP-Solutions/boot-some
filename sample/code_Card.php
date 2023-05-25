@@ -50,3 +50,5 @@ $group->label('Input','input1');
 $group->input('input1','Value');
 
 $card->footer()->te('This is the end');
+
+$card->footer()->el('div')->form_inline()->button('Function','explosion','link');

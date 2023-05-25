@@ -31,9 +31,3 @@ div:not(.input-group) > a.btn:not(:last-child),
 div:not(.input-group) > select.form-select:not(:last-child) {
 	margin-right: $spacer;
 }
-div.form-inline {
-	margin-bottom: $spacer;
-}
-nav.navbar div.form-inline {
-	margin-bottom: 0rem;
-}
