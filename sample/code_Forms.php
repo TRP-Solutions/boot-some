@@ -31,6 +31,7 @@ $group->label('Select','select1');
 $select = $group->select('select1');
 $select->option('Option1',1);
 $select->option('Option2',2);
+$select->options(['Array1','Array2','Array3'],1);
 
 $group = $form->form_group();
 $group->label('Text','textarea1');
