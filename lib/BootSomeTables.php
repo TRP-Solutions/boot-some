@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/component.php';
-
 class BootSomeTable extends HealPlugin {
 	public static function table($parent){
 		return new BootSomeTable($parent);
@@ -27,7 +25,7 @@ class BootSomeTable extends HealPlugin {
 	}
 }
 
-class BootSomeTableNode extends BootSomeComponent {
+class BootSomeTableNode extends HealWrapper {
 	public function __construct($parent, $type){
 		$this->primary_element = $parent->el($type);
 	}
@@ -42,7 +40,7 @@ class BootSomeTableNode extends BootSomeComponent {
 	}
 }
 
-class BootSomeTableRow extends BootSomeComponent {
+class BootSomeTableRow extends HealWrapper {
 	public function __construct($parent, $color = null){
 		$this->primary_element = $parent->el('tr');
 		if($color) $element->el(['class'=>'table-'.$color]);

@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/component.php';
-
 class BootSomeNavbar extends HealPlugin {
 	public static function navbar($parent, $fluid = true, $nav_classes = ''){
 		$classes = array_filter(explode(' ','navbar '.$nav_classes));
@@ -51,7 +49,7 @@ class BootSomeNavbar extends HealPlugin {
 	}
 }
 
-class BootSomeNavbarCollapse extends BootSomeComponent {
+class BootSomeNavbarCollapse extends HealWrapper {
 	public function __construct($parent, $id){
 		$this->primary_element = $parent->el('div',[
 			'id'=>$id,
@@ -66,7 +64,7 @@ class BootSomeNavbarCollapse extends BootSomeComponent {
 	}
 }
 
-class BootSomeNavbarNav extends BootSomeComponent {
+class BootSomeNavbarNav extends HealWrapper {
 	public function __construct($parent){
 		$this->primary_element = $parent->el('div',['class'=>'navbar-nav']);
 	}
@@ -100,7 +98,7 @@ class BootSomeNavbarNav extends BootSomeComponent {
 	}
 }
 
-class BootSomeNavbarDropDown extends BootSomeComponent {
+class BootSomeNavbarDropDown extends HealWrapper {
 	public function __construct($parent){
 		$this->primary_element = $parent->el('div',['class'=>'dropdown-menu dropdown-menu-end']);
 	}

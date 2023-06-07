@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/component.php';
-
 class BootSomeLayout extends HealPlugin {
 	public static function container($parent, $fluid = false, $element = 'div'){
 		$head = $parent->el($element)->at(['class'=>$fluid?'container-fluid':'container']);
@@ -146,7 +144,7 @@ class BootSomeLayout extends HealPlugin {
 	}
 }
 
-class BootSomeRow extends BootSomeComponent {
+class BootSomeRow extends HealWrapper {
 	public function __construct($parent){
 		$this->primary_element = $parent->el('div',['class'=>'row']);
 	}

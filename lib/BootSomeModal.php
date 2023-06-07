@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/component.php';
-
 class BootSomeModal extends HealPlugin {
 	public static function modal($parent, $xl = true){
 		$dialog = $parent->el('div',['class'=>'modal']);
@@ -47,7 +45,7 @@ class BootSomeModal extends HealPlugin {
 	}
 }
 
-class BootSomeModalHeader extends BootSomeComponent {
+class BootSomeModalHeader extends HealWrapper {
 	public function __construct($parent){
 		$this->primary_element = $parent->el('div',['class'=>'modal-header']);
 	}

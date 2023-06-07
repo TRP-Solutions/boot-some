@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/component.php';
-
 class BootSomeCarousel extends HealPlugin {
 	private $id;
 	private $inner = null;
@@ -47,7 +45,7 @@ class BootSomeCarousel extends HealPlugin {
 	}
 }
 
-class BootSomeCarouselItem extends BootSomeComponent {
+class BootSomeCarouselItem extends HealWrapper {
 	public function __construct($parent, $url, $alt, $active){
 		$this->primary_element = $item = $parent->el('div',['class'=>'carousel-item']);
 		if($active) $item->at(['class'=>'active'],true);

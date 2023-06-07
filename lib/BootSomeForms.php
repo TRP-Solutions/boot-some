@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/component.php';
-
 class BootSomeForms extends HealPlugin {
 	public static function form_row($parent){
 		//Legacy Support
@@ -52,19 +50,18 @@ class BootSomeForms extends HealPlugin {
 	}
 
 	public static function options($parent, $iterable, $selected = null, $strict_compare = false){
-		$options = [];
 		if(is_a($iterable, 'mysqli_result')){
 			foreach($iterable as $row){
 				$is_selected = isset($selected) && ($strict_compare ? $selected === $row['id'] : $selected == $row['id']);
-				$options[] = $parent->option($row['name'],$row['id'],$is_selected);
+				$parent->option($row['name'],$row['id'],$is_selected);
 			}
 		} else {
 			foreach($iterable as $value => $text){
 				$is_selected = isset($selected) && ($strict_compare ? $selected === $value : $selected == $value);
-				$options[] = $parent->option($text, $value, $is_selected);
+				$parent->option($text, $value, $is_selected);
 			}
 		}
-		return $options;
+		return $parent;
 	}
 
 	public static function password($parent, $name){
@@ -161,7 +158,7 @@ class BootSomeForms extends HealPlugin {
 	}
 }
 
-class BootSomeFormsGroup extends BootSomeComponent {
+class BootSomeFormsGroup extends HealWrapper {
 	public function __construct($parent, $col = null, $left = false){
 		$this->primary_element = $parent->el('div',['class'=>'mb-2']);
 		if($left) $this->primary_element->at(['class'=>'text-end'],true);
@@ -175,7 +172,7 @@ class BootSomeFormsGroup extends BootSomeComponent {
 	}
 }
 
-class BootSomeFormsHorizontal extends BootSomeComponent {
+class BootSomeFormsHorizontal extends HealWrapper {
 	use BootSomeFormFields;
 
 	public $col = 3;
@@ -204,23 +201,19 @@ class BootSomeFormsHorizontal extends BootSomeComponent {
 	}
 }
 
-class BootSomeFormsInline extends BootSomeComponent {
+class BootSomeFormsInline extends HealWrapper {
 	use BootSomeFormFields;
 
-	private $wrap = null;
 	public function __construct($parent){
 		$this->primary_element = $parent->el('div',['class'=>'row row-cols-sm-auto gx-2 form-inline']);
 	}
 
 	public function wrap(){
-		if(!isset($this->wrap)){
-			$this->wrap = $this->primary_element->el('div',['class'=>'col-12']);
-		}
-		return $this->wrap;
+		return $this->primary_element->el('div',['class'=>'col-12']);
 	}
 }
 
-class BootSomeFormsInputGroup extends BootSomeComponent {
+class BootSomeFormsInputGroup extends HealWrapper {
 	public function __construct($parent){
 		$this->primary_element = $parent->el('div',['class'=>'input-group']);
 	}
