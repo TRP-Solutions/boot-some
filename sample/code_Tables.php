@@ -35,7 +35,7 @@ $table = $main->table();
 $tbody = $table->tbody();
 
 for($i=1;$i<=20;$i++) {
-	$tr = $tbody->tr();
+	$tr = $tbody->tr()->at(['onclick'=>"alert('Clicked: '+".$i.")"]);
 	$tr->td()->te('Beef');
 	$tr->td()->checkbox('test_check');
 	$tr->td()->input('Push','This is a value')->at(['right']);
