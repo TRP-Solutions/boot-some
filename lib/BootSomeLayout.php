@@ -14,7 +14,7 @@ class BootSomeLayout extends HealPlugin {
 	}
 
 	public static function pagination($parent, $total, $limit, $page, $url){
-		if($total<=$limit) return; 
+		if($total<=$limit) return $parent;
 
 		$pages = (ceil($total/$limit));
 		$nav = $parent->el('nav')->el('ul',['class'=>'pagination']);
