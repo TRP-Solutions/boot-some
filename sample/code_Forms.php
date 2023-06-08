@@ -7,6 +7,7 @@ BootSome::$head->el('script',['src'=>'../../git_popperjs/popper.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 
 $main = BootSome::$body->container();
+$main->at(['class'=>'mb-5'],true);
 $main->el('h1')->te('Forms');
 
 $form = $main->form('.','get');
@@ -100,3 +101,17 @@ $select = $form->select('select1');
 $select->option('Option1',1);
 $select->option('Option2',2);
 $form->button('Link',null,'info','http://example.com');
+
+$main->el('h1')->te('Forms - Floating');
+$form = $main->form('.','get');
+$form->floating_input('Input','text','Value','input5');
+
+$form->floating_input('Number','number',123,'input5');
+
+$form->floating_file('File','input6');
+
+$select = $form->floating_select('Select','input7');
+$select->options([
+	'opt1' => 'Option 1',
+	'opt2' => 'Option 2'
+]);

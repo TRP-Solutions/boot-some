@@ -3,6 +3,7 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once __DIR__.'/BootSomeFormsInputGroup.php';
 class BootSomeForms extends HealPlugin {
 	public static function form_row($parent){
 		//Legacy Support
@@ -210,16 +211,6 @@ class BootSomeFormsInline extends HealWrapper {
 
 	public function wrap(){
 		return $this->primary_element->el('div',['class'=>'col-12']);
-	}
-}
-
-class BootSomeFormsInputGroup extends HealWrapper {
-	public function __construct($parent){
-		$this->primary_element = $parent->el('div',['class'=>'input-group']);
-	}
-
-	public function text($text){
-		return $this->primary_element->el('div',['class'=>'input-group-text'])->te($text);
 	}
 }
 

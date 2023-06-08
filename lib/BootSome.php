@@ -23,6 +23,9 @@ HealDocument::register_plugin('BootSomeDropdown');
 require_once __DIR__.'/BootSomeForms.php';
 HealDocument::register_plugin('BootSomeForms');
 
+require_once __DIR__.'/BootSomeFormsFloating.php';
+HealDocument::register_plugin('BootSomeFormsFloating','floating');
+
 require_once __DIR__.'/BootSomeHead.php';
 HealDocument::register_plugin('BootSomeHead');
 
