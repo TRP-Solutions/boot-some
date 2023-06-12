@@ -36,7 +36,7 @@ class BootSomeTableNode extends HealWrapper {
 
 	public function tr_template($arr){
 		$node = new BootSomeTableNode($this->primary_element,'template');
-		$node->at($arr);
+		return $node->at($arr);
 	}
 }
 
