@@ -9,7 +9,7 @@ class BootSomeTable extends HealPlugin {
 	}
 
 	public function __construct($parent){
-		$this->primary_element = $parent->el('table',['class'=>'table']);
+		$this->primary_element = $parent->el('div',['class'=>'table-responsive'])->el('table',['class'=>'table']);
 	}
 
 	public function thead(){
