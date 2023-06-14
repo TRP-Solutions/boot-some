@@ -3,6 +3,12 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once '../lib/BootSomeModal.php';
+HealDocument::register_plugin('BootSomeModal');
+
+require_once '../lib/BootSomeTables.php';
+HealDocument::register_plugin('BootSomeTable');
+
 // Open modal
 BootSome::$body->at(['class'=>'modal-open']);
 BootSome::$dialog->at(['open']);

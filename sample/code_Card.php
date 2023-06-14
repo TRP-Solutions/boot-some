@@ -3,6 +3,12 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once '../lib/BootSomeCard.php';
+HealDocument::register_plugin('BootSomeCard');
+
+require_once '../lib/BootSomeTables.php';
+HealDocument::register_plugin('BootSomeTable');
+
 $main = BootSome::$body->container();
 $main->el('h1')->te('Card');
 

@@ -3,6 +3,15 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once '../lib/BootSomeForms.php';
+HealDocument::register_plugin('BootSomeForms');
+require_once '../lib/BootSomeLayout.php';
+HealDocument::register_plugin('BootSomeLayout');
+require_once '../lib/BootSomeNavbar.php';
+HealDocument::register_plugin('BootSomeNavbar');
+require_once '../lib/BootSomeNavs.php';
+HealDocument::register_plugin('BootSomeNavs');
+
 $navbar = BootSome::$body->navbar(false,'navbar-light bg-light');
 
 $brand = $navbar->brand('http://trp.solutions');

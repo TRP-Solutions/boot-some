@@ -3,6 +3,9 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once '../lib/BootSomeCarousel.php';
+HealDocument::register_plugin('BootSomeCarousel');
+
 $main = BootSome::$body->container();
 $main->el('h1')->te('Carousel');
 

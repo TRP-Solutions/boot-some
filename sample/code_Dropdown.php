@@ -3,6 +3,9 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once '../lib/BootSomeDropdown.php';
+HealDocument::register_plugin('BootSomeDropdown');
+
 $main = BootSome::$body->container();
 $main->el('h1')->te('Dropdown');
 

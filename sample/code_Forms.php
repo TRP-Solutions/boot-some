@@ -3,6 +3,15 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+require_once '../lib/BootSomeBasic.php';
+HealDocument::register_plugin('BootSomeBasic');
+
+require_once '../lib/BootSomeForms.php';
+HealDocument::register_plugin('BootSomeForms');
+
+require_once '../lib/BootSomeFormsFloating.php';
+HealDocument::register_plugin('BootSomeFormsFloating','floating');
+
 BootSome::$head->el('script',['src'=>'../../git_popperjs/popper.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 
