@@ -40,7 +40,12 @@ class BootSomeFormsFloating extends HealPlugin {
 		return $element;
 	}
 
-	private $id,$input,$label,$input_group = null;
+	public static function tokenselect($parent, $label, $name = null, $id = null, $include_select = true){
+		$input_group = new BootSomeFormsInputGroup($parent);
+		return new BootSomeFormsFloatingTokenSelect($input_group, $label, $name, $id, $include_select);
+	}
+
+	protected $id,$input,$label,$input_group = null;
 	public function __construct($parent, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -71,15 +76,15 @@ class BootSomeFormsFloating extends HealPlugin {
 		return $this;
 	}
 
-	private function build_input($type){
+	protected function build_input($type){
 		$this->input = $this->primary_element->el('input',['class'=>'form-control','placeholder','id'=>$this->id,'type'=>$type]);
 	}
 
-	private function build_select(){
+	protected function build_select(){
 		$this->input = $this->primary_element->el('select',['class'=>'form-select','id'=>$this->id]);
 	}
 
-	private function set_name_and_value($name = null, $value = null){
+	protected function set_name_and_value($name = null, $value = null){
 		if(isset($name)){
 			$this->input->at(['name'=>$name]);
 		}
@@ -88,7 +93,7 @@ class BootSomeFormsFloating extends HealPlugin {
 		}
 	}
 
-	private function build_label($label){
+	protected function build_label($label){
 		$this->label = $this->primary_element->el('label',['for'=>$this->id])->te($label);
 	}
 
@@ -107,6 +112,80 @@ class BootSomeFormsFloating extends HealPlugin {
 
 	public function get_input_group(){
 		return $this->input_group;
+	}
+}
+
+class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloating {
+	protected $container, $option_names = [], $option_elements = [], $token_elements = [], $name;
+	public function __construct($parent, $label, $name = null, $id = null, $include_select = true){
+		parent::__construct($parent,$id);
+		$this->primary_element->at(['class'=>'bootsome-token-field'],true);
+		$this->name = $name;
+		if($include_select){
+			$this->build_select();
+			$this->option('');
+			$this->input->at(['onchange'=>'BootSomeTokenSelect.set(this);','class'=>'bootsome-token-select'],true);
+		}
+		$this->build_label($label);
+		$this->container = $this->primary_element->el('div',['class'=>'bootsome-token-container']);
+		$template = $this->container->el('template',['data-tmpl-name'=>'bootsome-token-template']);
+		$this->build_token($template, '', '');
+	}
+
+	public function token($value, $label = null){
+		$token = $this->build_token($this->container, $value, $label ?? $this->get_option_label($value));
+		$this->token_elements[$value] = $token;
+		if(isset($this->option_elements[$value])){
+			$this->option_elements[$value]->at(['disabled']);
+		}
+		return $token;
+	}
+
+	private function build_token($parent, $value, $label){
+		$token = $parent->el('button',[
+			'class'=>'btn btn-outline-secondary',
+			'onclick'=>'BootSomeTokenSelect.remove(this,event);',
+			'data-token-value'=>$value,
+			'data-tmpl'=>'data-tokenValue:value'
+		]);
+		$token->el('span',['data-tmpl'=>'content:label'])->te($label);
+		$token_input = $token->el('input',['type'=>'hidden','value'=>$value,'data-tmpl'=>'value:value']);
+		if(!empty($this->name)){
+			$token_input->at(['name'=>$this->name.'[]']);
+		}
+		return $token;
+	}
+
+	private function get_option_label($value){
+		return $this->option_names[$value] ?? '';
+	}
+
+	public function tokens($iterable,$associative = false){
+		if(is_a($iterable, 'mysqli_result')){
+			foreach($iterable as $row){
+				$this->token($row['id'],$row['name'] ?? null);
+			}
+		} else {
+			foreach($iterable as $key => $value){
+				if($associative){
+					$this->token($key, $value);
+				} else {
+					$this->token($value);
+				}
+			}
+		}
+		return $this;
+	}
+
+	public function option($text, $value = null, $selected = false){
+		$option = $this->input->el('option')->te($text);
+		if($selected) $option->at(['selected']);
+		if(isset($value)){
+			$option->at(['value'=>$value]);
+			$this->option_names[$value] = $text;
+			$this->option_elements[$value] = $option;
+		}
+		return $option;
 	}
 }
 

@@ -1,0 +1,16 @@
+.bootsome-token-field {
+	position: relative;
+    min-height: $form-floating-height;
+
+	.bootsome-token-select {
+		position: absolute;
+		top: 0px;
+		height: 100%;
+		left: 0px;
+	}
+	.bootsome-token-container {
+		padding: $form-floating-input-padding-t $form-select-indicator-padding $form-floating-input-padding-b $form-floating-padding-x;
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
