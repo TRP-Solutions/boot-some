@@ -12,7 +12,7 @@ class BootSomeCarousel extends HealPlugin {
 		return new BootSomeCarousel($parent,$id);
 	}
 
-	function __construct($element,$id = 'slide'){
+	function __construct($parent,$id = 'slide'){
 		$this->primary_element = $parent->el('div',['id'=>$id,'class'=>'carousel slide carousel-fade','data-bs-ride'=>'carousel']);
 		$this->id = $id;
 	}
@@ -23,7 +23,7 @@ class BootSomeCarousel extends HealPlugin {
 
 	private function inner(){
 		if(!$this->inner){
-			$this->inner = $this->primary_element('div',['carousel-inner']);
+			$this->inner = $this->primary_element->el('div',['class'=>'carousel-inner']);
 		}
 		return $this->inner;
 	}
