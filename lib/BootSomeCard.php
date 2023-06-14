@@ -3,8 +3,6 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once __DIR__.'/BootSomeTables.php';
-
 class BootSomeCard extends HealPlugin {
 	public static function card($parent){
 		return new BootSomeCard($parent);
@@ -24,10 +22,6 @@ class BootSomeCard extends HealPlugin {
 
 	public function listgroup(){
 		return new BootSomeCardListGroup($this->primary_element);
-	}
-
-	public function table(){
-		return new BootSomeTable($this->primary_element->el('div',['class'=>'table-responsive']));
 	}
 
 	public function footer(){
