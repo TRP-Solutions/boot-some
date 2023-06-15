@@ -16,6 +16,7 @@ BootSome::document('BootSome() :: '.$page);
 
 BootSome::$head->link('shortcut icon','#');
 BootSome::$head->css('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
-BootSome::$head->el('script',['src'=>'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js']);
+BootSome::$head->el('script',['src'=>'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js']);
+BootSome::$head->el('script',['src'=>'../../git_ufo-ajax/lib/ufo.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSome.js']);
 BootSome::$head->css('../lib/BootSome.css');
