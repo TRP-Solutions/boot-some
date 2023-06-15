@@ -45,16 +45,6 @@ $tr->td()->te('Beef leberkas leberkas kielbasa');
 $tr->td()->te('Beef leberkas kielbasa');
 $tr->td()->te('Shoulder doner pork');
 
-$body = $card->body();
-
-$group = $body->form_horizontal();
-$group->label('Input','input1');
-$group->input('input1','Value');
-
-$group = $body->form_horizontal();
-$group->label('Input','input1');
-$group->input('input1','Value');
-
 $card->footer()->te('This is the end');
 
-$card->footer()->el('div')->form_inline()->button('Function','explosion','link');
+$card->footer()->button('Function','explosion','link');

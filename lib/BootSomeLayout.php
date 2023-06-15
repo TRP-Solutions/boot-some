@@ -9,8 +9,14 @@ class BootSomeLayout extends HealPlugin {
 		return $head;
 	}
 
-	public static function row($parent){
-		return new BootSomeRow($parent);
+	public static function row($parent,...$class){
+		return new BootSomeRow($parent,$class);
+	}
+
+	public static function row_gutter($parent,...$class){
+		$row = new BootSomeRow($parent,$class);
+		$row->at(['class'=>'row_gutter'],true);
+		return $row;
 	}
 
 	public static function pagination($parent, $total, $limit, $page, $url){
@@ -145,8 +151,9 @@ class BootSomeLayout extends HealPlugin {
 }
 
 class BootSomeRow extends HealWrapper {
-	public function __construct($parent){
-		$this->primary_element = $parent->el('div',['class'=>'row']);
+	public function __construct($parent,$class){
+		$class = implode(' ',array_merge(['row'],$class));
+		$this->primary_element = $parent->el('div',['class'=>$class]);
 	}
 
 	public function col(...$class) {

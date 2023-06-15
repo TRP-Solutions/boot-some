@@ -5,12 +5,20 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 require_once __DIR__.'/BootSomeFormsInputGroup.php';
 class BootSomeFormsFloating extends HealPlugin {
-	public static function input($parent, $label, $type = 'text', $value = null, $name = null, $id = null){
+	public static function input($parent, $label, $value = null, $name = null, $id = null){
 		$element = new Self($parent, $id);
-		$element->build_input($type);
+		$element->build_input($label);
 		$element->set_name_and_value($name, $value);
 		$element->build_label($label);
-		return $element;
+		return $element->input;
+	}
+
+	public static function password($parent, $label, $name = null, $id = null){
+		$element = new Self($parent, $id);
+		$element->build_input($label,'password');
+		$element->set_name_and_value($name);
+		$element->build_label($label);
+		return $element->input;
 	}
 
 	public static function file($parent, $label, $name = null, $id = null, $icon = 'upload'){
@@ -76,8 +84,9 @@ class BootSomeFormsFloating extends HealPlugin {
 		return $this;
 	}
 
-	protected function build_input($type){
-		$this->input = $this->primary_element->el('input',['class'=>'form-control','placeholder','id'=>$this->id,'type'=>$type]);
+	protected function build_input($label,$type = null){
+		$this->input = $this->primary_element->el('input',['class'=>'form-control','placeholder'=>$label,'id'=>$this->id]);
+		if($type) $this->input->at(['type'=>$type]);
 	}
 
 	protected function build_select(){

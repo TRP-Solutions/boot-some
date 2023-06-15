@@ -18,6 +18,19 @@ class BootSomeBasic extends HealPlugin {
 		return $a;
 	}
 
+	public static function button($parent, $text, $icon = null, $color = 'primary', $link = null){
+		$button = $parent->el($link ? 'a' : 'button',['class'=>'btn btn-'.$color]);
+		if($link) $button->at(['href'=>$link]);
+		else $button->at(['type'=>'button']);
+		if($icon) $button->el('i',['class'=>'fas fa-'.$icon]);
+		if($text) $button->el('span')->te($text);
+		return $button;
+	}
+
+	public static function hidden($parent, $name, $value){
+		return $parent->el('input',['type'=>'hidden','name'=>$name,'value'=>$value,'id'=>$name]);
+	}
+
 	public static function form($parent, $action = '', $method = 'get'){
 		$attr = [];
 		if(!empty($action)){

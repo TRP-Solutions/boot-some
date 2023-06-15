@@ -3,14 +3,10 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
-require_once '../lib/BootSomeForms.php';
-HealDocument::register_plugin('BootSomeForms');
 require_once '../lib/BootSomeLayout.php';
 HealDocument::register_plugin('BootSomeLayout');
 require_once '../lib/BootSomeNavbar.php';
 HealDocument::register_plugin('BootSomeNavbar');
-require_once '../lib/BootSomeNavs.php';
-HealDocument::register_plugin('BootSomeNavs');
 
 $navbar = BootSome::$body->navbar(false,'navbar-light bg-light');
 
@@ -21,11 +17,11 @@ $brand->el('span')->display('none','lg-inline')->te('BootSome');
 
 if($source) {
 	$js = "window.location.href='?".$page."'";
-	$navbar->el('form', ['submit'=>'return false;'])->form_inline()->button('WYSIWYG','desktop')->at(['onclick'=>$js]);
+	$navbar->button('WYSIWYG','desktop')->at(['onclick'=>$js]);
 }
 else {
 	$js = "window.location.href='?".$page."&Source'";
-	$navbar->el('form', ['submit'=>'return false;'])->form_inline()->button('Source','code')->at(['onclick'=>$js]);
+	$navbar->button('Source','code')->at(['onclick'=>$js]);
 }
 
 $navbar->toggler();
@@ -45,6 +41,7 @@ $dropdown->a('?Carousel','Carousel',$page=='Carousel');
 $dropdown->a('?Display','Display',$page=='Display');
 $dropdown->a('?Dropdown','Dropdown',$page=='Dropdown');
 $dropdown->a('?Ratios','Ratios',$page=='Ratios');
+$dropdown->a('?FloatingLabels','FloatingLabels',$page=='FloatingLabels');
 $dropdown->a('?Forms','Forms',$page=='Forms');
 $dropdown->a('?Jumbotron','Jumbotron',$page=='Jumbotron');
 $dropdown->a('?Modal','Modal',$page=='Modal');
