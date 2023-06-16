@@ -5,13 +5,16 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 require_once __DIR__.'/BootSomeFormsInputGroup.php';
 class BootSomeFormsFloating extends HealPlugin {
+	public static function inputgroup($parent){
+		return new BootSomeFormsInputGroup($parent);
+	}
+
 	public static function input($parent, $label, $value = null, $name = null, $id = null){
-		$element = new Self($parent, $label, $value, $name, $id);
-		return $element;
+		return new BootSomeFormsFloatingInput($parent, $label, $value, $name, $id);
 	}
 
 	public static function password($parent, $label, $name = null, $id = null){
-		$element = new Self($parent, $label, null, $name, $id);
+		$element = new BootSomeFormsFloatingInput($parent, $label, null, $name, $id);
 		$element->at(['type'=>'password']);
 		return $element;
 	}
@@ -25,10 +28,11 @@ class BootSomeFormsFloating extends HealPlugin {
 	}
 
 	public static function tokenselect($parent, $label, $name = null, $id = null, $include_select = true){
-		$input_group = new BootSomeFormsInputGroup($parent);
-		return new BootSomeFormsFloatingTokenSelect($input_group, $label, $name, $id, $include_select);
+		return new BootSomeFormsFloatingTokenSelect($parent, $label, $name, $id, $include_select);
 	}
+}
 
+class BootSomeFormsFloatingInput extends HealWrapper {
 	protected $id,$float_wrapper,$label,$input_group = null;
 	public function __construct($parent, $label, $value = null, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -62,11 +66,19 @@ class BootSomeFormsFloating extends HealPlugin {
 	public function get_input_group(){
 		return $this->input_group;
 	}
+
+	public function disabled(){
+		return $this->primary_element->at(['disabled']);
+	}
 }
 
-class BootSomeFormsFloatingFile extends HealWrapper {
+class BootSomeFormsFloatingFile extends BootSomeFormsFloatingInput {
 	public function __construct($parent, $label, $name = null, $id = null, $icon = null){
-		$this->input_group = new BootSomeFormsInputGroup($parent);
+		if(is_a($parent, '\BootSomeFormsInputGroup')){
+			$this->input_group = $parent;
+		} else {
+			$this->input_group = new BootSomeFormsInputGroup($parent);
+		}
 		$this->id = $id ?? 'input_'.base64_encode(random_bytes(6));
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
 
@@ -84,17 +96,9 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 			$this->primary_element->at(['name'=>$name]);
 		}
 	}
-
-	public function get_wrapper(){
-		return $this->float_wrapper;
-	}
-
-	public function get_input_group(){
-		return $this->input_group;
-	}
 }
 
-class BootSomeFormsFloatingSelect extends HealWrapper {
+class BootSomeFormsFloatingSelect extends BootSomeFormsFloatingInput {
 	public function __construct($parent, $label, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -106,14 +110,6 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
 		}
-	}
-
-	public function get_wrapper(){
-		return $this->float_wrapper;
-	}
-
-	public function get_input_group(){
-		return $this->input_group;
 	}
 
 	public function option($text, $value = null, $selected = false){
@@ -140,7 +136,10 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 }
 
 class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
-	protected $container, $option_names = [], $option_elements = [], $token_elements = [], $name;
+	protected $container, $name, $token_class = 'btn btn-outline-secondary',
+			$disabled = false, $onchange = '',
+			$option_names = [], $option_elements = [],
+			$token_elements = [], $token_value_elements = [];
 	public function __construct($parent, $label, $name = null, $id = null, $include_select = true){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -158,9 +157,38 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 		$this->build_token($template, '', '');
 	}
 
+	public function disabled(){
+		parent::disabled();
+		foreach($this->token_elements as $token){
+			$token->at(['onclick'=>'']);
+		}
+		$this->disabled = true;
+		return $this;
+	}
+
+	public function onchange($js, $include_){
+		$this->onchange = $js;
+		$this->input->at(['onchange'=>'BootSomeTokenSelect.set(this);'.$js]);
+		foreach($this->token_elements as $token){
+			$token->at(['onclick'=>$js.'BootSomeTokenSelect.remove(this,event);']);
+		}
+		return $this;
+	}
+
+	public function token_class($class, $overwrite = false){
+		if($overwrite){
+			$this->token_class = $class;
+		} else {
+			$this->token_class = $this->token_class.' '.$class;
+		}
+		foreach($this->token_elements as $token){
+			$token->at(['class'=>$this->token_class]);
+		}
+	}
+
 	public function token($value, $label = null){
 		$token = $this->build_token($this->container, $value, $label ?? $this->get_option_label($value));
-		$this->token_elements[$value] = $token;
+		$this->token_value_elements[$value] = $token;
 		if(isset($this->option_elements[$value])){
 			$this->option_elements[$value]->at(['disabled']);
 		}
@@ -174,11 +202,15 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 			'data-token-value'=>$value,
 			'data-tmpl'=>'data-tokenValue:value'
 		]);
+		if(!$this->disabled){
+			$token->at(['onclick'=>$this->onchange.'BootSomeTokenSelect.remove(this,event);']);
+		}
 		$token->el('span',['data-tmpl'=>'content:label'])->te($label);
 		$token_input = $token->el('input',['type'=>'hidden','value'=>$value,'data-tmpl'=>'value:value']);
 		if(!empty($this->name)){
 			$token_input->at(['name'=>$this->name.'[]']);
 		}
+		$this->token_elements[] = $token;
 		return $token;
 	}
 

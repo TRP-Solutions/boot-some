@@ -12,5 +12,9 @@
 		padding: $form-floating-input-padding-t $form-select-indicator-padding $form-floating-input-padding-b $form-floating-padding-x;
 		display: flex;
 		flex-wrap: wrap;
+
+		.btn {
+			z-index: 2;
+		}
 	}
 }
