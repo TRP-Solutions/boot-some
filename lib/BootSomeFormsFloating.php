@@ -30,6 +30,8 @@ class BootSomeFormsFloating extends HealPlugin {
 	public static function tokenselect($parent, $label, $name = null, $id = null, $include_select = true){
 		return new BootSomeFormsFloatingTokenSelect($parent, $label, $name, $id, $include_select);
 	}
+
+	//TODO: checkbox, radio, phone, date
 }
 
 class BootSomeFormsFloatingInput extends HealWrapper {
@@ -197,8 +199,7 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 
 	private function build_token($parent, $value, $label){
 		$token = $parent->el('button',[
-			'class'=>'btn btn-outline-secondary',
-			'onclick'=>'BootSomeTokenSelect.remove(this,event);',
+			'class'=>$this->token_class,
 			'data-token-value'=>$value,
 			'data-tmpl'=>'data-tokenValue:value'
 		]);
