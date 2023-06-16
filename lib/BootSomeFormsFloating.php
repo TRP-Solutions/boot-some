@@ -168,11 +168,18 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 		return $this;
 	}
 
-	public function onchange($js, $include_){
+	public function onchange($js, $include_builtin_js = true){
 		$this->onchange = $js;
-		$this->input->at(['onchange'=>'BootSomeTokenSelect.set(this);'.$js]);
-		foreach($this->token_elements as $token){
-			$token->at(['onclick'=>$js.'BootSomeTokenSelect.remove(this,event);']);
+		if($include_builtin_js){
+			$this->input->at(['onchange'=>'BootSomeTokenSelect.set(this);'.$js]);
+			foreach($this->token_elements as $token){
+				$token->at(['onclick'=>$js.'BootSomeTokenSelect.remove(this,event);']);
+			}
+		} else {
+			$this->input->at(['onchange'=>$js]);
+			foreach($this->token_elements as $token){
+				$token->at(['onclick'=>$js]);
+			}
 		}
 		return $this;
 	}
