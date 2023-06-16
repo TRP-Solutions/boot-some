@@ -6,46 +6,22 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 require_once __DIR__.'/BootSomeFormsInputGroup.php';
 class BootSomeFormsFloating extends HealPlugin {
 	public static function input($parent, $label, $value = null, $name = null, $id = null){
-		$element = new Self($parent, $id);
-		$element->build_input($label);
-		$element->set_name_and_value($name, $value);
-		$element->build_label($label);
-		return $element->input;
+		$element = new Self($parent, $label, $value, $name, $id);
+		return $element;
 	}
 
 	public static function password($parent, $label, $name = null, $id = null){
-		$element = new Self($parent, $id);
-		$element->build_input($label,'password');
-		$element->set_name_and_value($name);
-		$element->build_label($label);
-		return $element->input;
+		$element = new Self($parent, $label, null, $name, $id);
+		$element->at(['type'=>'password']);
+		return $element;
 	}
 
 	public static function file($parent, $label, $name = null, $id = null, $icon = 'upload'){
-		$input_group = new BootSomeFormsInputGroup($parent);
-		$element = new Self($input_group, $id);
-
-		$onchange = "this.parentElement.querySelector('input[type=text]').value=this.files[0]?this.files[0].name:'';";
-		$element->input = $element->el('input',['type'=>'file','id'=>$element->id,'class'=>'d-none','onchange'=>$onchange]);
-		$element->set_name_and_value($name);
-
-		$js = "this.parentElement.parentElement.querySelector('input[type=file]').click();";
-		$element->el('input',['type'=>'text','readonly','class'=>'form-control','placeholder','onclick'=>$js]);
-
-		$element->build_label($label);
-
-		$js = "this.parentElement.querySelector('input[type=file]').click();event.preventDefault();";
-		$input_group->button($js, $icon, 'outline-secondary');
-
-		return $element;
+		return new BootSomeFormsFloatingFile($parent, $label, $name, $id, $icon);
 	}
 
 	public static function select($parent, $label, $name = null, $id = null){
-		$element = new Self($parent, $id);
-		$element->build_select();
-		$element->set_name_and_value($name);
-		$element->build_label($label);
-		return $element;
+		return new BootSomeFormsFloatingSelect($parent, $label, $id);
 	}
 
 	public static function tokenselect($parent, $label, $name = null, $id = null, $include_select = true){
@@ -53,17 +29,95 @@ class BootSomeFormsFloating extends HealPlugin {
 		return new BootSomeFormsFloatingTokenSelect($input_group, $label, $name, $id, $include_select);
 	}
 
-	protected $id,$input,$label,$input_group = null;
-	public function __construct($parent, $id = null){
+	protected $id,$float_wrapper,$label,$input_group = null;
+	public function __construct($parent, $label, $value = null, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		}
 		$this->id = $id ?? 'input_'.base64_encode(random_bytes(6));
-		$this->primary_element = $parent->el('div',['class'=>'form-floating']);
+		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
+		$this->primary_element = $this->float_wrapper->el('input',['class'=>'form-control','type'=>'text','placeholder'=>$label,'id'=>$this->id]);
+		$this->label = $this->float_wrapper->el('label',['for'=>$this->id])->te($label);
+		if(isset($name)){
+			$this->primary_element->at(['name'=>$name]);
+		}
+		if(isset($value)){
+			$this->primary_element->at(['value'=>$value]);
+		}
+	}
+
+	public function datalist($datalist){
+		$list_id = 'datalist_'.base64_encode(random_bytes(6));
+		$this->input->at(['list'=>$list_id]);
+		$list = $this->primary_element->el('datalist',['id'=>$list_id]);
+		foreach($datalist as $option){
+			$list->el('option',['value'=>$option]);
+		}
+	}
+
+	public function get_wrapper(){
+		return $this->float_wrapper;
+	}
+
+	public function get_input_group(){
+		return $this->input_group;
+	}
+}
+
+class BootSomeFormsFloatingFile extends HealWrapper {
+	public function __construct($parent, $label, $name = null, $id = null, $icon = null){
+		$this->input_group = new BootSomeFormsInputGroup($parent);
+		$this->id = $id ?? 'input_'.base64_encode(random_bytes(6));
+		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
+
+		$onchange = "this.parentElement.querySelector('input[type=text]').value=this.files[0]?this.files[0].name:'';";
+		$this->primary_element = $this->float_wrapper->el('input',['type'=>'file','id'=>$this->id,'class'=>'d-none','onchange'=>$onchange]);
+
+		$js = "this.parentElement.parentElement.querySelector('input[type=file]').click();";
+		$this->float_wrapper->el('input',['type'=>'text','readonly','class'=>'form-control','placeholder','onclick'=>$js]);
+		$this->label = $this->float_wrapper->el('label',['for'=>$this->id])->te($label);
+
+		$js = "this.parentElement.querySelector('input[type=file]').click();event.preventDefault();";
+		$this->input_group->button($js, $icon, 'outline-secondary');
+
+		if(isset($name)){
+			$this->primary_element->at(['name'=>$name]);
+		}
+	}
+
+	public function get_wrapper(){
+		return $this->float_wrapper;
+	}
+
+	public function get_input_group(){
+		return $this->input_group;
+	}
+}
+
+class BootSomeFormsFloatingSelect extends HealWrapper {
+	public function __construct($parent, $label, $name = null, $id = null){
+		if(is_a($parent, '\BootSomeFormsInputGroup')){
+			$this->input_group = $parent;
+		}
+		$this->id = $id ?? 'input_'.base64_encode(random_bytes(6));
+		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
+		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select','id'=>$this->id]);
+		$this->label = $this->float_wrapper->el('label',['for'=>$this->id])->te($label);
+		if(isset($name)){
+			$this->primary_element->at(['name'=>$name]);
+		}
+	}
+
+	public function get_wrapper(){
+		return $this->float_wrapper;
+	}
+
+	public function get_input_group(){
+		return $this->input_group;
 	}
 
 	public function option($text, $value = null, $selected = false){
-		$option = $this->input->el('option')->te($text);
+		$option = $this->primary_element->el('option')->te($text);
 		if($selected) $option->at(['selected']);
 		if(isset($value)) $option->at(['value'=>$value]);
 		return $option;
@@ -83,60 +137,23 @@ class BootSomeFormsFloating extends HealPlugin {
 		}
 		return $this;
 	}
-
-	protected function build_input($label,$type = null){
-		$this->input = $this->primary_element->el('input',['class'=>'form-control','placeholder'=>$label,'id'=>$this->id]);
-		if($type) $this->input->at(['type'=>$type]);
-	}
-
-	protected function build_select(){
-		$this->input = $this->primary_element->el('select',['class'=>'form-select','id'=>$this->id]);
-	}
-
-	protected function set_name_and_value($name = null, $value = null){
-		if(isset($name)){
-			$this->input->at(['name'=>$name]);
-		}
-		if(isset($value)){
-			$this->input->at(['value'=>$value]);
-		}
-	}
-
-	protected function build_label($label){
-		$this->label = $this->primary_element->el('label',['for'=>$this->id])->te($label);
-	}
-
-	public function datalist($datalist){
-		$list_id = 'datalist_'.base64_encode(random_bytes(6));
-		$this->input->at(['list'=>$list_id]);
-		$list = $this->primary_element->el('datalist',['id'=>$list_id]);
-		foreach($datalist as $option){
-			$list->el('option',['value'=>$option]);
-		}
-	}
-
-	public function get_input(){
-		return $this->input;
-	}
-
-	public function get_input_group(){
-		return $this->input_group;
-	}
 }
 
-class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloating {
+class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 	protected $container, $option_names = [], $option_elements = [], $token_elements = [], $name;
 	public function __construct($parent, $label, $name = null, $id = null, $include_select = true){
-		parent::__construct($parent,$id);
-		$this->primary_element->at(['class'=>'bootsome-token-field'],true);
-		$this->name = $name;
-		if($include_select){
-			$this->build_select();
-			$this->option('');
-			$this->input->at(['onchange'=>'BootSomeTokenSelect.set(this);','class'=>'bootsome-token-select'],true);
+		if(is_a($parent, '\BootSomeFormsInputGroup')){
+			$this->input_group = $parent;
 		}
-		$this->build_label($label);
-		$this->container = $this->primary_element->el('div',['class'=>'bootsome-token-container']);
+		$this->id = $id ?? 'input_'.base64_encode(random_bytes(6));
+		$this->float_wrapper = $parent->el('div',['class'=>'form-floating bootsome-token-field']);
+		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select bootsome-token-select','id'=>$this->id,'onchange'=>'BootSomeTokenSelect.set(this);']);
+		$this->label = $this->float_wrapper->el('label',['for'=>$this->id])->te($label);
+		if(isset($name)){
+			$this->primary_element->at(['name'=>$name]);
+		}
+		$this->option('');
+		$this->container = $this->float_wrapper->el('div',['class'=>'bootsome-token-container']);
 		$template = $this->container->el('template',['data-tmpl-name'=>'bootsome-token-template']);
 		$this->build_token($template, '', '');
 	}
@@ -187,10 +204,8 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloating {
 	}
 
 	public function option($text, $value = null, $selected = false){
-		$option = $this->input->el('option')->te($text);
-		if($selected) $option->at(['selected']);
+		$option = parent::option($text, $value, $selected);
 		if(isset($value)){
-			$option->at(['value'=>$value]);
 			$this->option_names[$value] = $text;
 			$this->option_elements[$value] = $option;
 		}
