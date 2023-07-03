@@ -21,16 +21,39 @@ $row->col('col-12','col-md-4')->input('Number',123,'input5')->at(['type'=>'numbe
 
 $row->col('col-12','col-md-4')->file('File','input6');
 
-$select = $row->col('col-12','col-md-6')->select('Select','input7');
+$select = $row->col('col-12','col-md-4')->select('Select','input7');
 $select->options([
 	'opt1' => 'Option 1',
 	'opt2' => 'Option 2'
 ]);
 
-$tokenselect = $row->col('col-12','col-md-6')->tokenselect('Token Select','input8');
+$tokenselect = $row->col('col-12','col-md-8')->tokenselect('Token Select','input8');
 $tokenselect->options([
 	'tok1' => 'Token 1',
 	'tok2' => 'Token 2',
 	'tok3' => 'Token 3'
 ]);
 $tokenselect->tokens(['tok1','tok2']);
+
+$radio = $row->col('col-12','col-md-4')->radio('Radio','radio2','input9');
+$radio->options([
+	'radio1' => 'Radio 1',
+	'radio2' => 'Radio 2',
+	'radio3' => 'Radio 3'
+]);
+
+$row->col('col-12','col-md-4')->checkbox('Checkbox A',false,'input10');
+$row->col('col-12','col-md-4')->checkbox('Checkbox B',true,'input11');
+
+$row->col('col-12','col-md-8')->textarea('Textarea','Text Content','input12');
+
+$row->col('col-12','col-md-4')->input('Date','2023-12-31','input13')->at(['type'=>'date']);
+
+$inputgroup = $row->col('col-12','col-md-4')->inputgroup();
+$select = $inputgroup->select('Country Code','input14');
+$select->options([
+	'45' => '+45',
+	'46' => '+46',
+	'47' => '+47'
+]);
+$inputgroup->input('Phone Number','','input15');

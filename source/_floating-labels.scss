@@ -1,0 +1,11 @@
+.form-floating .form-control .form-check-input {
+	margin-top: calc(($form-floating-line-height - 1) / 2 * 1em);
+}
+.form-floating .form-control .form-check:not(:last-child) {
+	margin-right: $spacer;
+}
+
+.form-floating .form-control.bootsome-checkbox {
+	padding-top: calc(($form-floating-input-padding-t + $form-floating-input-padding-b)/2);
+	padding-bottom: calc(($form-floating-input-padding-t + $form-floating-input-padding-b)/2);
+}

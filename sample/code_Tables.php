@@ -6,6 +6,9 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 require_once '../lib/BootSomeTables.php';
 HealDocument::register_plugin('BootSomeTable');
 
+require_once '../lib/BootSomeForms.php';
+HealDocument::register_plugin('BootSomeForms');
+
 $main = BootSome::$body->container();
 $main->el('h1')->te('Tables');
 

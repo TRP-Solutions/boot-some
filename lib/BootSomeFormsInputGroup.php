@@ -9,7 +9,7 @@ class BootSomeFormsInputGroup extends HealWrapper {
 		$this->primary_element = $parent->el('div',['class'=>'input-group']);
 	}
 
-	public function text($text){
+	public function text($text = null){
 		$div = $this->primary_element->el('div',['class'=>'input-group-text']);
 		if(!empty($text)){
 			$div->te($text);
@@ -26,7 +26,7 @@ class BootSomeFormsInputGroup extends HealWrapper {
 	}
 
 	public function icon($icon){
-		$element = $this->primary_element->el('span',['class'=>'input-group-text']);
+		$element = $this->text();
 		BootSomeLayout::icon($element,$icon);
 	}
 }
