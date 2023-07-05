@@ -106,6 +106,7 @@ class BootSomeFormsFloatingTextarea extends BootSomeFormsFloatingInput {
 }
 
 class BootSomeFormsFloatingFile extends BootSomeFormsFloatingInput {
+	private $form_control, $button;
 	public function __construct($parent, $label, $name = null, $id = null, $icon = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -119,12 +120,12 @@ class BootSomeFormsFloatingFile extends BootSomeFormsFloatingInput {
 		$this->primary_element = $this->float_wrapper->el('input',['type'=>'file','id'=>$this->id,'class'=>'d-none','onchange'=>$onchange]);
 
 		$js = "this.parentElement.parentElement.querySelector('input[type=file]').click();";
-		$this->float_wrapper->el('input',['type'=>'text','readonly','class'=>'form-control','placeholder','onclick'=>$js]);
+		$this->form_control = $this->float_wrapper->el('input',['type'=>'text','readonly','class'=>'form-control','placeholder'=>$label,'onclick'=>$js]);
 		$this->label = $this->float_wrapper->el('label',['for'=>$this->id])->te($label);
 
 		if(isset($icon)){
 			$js = "this.parentElement.querySelector('input[type=file]').click();event.preventDefault();";
-			$this->input_group->button($js, $icon, 'outline-secondary');
+			$this->button = $this->input_group->button($js, $icon, 'outline-secondary');
 		}
 
 		if(isset($name)){
@@ -135,6 +136,15 @@ class BootSomeFormsFloatingFile extends BootSomeFormsFloatingInput {
 	public function onchange($js){
 		$onchange = "this.parentElement.querySelector('input[type=text]').value=this.files[0]?this.files[0].name:'';";
 		$this->primary_element->at(['onchange'=>$onchange.$js]);
+		return $this;
+	}
+
+	public function disabled(bool $disable = true){
+		parent::disabled($disable);
+		if($disable){
+			$this->form_control->at(['disabled']);
+			$this->button->at(['disabled']);
+		}
 		return $this;
 	}
 }
@@ -238,12 +248,16 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 		if(!empty($this->onchange)){
 			$option->at(['onchange'=>$this->onchange]);
 		}
+		if($this->disabled){
+			$option->at(['disabled']);
+		}
 		return $option;
 	}
 
 	public function disabled(bool $disable = true){
 		$this->disabled = true;
 		if($disable){
+			$this->primary_element->at(['class'=>'bootsome-disabled'],true);
 			foreach($this->option_elements as $option){
 				$option->at(['disabled']);
 			}
@@ -261,6 +275,7 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 }
 
 class BootSomeFormsFloatingCheckbox extends BootSomeFormsFloatingInput {
+	private $form_control;
 	public function __construct($parent, $label, $checked = false, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -269,10 +284,18 @@ class BootSomeFormsFloatingCheckbox extends BootSomeFormsFloatingInput {
 		}
 		$this->id = $id ?? 'input_'.base64_encode(random_bytes(6));
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
-		$div = $this->float_wrapper->el('div',['class'=>'form-control bootsome-checkbox'])->el('div',['class'=>'form-check']);
+		$this->form_control = $this->float_wrapper->el('div',['class'=>'form-control bootsome-checkbox']);
+		$div = $this->form_control->el('div',['class'=>'form-check']);
 		$this->primary_element = $div->el('input',['class'=>'form-check-input','type'=>'checkbox','id'=>$this->id]);
 		$div->el('label',['class'=>'form-check-label','for'=>$this->id])->te($label);
 		if($checked) $this->primary_element->at(['checked']);
+	}
+
+	public function disabled(bool $disable = true){
+		parent::disabled($disable);
+		if($disable){
+			$this->form_control->at(['class'=>'bootsome-disabled'],true);
+		}
 	}
 }
 
