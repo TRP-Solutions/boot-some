@@ -20,4 +20,13 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 	border-color: $input-disabled-border-color;
 	// iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
 	opacity: 1;
+
+	~ label {
+		// copy-pasted from .form-floating > :disabled ~ label in bootstrap-5.3.0/scss/forms/_floating-labels.scss
+		color: $form-floating-label-disabled-color;
+
+		&::after {
+			background-color: $input-disabled-bg;
+		}
+	}
 }
