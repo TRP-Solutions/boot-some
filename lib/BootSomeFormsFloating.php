@@ -44,8 +44,31 @@ class BootSomeFormsFloating extends HealPlugin {
 	}
 }
 
-class BootSomeFormsFloatingInput extends HealWrapper {
+trait BootSomeFormsFloatingInputBasic {
 	protected $float_wrapper,$label,$input_group = null;
+	public function get_wrapper(){
+		return $this->float_wrapper;
+	}
+
+	public function get_input_group(){
+		return $this->input_group;
+	}
+	public function generate_id($name){
+		if(isset($name) && strpos($name, '[') === false){
+			return $name;
+		}
+		return 'input_'.base64_encode(random_bytes(6));
+	}
+	public function disabled(bool $disable = true){
+		if($disable){
+			$this->primary_element->at(['disabled']);
+		}
+		return $this;
+	}
+}
+
+class BootSomeFormsFloatingInput extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic;
 	public function __construct($parent, $label, $value = null, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -71,30 +94,10 @@ class BootSomeFormsFloatingInput extends HealWrapper {
 		}
 	}
 
-	public function get_wrapper(){
-		return $this->float_wrapper;
-	}
-
-	public function get_input_group(){
-		return $this->input_group;
-	}
-
-	public function disabled(bool $disable = true){
-		if($disable){
-			$this->primary_element->at(['disabled']);
-		}
-		return $this;
-	}
-
-	public function generate_id($name){
-		if(isset($name) && strpos($name, '[') === false){
-			return $name;
-		}
-		return 'input_'.base64_encode(random_bytes(6));
-	}
 }
 
-class BootSomeFormsFloatingTextarea extends BootSomeFormsFloatingInput {
+class BootSomeFormsFloatingTextarea extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic;
 	public function __construct($parent, $label, $value = null, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -112,7 +115,8 @@ class BootSomeFormsFloatingTextarea extends BootSomeFormsFloatingInput {
 	}
 }
 
-class BootSomeFormsFloatingFile extends BootSomeFormsFloatingInput {
+class BootSomeFormsFloatingFile extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic;
 	private $form_control, $button;
 	public function __construct($parent, $label, $name = null, $id = null, $icon = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -156,7 +160,37 @@ class BootSomeFormsFloatingFile extends BootSomeFormsFloatingInput {
 	}
 }
 
-class BootSomeFormsFloatingSelect extends BootSomeFormsFloatingInput {
+class BootSomeFormsFloatingCheckbox extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic;
+	private $form_control;
+	public function __construct($parent, $label, $checked = false, $name = null, $id = null){
+		if(is_a($parent, '\BootSomeFormsInputGroup')){
+			$this->input_group = $parent;
+		} else {
+			$this->input_group = new BootSomeFormsInputGroup($parent);
+		}
+		if(!isset($id)) $id = $this->generate_id($name);
+		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
+		$this->form_control = $this->float_wrapper->el('div',['class'=>'form-control bootsome-checkbox']);
+		$div = $this->form_control->el('div',['class'=>'form-check']);
+		$this->primary_element = $div->el('input',['class'=>'form-check-input','type'=>'checkbox','id'=>$id]);
+		$div->el('label',['class'=>'form-check-label','for'=>$id])->te($label);
+		if($checked) $this->primary_element->at(['checked']);
+		if(isset($name)){
+			$this->primary_element->at(['name'=>$name]);
+		}
+	}
+
+	public function disabled(bool $disable = true){
+		parent::disabled($disable);
+		if($disable){
+			$this->form_control->at(['class'=>'bootsome-disabled'],true);
+		}
+	}
+}
+
+class BootSomeFormsFloatingSelect extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic;
 	protected $option_elements = [], $option_names = [], $option_value_elements = [];
 	public function __construct($parent, $label, $name = null, $id = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -278,34 +312,6 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 			$option->at(['onchange'=>$js]);
 		}
 		return $this;
-	}
-}
-
-class BootSomeFormsFloatingCheckbox extends BootSomeFormsFloatingInput {
-	private $form_control;
-	public function __construct($parent, $label, $checked = false, $name = null, $id = null){
-		if(is_a($parent, '\BootSomeFormsInputGroup')){
-			$this->input_group = $parent;
-		} else {
-			$this->input_group = new BootSomeFormsInputGroup($parent);
-		}
-		if(!isset($id)) $id = $this->generate_id($name);
-		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
-		$this->form_control = $this->float_wrapper->el('div',['class'=>'form-control bootsome-checkbox']);
-		$div = $this->form_control->el('div',['class'=>'form-check']);
-		$this->primary_element = $div->el('input',['class'=>'form-check-input','type'=>'checkbox','id'=>$id]);
-		$div->el('label',['class'=>'form-check-label','for'=>$id])->te($label);
-		if($checked) $this->primary_element->at(['checked']);
-		if(isset($name)){
-			$this->primary_element->at(['name'=>$name]);
-		}
-	}
-
-	public function disabled(bool $disable = true){
-		parent::disabled($disable);
-		if($disable){
-			$this->form_control->at(['class'=>'bootsome-disabled'],true);
-		}
 	}
 }
 

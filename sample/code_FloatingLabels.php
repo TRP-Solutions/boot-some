@@ -15,7 +15,7 @@ $main = BootSome::$body->container();
 $main->el('h1')->te('Forms - Floating');
 $form = $main->form('.','get');
 $row = $form->row_gutter('g-2');
-$row->col('col-12','col-md-4')->input('Input','Value','input4');
+$row->col('col-12','col-md-4')->input('Input',null,'input4')->datalist(['String1','String2','String3']);
 
 $row->col('col-12','col-md-4')->input('Number',123,'input5')->at(['type'=>'number']);
 
