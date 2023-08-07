@@ -9,55 +9,57 @@ class BootSomeFormsFloating extends HealPlugin {
 		return new BootSomeFormsInputGroup($parent);
 	}
 
-	public static function input($parent, $label, $value = null, $name = null, $id = null){
-		return new BootSomeFormsFloatingInput($parent, $label, $value, $name, $id);
+	public static function input($parent, $label, $name = null, $value = null){
+		return new BootSomeFormsFloatingInput($parent, $label, $name, $value);
 	}
 
-	public static function password($parent, $label, $name = null, $id = null){
-		$element = new BootSomeFormsFloatingInput($parent, $label, null, $name, $id);
+	public static function password($parent, $label, $name = null){
+		$element = new BootSomeFormsFloatingInput($parent, $label, $name);
 		$element->at(['type'=>'password']);
 		return $element;
 	}
 
-	public static function textarea($parent, $label, $value = null, $name = null, $id = null){
-		return new BootSomeFormsFloatingTextarea($parent, $label, $value, $name, $id);
+	public static function textarea($parent, $label, $name = null, $value = null){
+		return new BootSomeFormsFloatingTextarea($parent, $label, $name, $value);
 	}
 
-	public static function file($parent, $label, $name = null, $id = null, $icon = 'upload'){
-		return new BootSomeFormsFloatingFile($parent, $label, $name, $id, $icon);
+	public static function file($parent, $label, $name = null, $icon = 'upload'){
+		return new BootSomeFormsFloatingFile($parent, $label, $name, $icon);
 	}
 
-	public static function select($parent, $label, $name = null, $id = null){
-		return new BootSomeFormsFloatingSelect($parent, $label, $name, $id);
+	public static function select($parent, $label, $name = null){
+		return new BootSomeFormsFloatingSelect($parent, $label, $name);
 	}
 
-	public static function radio($parent, $label, $value = null, $name = null, $id = null){
-		return new BootSomeFormsFloatingRadio($parent, $label, $value, $name, $id);
+	public static function radio($parent, $label, $name = null, $value = null){
+		return new BootSomeFormsFloatingRadio($parent, $label, $name, $value);
 	}
 
-	public static function checkbox($parent, $label, $checked = false, $name = null, $id = null){
-		return new BootSomeFormsFloatingCheckbox($parent, $label, $checked, $name, $id);
+	public static function checkbox($parent, $label, $name = null, $checked = false){
+		return new BootSomeFormsFloatingCheckbox($parent, $label, $name, $checked);
 	}
 
-	public static function tokenselect($parent, $label, $name = null, $id = null, $include_select = true){
-		return new BootSomeFormsFloatingTokenSelect($parent, $label, $name, $id, $include_select);
+	public static function tokenselect($parent, $label, $name = null, $include_select = true){
+		return new BootSomeFormsFloatingTokenSelect($parent, $label, $name, $include_select);
 	}
 }
 
 trait BootSomeFormsFloatingInputBasic {
 	protected $float_wrapper,$label,$input_group = null;
+	public function generate_id($name){
+		if(isset($name) && strpos($name, '[') === false){
+			$id = $name;
+		}
+		else {
+			$id = 'input_'.base64_encode(random_bytes(6));
+		}
+		$this->id($id);
+	}
 	public function get_wrapper(){
 		return $this->float_wrapper;
 	}
-
 	public function get_input_group(){
 		return $this->input_group;
-	}
-	public function generate_id($name){
-		if(isset($name) && strpos($name, '[') === false){
-			return $name;
-		}
-		return 'input_'.base64_encode(random_bytes(6));
 	}
 	public function disabled(bool $disable = true){
 		if($disable){
@@ -65,18 +67,22 @@ trait BootSomeFormsFloatingInputBasic {
 		}
 		return $this;
 	}
+	public function id($id) {
+		$this->primary_element->at(['id'=>$id]);
+		$this->label->at(['for'=>$id]);
+	}
 }
 
 class BootSomeFormsFloatingInput extends HealWrapper {
 	use BootSomeFormsFloatingInputBasic;
-	public function __construct($parent, $label, $value = null, $name = null, $id = null){
+	public function __construct($parent, $label, $name = null, $value = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		}
-		if(!isset($id)) $id = $this->generate_id($name);
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
-		$this->primary_element = $this->float_wrapper->el('input',['class'=>'form-control','type'=>'text','placeholder'=>$label,'id'=>$id]);
-		$this->label = $this->float_wrapper->el('label',['for'=>$id])->te($label);
+		$this->primary_element = $this->float_wrapper->el('input',['class'=>'form-control','type'=>'text','placeholder'=>$label]);
+		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->generate_id($name);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
 		}
@@ -92,20 +98,21 @@ class BootSomeFormsFloatingInput extends HealWrapper {
 		foreach($datalist as $option){
 			$list->el('option',['value'=>$option]);
 		}
+		return $this;
 	}
 
 }
 
 class BootSomeFormsFloatingTextarea extends HealWrapper {
 	use BootSomeFormsFloatingInputBasic;
-	public function __construct($parent, $label, $value = null, $name = null, $id = null){
+	public function __construct($parent, $label, $name = null, $value = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		}
-		if(!isset($id)) $id = $this->generate_id($name);
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
-		$this->primary_element = $this->float_wrapper->el('textarea',['class'=>'form-control','placeholder'=>$label,'id'=>$id]);
-		$this->label = $this->float_wrapper->el('label',['for'=>$id])->te($label);
+		$this->primary_element = $this->float_wrapper->el('textarea',['class'=>'form-control','placeholder'=>$label]);
+		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->generate_id($name);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
 		}
@@ -118,22 +125,21 @@ class BootSomeFormsFloatingTextarea extends HealWrapper {
 class BootSomeFormsFloatingFile extends HealWrapper {
 	use BootSomeFormsFloatingInputBasic;
 	private $form_control, $button;
-	public function __construct($parent, $label, $name = null, $id = null, $icon = null){
+	public function __construct($parent, $label, $name = null, $icon = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		} else {
 			$this->input_group = new BootSomeFormsInputGroup($parent);
 		}
-		if(!isset($id)) $id = $this->generate_id($name);
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
 
 		$onchange = "this.parentElement.querySelector('input[type=text]').value=this.files[0]?this.files[0].name:'';";
-		$this->primary_element = $this->float_wrapper->el('input',['type'=>'file','id'=>$id,'class'=>'d-none','onchange'=>$onchange]);
+		$this->primary_element = $this->float_wrapper->el('input',['type'=>'file','class'=>'d-none','onchange'=>$onchange]);
 
 		$js = "this.parentElement.parentElement.querySelector('input[type=file]').click();";
 		$this->form_control = $this->float_wrapper->el('input',['type'=>'text','readonly','class'=>'form-control','placeholder'=>$label,'onclick'=>$js]);
-		$this->label = $this->float_wrapper->el('label',['for'=>$id])->te($label);
-
+		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->generate_id($name);
 		if(isset($icon)){
 			$js = "this.parentElement.querySelector('input[type=file]').click();event.preventDefault();";
 			$this->button = $this->input_group->button($js, $icon, 'outline-secondary');
@@ -163,18 +169,18 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 class BootSomeFormsFloatingCheckbox extends HealWrapper {
 	use BootSomeFormsFloatingInputBasic;
 	private $form_control;
-	public function __construct($parent, $label, $checked = false, $name = null, $id = null){
+	public function __construct($parent, $label, $name = null, $checked = false){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		} else {
 			$this->input_group = new BootSomeFormsInputGroup($parent);
 		}
-		if(!isset($id)) $id = $this->generate_id($name);
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
 		$this->form_control = $this->float_wrapper->el('div',['class'=>'form-control bootsome-checkbox']);
 		$div = $this->form_control->el('div',['class'=>'form-check']);
-		$this->primary_element = $div->el('input',['class'=>'form-check-input','type'=>'checkbox','id'=>$id]);
-		$div->el('label',['class'=>'form-check-label','for'=>$id])->te($label);
+		$this->primary_element = $div->el('input',['class'=>'form-check-input','type'=>'checkbox']);
+		$this->label = $div->el('label',['class'=>'form-check-label'])->te($label);
+		$this->generate_id($name);
 		if($checked) $this->primary_element->at(['checked']);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
@@ -192,14 +198,14 @@ class BootSomeFormsFloatingCheckbox extends HealWrapper {
 class BootSomeFormsFloatingSelect extends HealWrapper {
 	use BootSomeFormsFloatingInputBasic;
 	protected $option_elements = [], $option_names = [], $option_value_elements = [];
-	public function __construct($parent, $label, $name = null, $id = null){
+	public function __construct($parent, $label, $name = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		}
-		if(!isset($id)) $id = $this->generate_id($name);
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
-		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select','id'=>$id]);
-		$this->label = $this->float_wrapper->el('label',['for'=>$id])->te($label);
+		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select']);
+		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->generate_id($name);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
 		}
@@ -253,19 +259,15 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 
 class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 	private $value, $name, $onchange, $disabled = false;
-	public function __construct($parent, $label, $value = null, $name = null, $id = null){
+	public function __construct($parent, $label, $name = null, $value = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		} else {
 			$this->input_group = new BootSomeFormsInputGroup($parent);
 		}
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
-
 		$this->primary_element = $this->float_wrapper->el('div',['class'=>'form-control d-flex flex-wrap']);
-		if(isset($id)) $this->primary_element->at(['id'=>$id]);
-
 		$this->label = $this->float_wrapper->el('label')->te($label);
-
 		$this->name = $name;
 		$this->value = $value;
 	}
@@ -321,14 +323,14 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 			$onchange_select = 'BootSomeTokenSelect.set(this);',
 			$onchange_token ='BootSomeTokenSelect.remove(this,event);',
 			$token_elements = [], $token_value_elements = [];
-	public function __construct($parent, $label, $name = null, $id = null, $include_select = true){
+	public function __construct($parent, $label, $name = null, $include_select = true){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		}
-		if(!isset($id)) $id = $this->generate_id($name);
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating bootsome-token-field']);
-		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select bootsome-token-select','id'=>$id,'onchange'=>$this->onchange_select]);
-		$this->label = $this->float_wrapper->el('label',['for'=>$id])->te($label);
+		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select bootsome-token-select','onchange'=>$this->onchange_select]);
+		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->generate_id($name);
 		$this->name = $name;
 		$this->option('');
 		$this->container = $this->float_wrapper->el('div',['class'=>'bootsome-token-container']);

@@ -15,9 +15,9 @@ $main = BootSome::$body->container();
 $main->el('h1')->te('Forms - Floating');
 $form = $main->form('.','get');
 $row = $form->row_gutter('g-2');
-$row->col('col-12','col-md-4')->input('Input',null,'input4')->datalist(['String1','String2','String3']);
+$row->col('col-12','col-md-4')->input('Input','input4')->datalist(['String1','String2','String3']);
 
-$row->col('col-12','col-md-4')->input('Number',123,'input5')->at(['type'=>'number']);
+$row->col('col-12','col-md-4')->input('Number','input5',123)->at(['type'=>'number']);
 
 $row->col('col-12','col-md-4')->file('File','input6');
 
@@ -35,19 +35,19 @@ $tokenselect->options([
 ]);
 $tokenselect->tokens(['tok1','tok2']);
 
-$radio = $row->col('col-12','col-md-4')->radio('Radio','radio2','input9');
+$radio = $row->col('col-12','col-md-4')->radio('Radio','input9','radio2');
 $radio->options([
 	'radio1' => 'Radio 1',
 	'radio2' => 'Radio 2',
 	'radio3' => 'Radio 3'
 ]);
 
-$row->col('col-12','col-md-4')->checkbox('Checkbox A',false,'input10');
-$row->col('col-12','col-md-4')->checkbox('Checkbox B',true,'input11');
+$row->col('col-12','col-md-4')->checkbox('Checkbox A','input10');
+$row->col('col-12','col-md-4')->checkbox('Checkbox B','input11',true)->id('ip10');
 
-$row->col('col-12','col-md-8')->textarea('Textarea','Text Content','input12');
+$row->col('col-12','col-md-8')->textarea('Textarea','input12','Text Content')->id('tc');
 
-$row->col('col-12','col-md-4')->input('Date','2023-12-31','input13')->at(['type'=>'date']);
+$row->col('col-12','col-md-4')->input('Date','input13','2023-12-31')->at(['type'=>'date']);
 
 $inputgroup = $row->col('col-12','col-md-4')->inputgroup();
 $select = $inputgroup->select('Country Code','input14');
@@ -56,14 +56,14 @@ $select->options([
 	'46' => '+46',
 	'47' => '+47'
 ]);
-$inputgroup->input('Phone Number','','input15');
+$inputgroup->input('Phone Number','input15');
 
 
 
 $row = $form->row_gutter('g-2 mt-5');
-$row->col('col-12','col-md-4')->input('Input','Value','input4d')->disabled();
+$row->col('col-12','col-md-4')->input('Input','input4d','Value')->disabled();
 
-$row->col('col-12','col-md-4')->input('Number',123,'input5d')->at(['type'=>'number'])->disabled();
+$row->col('col-12','col-md-4')->input('Number','input5d',123)->at(['type'=>'number'])->disabled();
 
 $row->col('col-12','col-md-4')->file('File','input6d')->disabled();
 
@@ -73,7 +73,7 @@ $select->options([
 	'opt2' => 'Option 2'
 ]);
 
-$tokenselect = $row->col('col-12','col-md-8')->tokenselect('Token Select','input8d')->disabled();
+$tokenselect = $row->col('col-12','col-md-8')->tokenselect('Token Select')->disabled();
 $tokenselect->options([
 	'tok1' => 'Token 1',
 	'tok2' => 'Token 2',
@@ -81,19 +81,19 @@ $tokenselect->options([
 ]);
 $tokenselect->tokens(['tok1','tok2']);
 
-$radio = $row->col('col-12','col-md-4')->radio('Radio','radio2','input9d')->disabled();
+$radio = $row->col('col-12','col-md-4')->radio('Radio','radio2')->disabled();
 $radio->options([
 	'radio1' => 'Radio 1',
 	'radio2' => 'Radio 2',
 	'radio3' => 'Radio 3'
 ]);
 
-$row->col('col-12','col-md-4')->checkbox('Checkbox A',false,'input10d')->disabled();
-$row->col('col-12','col-md-4')->checkbox('Checkbox B',true,'input11d')->disabled();
+$row->col('col-12','col-md-4')->checkbox('Checkbox A','input10d')->disabled();
+$row->col('col-12','col-md-4')->checkbox('Checkbox B','input11d',true)->disabled();
 
-$row->col('col-12','col-md-8')->textarea('Textarea','Text Content','input12d')->disabled();
+$row->col('col-12','col-md-8')->textarea('Textarea','input12d','Text Content')->disabled();
 
-$row->col('col-12','col-md-4')->input('Date','2023-12-31','input13d')->at(['type'=>'date'])->disabled();
+$row->col('col-12','col-md-4')->input('Date','input13d','2023-12-31')->at(['type'=>'date'])->disabled();
 
 $inputgroup = $row->col('col-12','col-md-4')->inputgroup();
 $select = $inputgroup->select('Country Code','input14d')->disabled();
@@ -102,4 +102,4 @@ $select->options([
 	'46' => '+46',
 	'47' => '+47'
 ]);
-$inputgroup->input('Phone Number','','input15d')->disabled();
+$inputgroup->input('Phone Number','input15d')->disabled();
