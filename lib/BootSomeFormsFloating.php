@@ -142,7 +142,7 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 		$this->generate_id($name);
 		if(isset($icon)){
 			$js = "this.parentElement.querySelector('input[type=file]').click();event.preventDefault();";
-			$this->button = $this->input_group->button($js, $icon, 'outline-secondary');
+			$this->button = $this->input_group->button(null, $icon, 'outline-secondary')->at(['onclick'=>$js]);
 		}
 
 		if(isset($name)){

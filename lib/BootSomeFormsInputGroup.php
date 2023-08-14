@@ -17,14 +17,6 @@ class BootSomeFormsInputGroup extends HealWrapper {
 		return $div;
 	}
 
-	public function button($js, $icon = null, $color = null){
-		$class = 'btn';
-		if(isset($color)) $class .= ' btn-'.$color;
-		$button = $this->primary_element->el('button',['class'=>$class,'onclick'=>$js]);
-		BootSomeLayout::icon($button,$icon);
-		return $button;
-	}
-
 	public function icon($icon){
 		$element = $this->text();
 		BootSomeLayout::icon($element,$icon);
