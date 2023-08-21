@@ -266,7 +266,7 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 			$this->input_group = new BootSomeFormsInputGroup($parent);
 		}
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
-		$this->primary_element = $this->float_wrapper->el('div',['class'=>'form-control d-flex flex-wrap']);
+		$this->primary_element = $this->float_wrapper->el('div',['class'=>'form-control bootsome-radio']);
 		$this->label = $this->float_wrapper->el('label')->te($label);
 		$this->name = $name;
 		$this->value = $value;

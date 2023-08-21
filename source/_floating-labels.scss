@@ -31,6 +31,8 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 	}
 }
 
-.form-floating > .form-control {
+.form-floating .form-control.bootsome-radio {
+	display: flex;
+	flex-wrap: wrap;
 	height: auto;
 }
