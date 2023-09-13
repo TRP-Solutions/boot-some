@@ -157,8 +157,8 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 	}
 
 	public function disabled(bool $disable = true){
-		parent::disabled($disable);
 		if($disable){
+			$this->primary_element->at(['disabled']);
 			$this->form_control->at(['disabled']);
 			$this->button->at(['disabled']);
 		}
@@ -188,8 +188,8 @@ class BootSomeFormsFloatingCheckbox extends HealWrapper {
 	}
 
 	public function disabled(bool $disable = true){
-		parent::disabled($disable);
 		if($disable){
+			$this->primary_element->at(['disabled']);
 			$this->form_control->at(['class'=>'bootsome-disabled'],true);
 		}
 	}
@@ -339,8 +339,8 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 	}
 
 	public function disabled(bool $disable = true){
-		parent::disabled($disable);
 		if($disable){
+			$this->primary_element->at(['disabled']);
 			foreach($this->token_elements as $token){
 				$token->at(['onclick'=>'']);
 			}
