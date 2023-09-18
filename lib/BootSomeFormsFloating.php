@@ -387,7 +387,8 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 		$token = $parent->el('button',[
 			'class'=>$this->token_class,
 			'data-token-value'=>$value,
-			'data-tmpl'=>'data-tokenValue:value'
+			'data-tmpl'=>'data-tokenValue:value',
+			'type'=>'button',
 		]);
 		if(!$this->disabled){
 			$token->at(['onclick'=>$this->onchange_token]);
