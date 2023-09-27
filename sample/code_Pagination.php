@@ -17,9 +17,9 @@ $sql .= ' LIMIT '.$limit.' OFFSET '.($page-1)*$limit;
 $query = $mysqli->query($sql);
 */
 
-$total = 70;
-$limit = 25;
-$page = 1;
+$total = 20000;
+$limit = 10;
+$page = rand(1,10);
 $url = function($i) {
 	return ['onclick'=>"alert('Goto page: ".$i."')"];
 };

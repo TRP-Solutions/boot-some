@@ -27,10 +27,10 @@ div.bs-datepicker td {
 nav ul.pagination {
 	justify-content: center!important;
 }
-nav ul.pagination button.page-link {
-	padding: $pagination-padding-y-sm $pagination-padding-x-sm;
+nav ul.pagination li.page-item button.page-link {
 	font-size: $font-size-sm;
-}
-nav ul.pagination li.page-item button {
+	padding: $pagination-padding-y-sm 0px;
 	width: 3rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
