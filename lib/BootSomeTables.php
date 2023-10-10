@@ -42,8 +42,8 @@ class BootSomeTableNode extends HealWrapper {
 
 class BootSomeTableRow extends HealWrapper {
 	public function __construct($parent, $color = null){
-		$this->primary_element = $parent->el('tr');
-		if($color) $element->el(['class'=>'table-'.$color]);
+		$element = $this->primary_element = $parent->el('tr');
+		if($color) $element->at(['class'=>'table-'.$color]);
 	}
 
 	public function td($color = null){
