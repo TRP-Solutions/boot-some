@@ -14,7 +14,7 @@ class BootSome extends HealDocument {
 		self::$doc = new BootSome();
 		list(self::$head,self::$body) = self::$doc->html($title,$language);
 		self::$head->metadata('viewport','width=device-width, initial-scale=1');
-		self::$body->at(['id'=>'body','onload'=>'BootSomeLoad();']);
+		self::$body->at(['id'=>'body','onload'=>'BootSome.load();']);
 		self::$dialog = self::$body->el('dialog',['id'=>'dialog']);
 		if($autoecho) register_shutdown_function(['BootSome','document_end']);
 	}
