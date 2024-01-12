@@ -1,0 +1,7 @@
+$bootsome-print: nth($grid-breakpoints,4);
+
+@media print {
+  body {
+    min-width: nth($bootsome-print,2) !important;
+  }
+}
