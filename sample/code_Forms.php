@@ -17,7 +17,7 @@ $form = $main->form('.','get');
 $group = $form->form_group();
 $group->label('Input','input1');
 $group->input('input1','Value');
-$group->text('Text');
+$group->text('Text','danger');
 
 $row = $form->row();
 $group = $row->form_group(4);
@@ -51,7 +51,7 @@ $form = $main->form('.','get');
 $group = $form->form_horizontal(4);
 $group->label('Input','input2');
 $group->input('input2','Value');
-$group->text('Text');
+$group->text('Text','secondary');
 
 $group = $form->form_horizontal(4);
 $group->label('Input','file1');

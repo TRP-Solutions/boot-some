@@ -155,8 +155,10 @@ class BootSomeFormsGroup extends HealWrapper {
 		}
 	}
 
-	public function text($text){
-		return $this->primary_element->el('small',['class'=>'form-text'])->te($text);
+	public function text($text,$color = null){
+		$text = $this->primary_element->el('small',['class'=>'form-text'])->te($text);
+		if($color) $text->at(['class'=>'text-'.$color],true);
+		return $text;
 	}
 }
 
@@ -184,8 +186,10 @@ class BootSomeFormsHorizontal extends HealWrapper {
 		return $label;
 	}
 
-	public function text($text){
-		$this->wrap()->el('class',['class'=>'form-text'])->te($text);
+	public function text($text,$color = null){
+		$text = $this->wrap()->el('class',['class'=>'form-text'])->te($text);
+		if($color) $text->at(['class'=>'text-'.$color],true);
+		return $text;
 	}
 }
 
