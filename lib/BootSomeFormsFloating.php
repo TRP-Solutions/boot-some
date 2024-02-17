@@ -31,6 +31,10 @@ class BootSomeFormsFloating extends HealPlugin {
 		return new BootSomeFormsFloatingSelect($parent, $label, $name);
 	}
 
+	public static function datalist($parent, $label, $name = null){
+		return new BootSomeFormsFloatingDatalist($parent, $label, $name);
+	}
+
 	public static function radio($parent, $label, $name = null, $value = null){
 		return new BootSomeFormsFloatingRadio($parent, $label, $name, $value);
 	}
@@ -195,8 +199,25 @@ class BootSomeFormsFloatingCheckbox extends HealWrapper {
 	}
 }
 
+trait BootSomeFormsFloatingOptionBasic {
+	public function options($iterable, $selected = null, $strict_compare = false){
+		if(is_a($iterable, 'mysqli_result')){
+			foreach($iterable as $row){
+				$is_selected = isset($selected) && ($strict_compare ? $selected === $row['id'] : $selected == $row['id']);
+				$this->option($row['name'],$row['id'],$is_selected);
+			}
+		} else {
+			foreach($iterable as $value => $text){
+				$is_selected = isset($selected) && ($strict_compare ? $selected === $value : $selected == $value);
+				$this->option($text, $value, $is_selected);
+			}
+		}
+		return $this;
+	}
+}
+
 class BootSomeFormsFloatingSelect extends HealWrapper {
-	use BootSomeFormsFloatingInputBasic;
+	use BootSomeFormsFloatingInputBasic, BootSomeFormsFloatingOptionBasic;
 	protected $option_elements = [], $option_names = [], $option_value_elements = [];
 	public function __construct($parent, $label, $name = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -222,21 +243,6 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 		return $option;
 	}
 
-	public function options($iterable, $selected = null, $strict_compare = false){
-		if(is_a($iterable, 'mysqli_result')){
-			foreach($iterable as $row){
-				$is_selected = isset($selected) && ($strict_compare ? $selected === $row['id'] : $selected == $row['id']);
-				$this->option($row['name'],$row['id'],$is_selected);
-			}
-		} else {
-			foreach($iterable as $value => $text){
-				$is_selected = isset($selected) && ($strict_compare ? $selected === $value : $selected == $value);
-				$this->option($text, $value, $is_selected);
-			}
-		}
-		return $this;
-	}
-
 	public function select($value, $insert_option = false){
 		if(isset($this->option_value_elements[$value])){
 			$this->option_value_elements[$value]->at(['selected']);
@@ -254,6 +260,30 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 
 	protected function get_option_label($value){
 		return $this->option_names[$value] ?? '';
+	}
+}
+
+class BootSomeFormsFloatingDatalist extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic, BootSomeFormsFloatingOptionBasic;
+	private $datalist, $valuefield;
+	public function __construct($parent, $label, $name){
+		if(is_a($parent, '\BootSomeFormsInputGroup')){
+			$this->input_group = $parent;
+		}
+		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
+		$this->valuefield = $this->float_wrapper->el('input',['name'=>$name,'id'=>$name,'type'=>'hidden']);
+		$this->primary_element = $this->float_wrapper->el('input',['class'=>'form-control','type'=>'text','placeholder'=>$label]);
+		$this->datalist = $this->float_wrapper->el('datalist',['id'=>'datalist-'.$name]);
+		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->primary_element->at(['data-field'=>$name,'list'=>'datalist-'.$name,'onchange'=>'BootSome.datalist(this);']);
+	}
+
+	public function option($text, $value = null, $selected = false){
+		if($selected) {
+			$this->primary_element->at(['value'=>$text]);
+			$this->valuefield->at(['value'=>$value]);
+		}
+		return $this->datalist->el('option',['value'=>$text,'data-id'=>$value]);
 	}
 }
 

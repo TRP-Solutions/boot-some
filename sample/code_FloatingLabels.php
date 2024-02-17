@@ -58,7 +58,14 @@ $select->options([
 ]);
 $inputgroup->input('Phone Number','input15');
 
-
+$inputgroup = $row->col('col-12','col-md-4')->inputgroup();
+$datalist = $inputgroup->datalist('Browser','browser')->at(['required']);
+$datalist->option('Chrome',1);
+$datalist->option('Edge',2);
+$datalist->option('Firefox',3);
+$datalist->option('Internet Explorer',4);
+$datalist->option('Lynx',5);
+$datalist->option('Safari',6);
 
 $row = $form->row_gutter('g-2 mt-5');
 $row->col('col-12','col-md-4')->input('Input','input4d','Value')->disabled();
