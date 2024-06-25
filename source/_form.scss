@@ -26,6 +26,9 @@ div.form-inline select.form-select {
 a.btn, button.btn {
 	white-space: nowrap;
 }
+.input-group {
+	flex-wrap: nowrap !important;
+}
 div:not(.input-group) > button.btn:not(:last-child),
 div:not(.input-group) > a.btn:not(:last-child),
 div:not(.input-group) > select.form-select:not(:last-child) {

@@ -49,5 +49,7 @@ for($i=1;$i<=20;$i++) {
 	$select->option('OptionA','A');
 	$select->option('OptionB','B');
 	$tr->td()->el('span')->te('New')->badge();
-	$tr->td()->button('Push');
+	$inputgroup = $tr->td()->inputgroup();
+	$inputgroup->button('Push');
+	$inputgroup->button('Pull');
 }
