@@ -43,7 +43,7 @@ $radio->options([
 ]);
 
 $row->col('col-12','col-md-4')->checkbox('Checkbox A','input10');
-$row->col('col-12','col-md-4')->checkbox('Checkbox B','input11',true)->id('ip10');
+$row->col('col-12','col-md-4')->checkbox('Checkbox B','input11',true,'something')->id('ip10');
 
 $row->col('col-12','col-md-8')->textarea('Textarea','input12','Text Content')->id('tc');
 

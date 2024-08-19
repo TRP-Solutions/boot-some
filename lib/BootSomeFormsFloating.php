@@ -39,8 +39,8 @@ class BootSomeFormsFloating extends HealPlugin {
 		return new BootSomeFormsFloatingRadio($parent, $label, $name, $value);
 	}
 
-	public static function checkbox($parent, $label, $name = null, $checked = false){
-		return new BootSomeFormsFloatingCheckbox($parent, $label, $name, $checked);
+	public static function checkbox($parent, $label, $name = null, $checked = false, $value = false){
+		return new BootSomeFormsFloatingCheckbox($parent, $label, $name, $checked, $value);
 	}
 
 	public static function tokenselect($parent, $label, $name = null, $include_select = true){
@@ -173,7 +173,7 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 class BootSomeFormsFloatingCheckbox extends HealWrapper {
 	use BootSomeFormsFloatingInputBasic;
 	private $form_control;
-	public function __construct($parent, $label, $name = null, $checked = false){
+	public function __construct($parent, $label, $name = null, $checked = false, $value = false){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		} else {
@@ -188,6 +188,9 @@ class BootSomeFormsFloatingCheckbox extends HealWrapper {
 		if($checked) $this->primary_element->at(['checked']);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
+		}
+		if($value){
+			$this->primary_element->at(['value'=>$value]);
 		}
 	}
 
