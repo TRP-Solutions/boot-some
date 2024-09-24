@@ -3,6 +3,8 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+declare(strict_types=1);
+
 $page = !empty($_GET) ? array_keys($_GET)[0] : 'Index';
 if(isset(array_keys($_GET)[1])) {
 	$source = array_keys($_GET)[1]==='Source';

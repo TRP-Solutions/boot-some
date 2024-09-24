@@ -3,6 +3,7 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+declare(strict_types=1);
 require_once '../lib/BootSomeLayout.php';
 HealDocument::register_plugin('BootSomeLayout');
 require_once '../lib/BootSomeNavbar.php';
