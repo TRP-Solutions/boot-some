@@ -27,6 +27,12 @@ $select->options([
 	'opt1' => 'Option 1',
 	'opt2' => 'Option 2'
 ]);
+$optgroup = $select->optgroup('GroupA');
+$optgroup->option('All','all');
+$optgroup->options([
+	'A1' => 'GroupA.1',
+	'A2' => 'GroupA.2'
+]);
 
 $tokenselect = $row->col('col-12','col-md-8')->tokenselect('Token Select','input8');
 $tokenselect->options([

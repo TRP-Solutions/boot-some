@@ -221,9 +221,29 @@ trait BootSomeFormsFloatingOptionBasic {
 	}
 }
 
-class BootSomeFormsFloatingSelect extends HealWrapper {
-	use BootSomeFormsFloatingInputBasic, BootSomeFormsFloatingOptionBasic;
+trait BootSomeFormsFloatingSelectBasic {
 	protected $option_elements = [], $option_names = [], $option_value_elements = [];
+	public function option($text, $value = null, $selected = false){
+		$this->option_elements[] = $option = $this->primary_element->el('option')->te($text);
+		if($selected) $option->at(['selected']);
+		if(isset($value)){
+			$option->at(['value'=>$value]);
+			$this->option_names[$value] = $text;
+			$this->option_value_elements[$value] = $option;
+		}
+		return $option;
+	}
+}
+
+class BootSomeFormsOptgroup extends HealWrapper {
+	use BootSomeFormsFloatingSelectBasic, BootSomeFormsFloatingOptionBasic;
+	public function __construct($parent, $label){
+		$this->primary_element = $parent->el('optgroup',['label'=>$label]);
+	}
+}
+
+class BootSomeFormsFloatingSelect extends HealWrapper {
+	use BootSomeFormsFloatingInputBasic, BootSomeFormsFloatingOptionBasic, BootSomeFormsFloatingSelectBasic;
 	public function __construct($parent, $label, $name = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -237,17 +257,6 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 		}
 	}
 
-	public function option($text, $value = null, $selected = false){
-		$this->option_elements[] = $option = $this->primary_element->el('option')->te($text);
-		if($selected) $option->at(['selected']);
-		if(isset($value)){
-			$option->at(['value'=>$value]);
-			$this->option_names[$value] = $text;
-			$this->option_value_elements[$value] = $option;
-		}
-		return $option;
-	}
-
 	public function select($value, $insert_option = false){
 		if(isset($this->option_value_elements[$value])){
 			$this->option_value_elements[$value]->at(['selected']);
@@ -255,6 +264,10 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 			$text = $insert_option === true ? $value : $insert_option;
 			$this->option($text, $value, true);
 		}
+	}
+
+	public function optgroup($label) {
+		return new BootSomeFormsOptgroup($this->primary_element,$label);
 	}
 
 	public function foreach_option($callback){
