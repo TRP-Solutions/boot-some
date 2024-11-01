@@ -37,6 +37,12 @@ $select = $group->select('select1');
 $select->option('Option1',1);
 $select->option('Option2',2);
 $select->options(['Array1','Array2','Array3'],1);
+$optgroup = $select->optgroup('GroupA');
+$optgroup->option('All','all');
+$optgroup->options([
+	'A1' => 'GroupA.1',
+	'A2' => 'GroupA.2'
+]);
 
 $group = $form->form_group();
 $group->label('Text','textarea1');

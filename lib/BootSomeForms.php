@@ -45,6 +45,10 @@ class BootSomeForms extends HealPlugin {
 		return $parent->el('select',['id'=>$name,'name'=>$name,'class'=>'form-select']);
 	}
 
+	public static function optgroup($parent, $label){
+		return $parent->el('optgroup',['label'=>$label]);
+	}
+
 	public static function option($parent, $text, $value = null, $selected = false){
 		$option = $parent->el('option')->te($text);
 		if($selected) $option->at(['selected']);
