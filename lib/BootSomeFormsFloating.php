@@ -290,7 +290,7 @@ class BootSomeFormsFloatingDatalist extends HealWrapper {
 		}
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
 		$this->valuefield = $this->float_wrapper->el('input',['name'=>$name,'id'=>$name,'type'=>'hidden']);
-		$this->primary_element = $this->float_wrapper->el('input',['class'=>'form-control','type'=>'text','placeholder'=>$label]);
+		$this->primary_element = $this->float_wrapper->el('input',['name'=>$name.'_raw','class'=>'form-control','type'=>'text','placeholder'=>$label]);
 		$this->datalist = $this->float_wrapper->el('datalist',['id'=>'datalist-'.$name]);
 		$this->label = $this->float_wrapper->el('label')->te($label);
 		$this->primary_element->at(['data-field'=>$name,'list'=>'datalist-'.$name,'onchange'=>'BootSome.datalist(this);']);
