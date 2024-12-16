@@ -21,8 +21,8 @@ class BootSomeFormsFloating extends HealPlugin {
 		return $element;
 	}
 
-	public static function date($parent, $label, $name = null){
-		$element = new BootSomeFormsFloatingInput($parent, $label, $name);
+	public static function date($parent, $label, $name = null, $value = null){
+		$element = new BootSomeFormsFloatingInput($parent, $label, $name, $value);
 		$onclick = "if(typeof BootSomeForms!='undefined'&&typeof BootSomeForms.date=='function')BootSomeForms.date(this);";
 		$element->at(['type'=>'date','onclick'=>$onclick]);
 		return $element;
