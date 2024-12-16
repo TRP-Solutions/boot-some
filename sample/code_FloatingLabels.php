@@ -7,7 +7,7 @@ declare(strict_types=1);
 require_once '../lib/BootSomeFormsFloating.php';
 HealDocument::register_plugin('BootSomeFormsFloating');
 
-BootSome::$head->el('script',['src'=>'../../git_popperjs/popper.js']);
+BootSome::$head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js']);
 BootSome::$head->el('script',['src'=>'../../git_tiny-template/TinyTemplate.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeTokenSelect.js']);
@@ -54,7 +54,7 @@ $row->col('col-12','col-md-4')->checkbox('Checkbox B','input11',true,'something'
 
 $row->col('col-12','col-md-8')->textarea('Textarea','input12','Text Content')->id('tc');
 
-$row->col('col-12','col-md-4')->input('Date','input13','2023-12-31')->at(['type'=>'date']);
+$row->col('col-12','col-md-4')->date('Date','input13','2023-12-31');
 
 $inputgroup = $row->col('col-12','col-md-4')->inputgroup();
 $select = $inputgroup->select('Country Code','input14');
