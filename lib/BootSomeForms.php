@@ -83,7 +83,7 @@ class BootSomeForms extends HealPlugin {
 	}
 
 	public static function textarea($parent, $name, $content = ''){
-		return $parent->el('textarea',['name'=>$name,'class'=>'form-control'])->te($content);
+		return $parent->el('textarea',['id'=>$name,'name'=>$name,'class'=>'form-control'])->te($content);
 	}
 
 	public static function checkbox($parent, $name, $checked = false, $value = 'on', $text = null, $inline = false){
