@@ -19,7 +19,7 @@ require_once 'code_Navbar.php';
 $allowed = [
 	'Alerts','Badge','Breadcrumb','Card','Carousel','Display',
 	'Dropdown','FloatingLabels','Forms','Index','Jumbotron',
-	'Modal','Navbar','Pagination','Ratios','Tables',
+	'Modal','Navbar','Pagination','Ratios','Tables','Grid',
 ];
 if(in_array($page,$allowed)!==true) die('Error');
 

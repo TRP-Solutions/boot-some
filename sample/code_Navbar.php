@@ -49,6 +49,7 @@ $dropdown->a('?Modal','Modal',$page=='Modal');
 $dropdown->a('?Navbar','Navbar',$page=='Navbar');
 $dropdown->a('?Pagination','Pagination',$page=='Pagination');
 $dropdown->a('?Tables','Tables',$page=='Tables');
+$dropdown->a('?Grid','Grid',$page=='Grid');
 
 $dropdown = $nav->dropdown('Links');
 $a = $dropdown->a('https://fontawesome.com/icons')->at(['target'=>'_blank']);

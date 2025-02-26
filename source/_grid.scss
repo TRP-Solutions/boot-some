@@ -1,0 +1,77 @@
+.bootsome-grid {
+	--bootsome-flow-direction: row;
+	--bs-gutter-x: .5rem;
+	--bs-gutter-y: .5rem;
+
+	display: grid;
+	gap: var(--bs-gutter-y) var(--bs-gutter-x);
+
+	grid-auto-columns: minmax(min-content,1fr);
+	grid-auto-rows: max-content;
+	grid-auto-flow: var(--bootsome-flow-direction);
+
+	> * {
+		--bootsome-column: auto;
+		--bootsome-colspan: 1;
+		--bootsome-column-end: span var(--bootsome-colspan);
+		--bootsome-row: auto;
+		--bootsome-rowspan: 1;
+		--bootsome-row-end: span var(--bootsome-rowspan);
+		grid-column: var(--bootsome-column) / var(--bootsome-column-end);
+		grid-row: var(--bootsome-row) / var(--bootsome-row-end);
+	}
+
+	&.bootsome-grid-horizontal {
+		--bootsome-flow-direction: column;
+		grid-auto-columns: minmax(min-content,1fr);
+	}
+
+	&.bootsome-grid-dense {
+		grid-auto-flow: var(--bootsome-flow-direction) dense;
+	}
+
+	&[style*="--bootsome-columns"]{
+		grid-template-columns: repeat(var(--bootsome-columns-value), minmax(min-content,1fr));
+		grid-auto-columns: unset;
+		> * {
+			--bootsome-column-end: span min(var(--bootsome-colpan), var(--bootsome-column-value));
+		}
+	}
+	&[style*="--bootsome-rows"]{
+		grid-template-rows: repeat(var(--bootsome-rows-value), max-content);
+		grid-auto-rows: unset;
+		> * {
+			--bootsome-row-end: span min(var(--bootsome-rowspan), var(--bootsome-rows-value));
+		}
+	}
+
+	// Bugfix to prevent buttons from growing taller than floating label fields in a tall grid cell
+	.input-group {
+		align-self: start;
+	}
+
+}
+
+@function breakpoint-variable-fallback($variable, $default, $name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)){
+	$n: index($breakpoint-names, $name);
+	@if not $n {
+		@error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+	}
+	$value: $default;
+	@for $i from 1 through $n {
+		$infix: breakpoint-infix(nth($breakpoint-names, $i), $grid-breakpoints);
+		$value: "var(#{$variable}#{$infix}, #{$value})";
+	}
+	$infix: breakpoint-infix(nth($breakpoint-names, $n), $grid-breakpoints);
+	@return $value;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+	@include media-breakpoint-only($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+		.bootsome-grid {
+			--bootsome-rows-value: #{breakpoint-variable-fallback(--bootsome-rows, 1, $breakpoint)};
+			--bootsome-columns-value: #{breakpoint-variable-fallback(--bootsome-columns, 1, $breakpoint)};
+		}
+	}
+}

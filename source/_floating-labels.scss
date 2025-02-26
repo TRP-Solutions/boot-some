@@ -35,4 +35,11 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 	display: flex;
 	flex-wrap: wrap;
 	height: auto;
+	gap: $spacer;
+
+	.form-check {
+		min-height: $form-floating-line-height * 1rem;
+		margin-right: 0rem;
+		margin-bottom: 0rem;
+	}
 }
