@@ -2,6 +2,9 @@ $bootsome-print: nth($grid-breakpoints,4);
 
 @media print {
   body {
-    min-width: nth($bootsome-print,2) !important;
-  }
+		min-width: nth($bootsome-print,2) !important;
+	}
+	.container {
+		min-width: nth($bootsome-print,2) !important;
+	}
 }
