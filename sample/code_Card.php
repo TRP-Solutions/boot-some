@@ -15,7 +15,7 @@ $main->el('h1')->te('Card');
 
 $card = $main->card();
 $card->header()->te('Card header');
-$card->body()->el('code')->te('Some code',true);
+$card->body()->el('code')->el('pre')->te("Some code;\n\tNest;\nEnd;",true);
 
 $group = $card->listgroup();
 $group->item()->te('Cras justo odio');
