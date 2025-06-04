@@ -5,10 +5,10 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeFormsFloating.php';
-HealDocument::register_plugin('BootSomeFormsFloating');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeFormsFloating');
 
 require_once '../lib/BootSomeGrid.php';
-HealDocument::register_plugin('BootSomeGrid');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeGrid');
 
 BootSome::$head->el('script',['src'=>'../../git_popperjs/popper.js']);
 BootSome::$head->el('script',['src'=>'../../git_tiny-template/TinyTemplate.js']);

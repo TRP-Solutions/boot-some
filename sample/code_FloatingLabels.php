@@ -5,7 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeFormsFloating.php';
-HealDocument::register_plugin('BootSomeFormsFloating');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeFormsFloating');
 
 BootSome::$head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js']);
 BootSome::$head->el('script',['src'=>'../../git_tiny-template/TinyTemplate.js']);

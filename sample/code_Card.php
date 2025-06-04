@@ -5,10 +5,10 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeCard.php';
-HealDocument::register_plugin('BootSomeCard');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeCard');
 
 require_once '../lib/BootSomeTables.php';
-HealDocument::register_plugin('BootSomeTable');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeTable');
 
 $main = BootSome::$body->container();
 $main->el('h1')->te('Card');

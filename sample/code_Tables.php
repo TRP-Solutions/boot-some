@@ -5,10 +5,10 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeTables.php';
-HealDocument::register_plugin('BootSomeTable');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeTable');
 
 require_once '../lib/BootSomeForms.php';
-HealDocument::register_plugin('BootSomeForms');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeForms');
 
 $main = BootSome::$body->container();
 $main->el('h1')->te('Tables');

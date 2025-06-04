@@ -5,7 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeCarousel.php';
-HealDocument::register_plugin('BootSomeCarousel');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeCarousel');
 
 $main = BootSome::$body->container();
 $main->el('h1')->te('Carousel');
