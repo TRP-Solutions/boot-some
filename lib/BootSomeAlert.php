@@ -4,6 +4,7 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
+use \TRP\HealDocument\HealPlugin;
 
 class BootSomeAlert extends HealPlugin {
 	public static function alert($parent, $color = null,$center = false){

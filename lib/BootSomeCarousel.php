@@ -4,6 +4,7 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
+use \TRP\HealDocument\{HealPlugin, HealWrapper};
 
 class BootSomeCarousel extends HealPlugin {
 	private $id;

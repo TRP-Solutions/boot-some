@@ -4,13 +4,13 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
-require_once '../../git_heal-document/lib/HealDocument.php'; // https://github.com/TRP-Solutions/heal-document
+require_once '../../heal-document/lib/HealDocument.php'; // https://github.com/TRP-Solutions/heal-document
 
 require_once '../lib/BootSomeHead.php';
-HealDocument::register_plugin('BootSomeHead');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeHead');
 
 require_once '../lib/BootSomeBasic.php';
-HealDocument::register_plugin('BootSomeBasic');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeBasic');
 
 require_once '../lib/BootSomeDocument.php';
 BootSome::document('BootSome() :: '.$page);

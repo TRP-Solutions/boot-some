@@ -5,9 +5,9 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeLayout.php';
-HealDocument::register_plugin('BootSomeLayout');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeLayout');
 require_once '../lib/BootSomeNavbar.php';
-HealDocument::register_plugin('BootSomeNavbar');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeNavbar');
 
 $navbar = BootSome::$body->navbar(false,'navbar-light bg-light');
 

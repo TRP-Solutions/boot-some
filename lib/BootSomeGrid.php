@@ -4,6 +4,7 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
+use \TRP\HealDocument\{HealPlugin, HealComponent};
 
 class BootSomeGrid extends HealPlugin {
 	public static function grid($parent, int $columns = 0, bool $dense = false){

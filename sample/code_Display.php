@@ -5,7 +5,7 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeAlert.php';
-HealDocument::register_plugin('BootSomeAlert');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeAlert');
 
 $main = BootSome::$body->container();
 $main->el('h1')->te('Display');

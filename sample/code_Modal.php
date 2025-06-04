@@ -5,16 +5,16 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
 require_once '../lib/BootSomeModal.php';
-HealDocument::register_plugin('BootSomeModal');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeModal');
 
 require_once '../lib/BootSomeTables.php';
-HealDocument::register_plugin('BootSomeTable');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeTable');
 
 require_once '../lib/BootSomeNavs.php';
-HealDocument::register_plugin('BootSomeNavs');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeNavs');
 
 require_once '../lib/BootSomeForms.php';
-HealDocument::register_plugin('BootSomeForms');
+\TRP\HealDocument\HealDocument::register_plugin('BootSomeForms');
 
 // Open modal
 BootSome::$body->at(['class'=>'modal-open']);

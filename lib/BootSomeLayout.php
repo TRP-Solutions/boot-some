@@ -4,6 +4,7 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
+use \TRP\HealDocument\{HealPlugin, HealWrapper};
 
 class BootSomeLayout extends HealPlugin {
 	public static function container($parent, $fluid = false, $element = 'div'){
