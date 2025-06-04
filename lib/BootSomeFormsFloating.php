@@ -96,7 +96,7 @@ class BootSomeFormsFloatingInput extends HealWrapper {
 		}
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
 		$this->primary_element = $this->float_wrapper->el('input',['class'=>'form-control','type'=>'text','placeholder'=>$label]);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->generate_id($name);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
@@ -126,13 +126,13 @@ class BootSomeFormsFloatingTextarea extends HealWrapper {
 		}
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
 		$this->primary_element = $this->float_wrapper->el('textarea',['class'=>'form-control','placeholder'=>$label]);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->generate_id($name);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
 		}
 		if(isset($value)){
-			$this->primary_element->te($value);
+			$this->primary_element->te((string) $value);
 		}
 	}
 }
@@ -153,7 +153,7 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 
 		$js = "this.parentElement.parentElement.querySelector('input[type=file]').click();";
 		$this->form_control = $this->float_wrapper->el('input',['type'=>'text','readonly','class'=>'form-control','placeholder'=>$label,'onclick'=>$js]);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->generate_id($name);
 		if(isset($icon)){
 			$js = "this.parentElement.querySelector('input[type=file]').click();event.preventDefault();";
@@ -194,7 +194,7 @@ class BootSomeFormsFloatingCheckbox extends HealWrapper {
 		$this->form_control = $this->float_wrapper->el('div',['class'=>'form-control bootsome-checkbox']);
 		$div = $this->form_control->el('div',['class'=>'form-check']);
 		$this->primary_element = $div->el('input',['class'=>'form-check-input','type'=>'checkbox']);
-		$this->label = $div->el('label',['class'=>'form-check-label'])->te($label);
+		$this->label = $div->el('label',['class'=>'form-check-label'])->te((string) $label);
 		$this->generate_id($name);
 		if($checked) $this->primary_element->at(['checked']);
 		if(isset($name)){
@@ -233,7 +233,7 @@ trait BootSomeFormsFloatingOptionBasic {
 trait BootSomeFormsFloatingSelectBasic {
 	protected $option_elements = [], $option_names = [], $option_value_elements = [];
 	public function option($text, $value = null, $selected = false){
-		$this->option_elements[] = $option = $this->primary_element->el('option')->te($text);
+		$this->option_elements[] = $option = $this->primary_element->el('option')->te((string) $text);
 		if($selected) $option->at(['selected']);
 		if(isset($value)){
 			$option->at(['value'=>$value]);
@@ -259,7 +259,7 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 		}
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating']);
 		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select']);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->generate_id($name);
 		if(isset($name)){
 			$this->primary_element->at(['name'=>$name]);
@@ -301,7 +301,7 @@ class BootSomeFormsFloatingDatalist extends HealWrapper {
 		$this->valuefield = $this->float_wrapper->el('input',['name'=>$name,'id'=>$name,'type'=>'hidden']);
 		$this->primary_element = $this->float_wrapper->el('input',['name'=>$name.'_raw','class'=>'form-control','type'=>'text','placeholder'=>$label]);
 		$this->datalist = $this->float_wrapper->el('datalist',['id'=>'datalist-'.$name]);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->primary_element->at(['data-field'=>$name,'list'=>'datalist-'.$name,'onchange'=>'BootSome.datalist(this);']);
 	}
 
@@ -324,7 +324,7 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 		}
 		$this->float_wrapper = $this->input_group->el('div',['class'=>'form-floating']);
 		$this->primary_element = $this->float_wrapper->el('div',['class'=>'form-control bootsome-radio']);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->name = $name;
 		$this->value = $value;
 	}
@@ -333,7 +333,7 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 		$id = $id ?? 'radio_'.base64_encode(random_bytes(6));
 		$wrapper = $this->primary_element->el('div',['class'=>'form-check']);
 		$this->option_elements[] = $option = $wrapper->el('input',['class'=>'form-check-input','type'=>'radio','id'=>$id]);
-		$wrapper->el('label',['class'=>'form-check-label','for'=>$id])->te($text);
+		$wrapper->el('label',['class'=>'form-check-label','for'=>$id])->te((string) $text);
 		if(isset($value)){
 			$option->at(['value'=>$value]);
 			$this->option_names[$value] = $text;
@@ -386,7 +386,7 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 		}
 		$this->float_wrapper = $parent->el('div',['class'=>'form-floating bootsome-token-field']);
 		$this->primary_element = $this->float_wrapper->el('select',['class'=>'form-select bootsome-token-select','onchange'=>$this->onchange_select]);
-		$this->label = $this->float_wrapper->el('label')->te($label);
+		$this->label = $this->float_wrapper->el('label')->te((string) $label);
 		$this->generate_id($name);
 		$this->name = $name;
 		$this->option('');
@@ -450,7 +450,7 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 		if(!$this->disabled){
 			$token->at(['onclick'=>$this->onchange_token]);
 		}
-		$token->el('span',['data-tmpl'=>'content:label'])->te($label);
+		$token->el('span',['data-tmpl'=>'content:label'])->te((string) $label);
 		$token_input = $token->el('input',['type'=>'hidden','value'=>$value,'data-tmpl'=>'value:value']);
 		if(!empty($this->name)){
 			$token_input->at(['name'=>$this->name.'[]']);
