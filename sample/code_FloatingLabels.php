@@ -8,7 +8,7 @@ require_once '../lib/BootSomeFormsFloating.php';
 \TRP\HealDocument\HealDocument::register_plugin('BootSomeFormsFloating');
 
 BootSome::$head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js']);
-BootSome::$head->el('script',['src'=>'../../git_tiny-template/TinyTemplate.js']);
+BootSome::$head->el('script',['src'=>'../../tiny-template/TinyTemplate.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeTokenSelect.js']);
 

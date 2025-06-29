@@ -10,8 +10,8 @@ require_once '../lib/BootSomeFormsFloating.php';
 require_once '../lib/BootSomeGrid.php';
 \TRP\HealDocument\HealDocument::register_plugin('BootSomeGrid');
 
-BootSome::$head->el('script',['src'=>'../../git_popperjs/popper.js']);
-BootSome::$head->el('script',['src'=>'../../git_tiny-template/TinyTemplate.js']);
+BootSome::$head->el('script',['src'=>'../../popperjs/popper.js']);
+BootSome::$head->el('script',['src'=>'../../tiny-template/TinyTemplate.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 BootSome::$head->el('script',['src'=>'../lib/BootSomeTokenSelect.js']);
 
