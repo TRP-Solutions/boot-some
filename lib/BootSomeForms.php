@@ -90,7 +90,6 @@ class BootSomeForms extends \TRP\HealDocument\Plugin {
 	public static function checkbox($parent, $name, $checked = false, $value = 'on', $text = null, $inline = false){
 		if(!$inline) {
 			$div = $parent->el('div',['class'=>'form-check']);
-			$parent->inlinewrap = null;
 		}
 		else {
 			if(!isset($parent->inlinewrap)) {
@@ -120,7 +119,6 @@ class BootSomeForms extends \TRP\HealDocument\Plugin {
 	public static function radio($parent, $name, $value, $checked = false, $text = null, $inline = false){
 		if(!$inline) {
 			$div = $parent->el('div',['class'=>'form-check']);
-			$parent->inlinewrap = null;
 		}
 		else {
 			if(!isset($parent->inlinewrap)) {
@@ -154,6 +152,8 @@ class BootSomeForms extends \TRP\HealDocument\Plugin {
 }
 
 class BootSomeFormsGroup extends \TRP\HealDocument\Wrapper {
+	public $inlinewrap;
+
 	public function __construct($parent, $col = null, $left = false){
 		$this->primary_element = $parent->el('div',['class'=>'mb-2']);
 		if($left) $this->primary_element->at(['class'=>'text-end'],true);
