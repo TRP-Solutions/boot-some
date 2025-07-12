@@ -4,9 +4,8 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
-use \TRP\HealDocument\HealPlugin;
 
-class BootSomeBasic extends HealPlugin {
+class BootSomeBasic extends \TRP\HealDocument\Plugin {
 	public static function img($parent, $src, $alt, $fluid = false){
 		$img = $parent->el('img',['src'=>$src,'alt'=>$alt]);
 		if($fluid) $img->at(['class'=>'img-fluid']);

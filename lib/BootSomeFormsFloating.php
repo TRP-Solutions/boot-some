@@ -4,11 +4,10 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
-use \TRP\HealDocument\{HealPlugin, HealWrapper};
 
 require_once __DIR__.'/BootSomeFormsInputGroup.php';
 
-class BootSomeFormsFloating extends HealPlugin {
+class BootSomeFormsFloating extends \TRP\HealDocument\Plugin {
 	public static function inputgroup($parent){
 		return new BootSomeFormsInputGroup($parent);
 	}
@@ -88,7 +87,7 @@ trait BootSomeFormsFloatingInputBasic {
 	}
 }
 
-class BootSomeFormsFloatingInput extends HealWrapper {
+class BootSomeFormsFloatingInput extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic;
 	public function __construct($parent, $label, $name = null, $value = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -118,7 +117,7 @@ class BootSomeFormsFloatingInput extends HealWrapper {
 
 }
 
-class BootSomeFormsFloatingTextarea extends HealWrapper {
+class BootSomeFormsFloatingTextarea extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic;
 	public function __construct($parent, $label, $name = null, $value = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -137,7 +136,7 @@ class BootSomeFormsFloatingTextarea extends HealWrapper {
 	}
 }
 
-class BootSomeFormsFloatingFile extends HealWrapper {
+class BootSomeFormsFloatingFile extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic;
 	private $form_control, $button;
 	public function __construct($parent, $label, $name = null, $icon = null){
@@ -181,7 +180,7 @@ class BootSomeFormsFloatingFile extends HealWrapper {
 	}
 }
 
-class BootSomeFormsFloatingCheckbox extends HealWrapper {
+class BootSomeFormsFloatingCheckbox extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic;
 	private $form_control;
 	public function __construct($parent, $label, $name = null, $checked = false, $value = false){
@@ -244,14 +243,14 @@ trait BootSomeFormsFloatingSelectBasic {
 	}
 }
 
-class BootSomeFormsOptgroup extends HealWrapper {
+class BootSomeFormsOptgroup extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingSelectBasic, BootSomeFormsFloatingOptionBasic;
 	public function __construct($parent, $label){
 		$this->primary_element = $parent->el('optgroup',['label'=>$label]);
 	}
 }
 
-class BootSomeFormsFloatingSelect extends HealWrapper {
+class BootSomeFormsFloatingSelect extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic, BootSomeFormsFloatingOptionBasic, BootSomeFormsFloatingSelectBasic;
 	public function __construct($parent, $label, $name = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
@@ -290,7 +289,7 @@ class BootSomeFormsFloatingSelect extends HealWrapper {
 	}
 }
 
-class BootSomeFormsFloatingDatalist extends HealWrapper {
+class BootSomeFormsFloatingDatalist extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic, BootSomeFormsFloatingOptionBasic;
 	private $datalist, $valuefield;
 	public function __construct($parent, $label, $name){

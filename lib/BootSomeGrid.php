@@ -4,9 +4,8 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
-use \TRP\HealDocument\{HealPlugin, HealComponent};
 
-class BootSomeGrid extends HealPlugin {
+class BootSomeGrid extends \TRP\HealDocument\Plugin {
 	public static function grid($parent, int $columns = 0, bool $dense = false){
 		$grid = new self($parent, $dense);
 		$grid->columns($columns);
@@ -21,7 +20,7 @@ class BootSomeGrid extends HealPlugin {
 	}
 
 	public static function grid_span(
-		HealComponent $element,
+		\TRP\HealDocument\Component $element,
 		int $columns = 0,
 		int $rows = 0
 	){
@@ -35,7 +34,7 @@ class BootSomeGrid extends HealPlugin {
 	}
 
 	public static function grid_place(
-		HealComponent $element,
+		\TRP\HealDocument\Component $element,
 		int|string|null $column = null,
 		int|string|null $row = null,
 		int|string|null $column_end = null,
@@ -90,7 +89,7 @@ class BootSomeGrid extends HealPlugin {
 		$this->primary_element->at(['style'=>"--bootsome-$property:$value;"],true);
 	}
 
-	public function span(int $columns = 0, int $rows = 0): HealComponent {
+	public function span(int $columns = 0, int $rows = 0): \TRP\HealDocument\Component {
 		return self::grid_span($this->primary_element->el('div'), $columns, $rows);
 	}
 
@@ -101,7 +100,7 @@ class BootSomeGrid extends HealPlugin {
 		int|string|null $row_end = null,
 		int $column_span = 0,
 		int $row_span = 0
-	): HealComponent {
+	): \TRP\HealDocument\Component {
 		return self::grid_place($this->primary_element->el('div'), $column, $row, $column_end, $row_end, $column_span, $row_span);
 	}
 }

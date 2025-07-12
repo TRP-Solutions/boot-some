@@ -4,11 +4,10 @@ BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
 declare(strict_types=1);
-use \TRP\HealDocument\{HealPlugin, HealWrapper};
 
 require_once __DIR__.'/BootSomeFormsInputGroup.php';
 
-class BootSomeForms extends HealPlugin {
+class BootSomeForms extends \TRP\HealDocument\Plugin {
 	public static function form_row($parent){
 		//Legacy Support
 		return $parent->el('div',['class'=>'row']);
@@ -154,7 +153,7 @@ class BootSomeForms extends HealPlugin {
 	}
 }
 
-class BootSomeFormsGroup extends HealWrapper {
+class BootSomeFormsGroup extends \TRP\HealDocument\Wrapper {
 	public function __construct($parent, $col = null, $left = false){
 		$this->primary_element = $parent->el('div',['class'=>'mb-2']);
 		if($left) $this->primary_element->at(['class'=>'text-end'],true);
@@ -170,7 +169,7 @@ class BootSomeFormsGroup extends HealWrapper {
 	}
 }
 
-class BootSomeFormsHorizontal extends HealWrapper {
+class BootSomeFormsHorizontal extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormFields;
 
 	public $col = 3;
@@ -201,7 +200,7 @@ class BootSomeFormsHorizontal extends HealWrapper {
 	}
 }
 
-class BootSomeFormsInline extends HealWrapper {
+class BootSomeFormsInline extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormFields;
 
 	public function __construct($parent){
