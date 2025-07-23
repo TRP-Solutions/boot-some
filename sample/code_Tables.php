@@ -21,7 +21,7 @@ $tr->th()->te('TH3');
 $tr->th()->te('TH4');
 $tr->th()->te('TH5');
 $tr->th()->te('TH6');
-$tr->th()->te('TH7');
+$tr->th()->at(['ellipsis'])->te('TH7 - And a lot more, that keep going');
 
 $tbody = $table->tbody();
 
@@ -29,9 +29,9 @@ for($i=1;$i<=4;$i++) {
 	$tr = $tbody->tr();
 	$tr->td()->icon('piggy-bank',false,'warning');
 	$tr->td()->icon('fab fa-facebook-f',true);
-	$tr->td()->el('span')->te('New')->badge();
+	$tr->td()->el('span',['onclick'=>"alert('Hello')"])->te('New')->badge();
 	$tr->td()->checkbox('test_check');
-	$tr->td()->te('Beef leberkas kielbasa, tri-tip flank sausage pork.');
+	$tr->td()->at(['ellipsis'])->te('Beef leberkas kielbasa, tri-tip flank sausage pork.');
 	$tr->td()->te('Shoulder doner pork belly, bresaola hamburger ground round');
 	$ul = $tr->td()->el('ul');
 	$ul->el('li')->te('Test 1');

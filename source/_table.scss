@@ -21,10 +21,15 @@ table.table tr td[wrap] {
 	min-width: 200px;
 	white-space: normal !important;
 }
-table.table tr td[ellipsis] {
-	max-width: 150px;
+table.table tr td[ellipsis], table.table tr th[ellipsis] {
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+table.table tr td[ellipsis] {
+	max-width: 150px;
+}
+table.table tr th[ellipsis] {
+	max-width: 75px;
 }
 input.form-control[right],
 table tr td[right],
