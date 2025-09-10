@@ -65,8 +65,59 @@ $select->options([
 ]);
 $inputgroup->input('Phone Number','input15');
 
+$row = $form->row_gutter('g-2 mt-5');
+
+$row->col('col-12','col-md-4')->input('Input','input4r')->datalist(['String1','String2','String3'])->required();
+
+$row->col('col-12','col-md-4')->input('Number','input5r')->at(['type'=>'number'])->required();
+
+$row->col('col-12','col-md-4')->file('File','input6r')->required();
+
+$select = $row->col('col-12','col-md-4')->select('Select','input7r')->required();
+$select->options([
+	'' => 'Empty Value',
+	'opt1' => 'Option 1',
+	'opt2' => 'Option 2'
+]);
+$optgroup = $select->optgroup('GroupA');
+$optgroup->option('All','all');
+$optgroup->options([
+	'A1' => 'GroupA.1',
+	'A2' => 'GroupA.2'
+]);
+
+$tokenselect = $row->col('col-12','col-md-8')->tokenselect('Token Select','input8r')->required();
+$tokenselect->options([
+	'tok1' => 'Token 1',
+	'tok2' => 'Token 2',
+	'tok3' => 'Token 3'
+]);
+
+$radio = $row->col('col-12','col-md-4')->radio('Radio','input9r')->required();
+$radio->options([
+	'radio1' => 'Radio 1',
+	'radio2' => 'Radio 2',
+	'radio3' => 'Radio 3'
+]);
+
+$row->col('col-12','col-md-4')->checkbox('Checkbox A','input10r')->required();
+$row->col('col-12','col-md-4')->checkbox('Checkbox B','input11r',true,'something')->required()->id('ip10r');
+
+$row->col('col-12','col-md-8')->textarea('Textarea','input12r')->required()->id('tcr');
+
+$row->col('col-12','col-md-4')->date('Date','input13r')->required();
+
 $inputgroup = $row->col('col-12','col-md-4')->inputgroup();
-$datalist = $inputgroup->datalist('Browser','browser')->at(['required']);
+$select = $inputgroup->select('Country Code','input14r')->required();
+$select->options([
+	'45' => '+45',
+	'46' => '+46',
+	'47' => '+47'
+]);
+$inputgroup->input('Phone Number','input15r')->required();
+
+$inputgroup = $row->col('col-12','col-md-4')->inputgroup();
+$datalist = $inputgroup->datalist('Browser','browser')->required();
 $datalist->option('Chrome',1);
 $datalist->option('Edge',2);
 $datalist->option('Firefox',3);

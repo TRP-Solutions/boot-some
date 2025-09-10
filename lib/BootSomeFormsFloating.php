@@ -8,6 +8,8 @@ declare(strict_types=1);
 require_once __DIR__.'/BootSomeFormsInputGroup.php';
 
 class BootSomeFormsFloating extends \TRP\HealDocument\Plugin {
+	public static string $required_label = 'Required';
+
 	public static function inputgroup($parent){
 		return new BootSomeFormsInputGroup($parent);
 	}
@@ -78,6 +80,13 @@ trait BootSomeFormsFloatingInputBasic {
 	public function disabled(bool $disable = true){
 		if($disable){
 			$this->primary_element->at(['disabled']);
+		}
+		return $this;
+	}
+	public function required(bool $required = true){
+		if($required){
+			$this->primary_element->at(['required']);
+			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te(BootSomeFormsFloating::$required_label);
 		}
 		return $this;
 	}
@@ -314,7 +323,7 @@ class BootSomeFormsFloatingDatalist extends \TRP\HealDocument\Wrapper {
 }
 
 class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
-	private $value, $name, $onchange, $disabled = false;
+	private $value, $name, $onchange, $disabled = false, $required = false;
 	public function __construct($parent, $label, $name = null, $value = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
@@ -350,15 +359,29 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 		if($this->disabled){
 			$option->at(['disabled']);
 		}
+		if($this->required){
+			$option->at(['required']);
+		}
 		return $option;
 	}
 
 	public function disabled(bool $disable = true){
-		$this->disabled = true;
+		$this->disabled = $disable;
 		if($disable){
 			$this->primary_element->at(['class'=>'bootsome-disabled'],true);
 			foreach($this->option_elements as $option){
 				$option->at(['disabled']);
+			}
+		}
+		return $this;
+	}
+
+	public function required(bool $required = true){
+		$this->required = $required;
+		if($required){
+			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te(BootSomeFormsFloating::$required_label);
+			foreach($this->option_elements as $option){
+				$option->at(['required']);
 			}
 		}
 		return $this;
@@ -402,6 +425,12 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 			}
 		}
 		$this->disabled = $disable;
+		return $this;
+	}
+	public function required(bool $required = true){
+		if($required){
+			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te(BootSomeFormsFloating::$required_label);
+		}
 		return $this;
 	}
 

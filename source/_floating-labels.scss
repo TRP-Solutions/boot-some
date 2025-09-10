@@ -2,6 +2,10 @@
 BootSome is licensed under the Apache License 2.0 license
 https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 */
+
+$form-floating-required-top: max(0px, min($form-floating-padding-y, $form-floating-padding-x)) !default;
+$form-floating-required-right: max(0px, min($form-floating-padding-y, $form-floating-padding-x)) !default;
+
 .form-floating .form-control .form-check-input {
 	margin-top: calc(($form-floating-line-height - 1) / 2 * 1em);
 }
@@ -41,5 +45,43 @@ https://github.com/TRP-Solutions/boot-some/blob/master/LICENSE
 		min-height: $form-floating-line-height * 1rem;
 		margin-right: 0rem;
 		margin-bottom: 0rem;
+	}
+}
+
+.form-floating {
+	.bootsome-required {
+		position: absolute;
+		top: $form-floating-required-top;
+		right: $form-floating-required-right;
+		z-index: 2;
+		pointer-events: none;
+
+		color: $secondary;
+		background-color: RGBA(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}bg-opacity, 1));
+	}
+
+	select:invalid,
+	textarea:invalid,
+	input:invalid {
+		~ .bootsome-required {
+			color: color-contrast($warning);
+			background-color: RGBA(var(--#{$prefix}warning-rgb), var(--#{$prefix}bg-opacity, 1));
+		}
+	}
+
+	.bootsome-radio:has(input:invalid),
+	.bootsome-checkbox:has(input:invalid),
+	.bootsome-token-container:not(:has(button)) {
+		~ .bootsome-required {
+			color: color-contrast($warning);
+			background-color: RGBA(var(--#{$prefix}warning-rgb), var(--#{$prefix}bg-opacity, 1));
+		}
+	}
+
+	select,
+	input[type=number] {
+		~ .bootsome-required {
+			right: calc($form-floating-required-right + $form-select-indicator-padding);
+		}
 	}
 }
