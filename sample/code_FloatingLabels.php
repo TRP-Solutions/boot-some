@@ -67,13 +67,15 @@ $inputgroup->input('Phone Number','input15');
 
 $row = $form->row_gutter('g-2 mt-5');
 
+BootSomeFormsFloating::$required_label = 'Please Fill';
+
 $row->col('col-12','col-md-4')->input('Input','input4r')->datalist(['String1','String2','String3'])->required();
 
 $row->col('col-12','col-md-4')->input('Number','input5r')->at(['type'=>'number'])->required();
 
-$row->col('col-12','col-md-4')->file('File','input6r')->required();
+$row->col('col-12','col-md-4')->file('File','input6r')->required('File upload required');
 
-$select = $row->col('col-12','col-md-4')->select('Select','input7r')->required();
+$select = $row->col('col-12','col-md-4')->select('Select','input7r')->required('Select a value');
 $select->options([
 	'' => 'Empty Value',
 	'opt1' => 'Option 1',

@@ -83,10 +83,10 @@ trait BootSomeFormsFloatingInputBasic {
 		}
 		return $this;
 	}
-	public function required(bool $required = true){
+	public function required(?string $label = null, bool $required = true){
 		if($required){
 			$this->primary_element->at(['required']);
-			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te(BootSomeFormsFloating::$required_label);
+			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te($label ?? BootSomeFormsFloating::$required_label);
 		}
 		return $this;
 	}
@@ -376,10 +376,10 @@ class BootSomeFormsFloatingRadio extends BootSomeFormsFloatingSelect {
 		return $this;
 	}
 
-	public function required(bool $required = true){
+	public function required(?string $label = null, bool $required = true){
 		$this->required = $required;
 		if($required){
-			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te(BootSomeFormsFloating::$required_label);
+			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te($label ?? BootSomeFormsFloating::$required_label);
 			foreach($this->option_elements as $option){
 				$option->at(['required']);
 			}
@@ -427,9 +427,9 @@ class BootSomeFormsFloatingTokenSelect extends BootSomeFormsFloatingSelect {
 		$this->disabled = $disable;
 		return $this;
 	}
-	public function required(bool $required = true){
+	public function required(?string $label = null, bool $required = true){
 		if($required){
-			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te(BootSomeFormsFloating::$required_label);
+			$this->float_wrapper->el('span',['class'=>'badge bootsome-required'])->te($label ?? BootSomeFormsFloating::$required_label);
 		}
 		return $this;
 	}
