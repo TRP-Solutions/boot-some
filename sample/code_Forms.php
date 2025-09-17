@@ -11,6 +11,8 @@ BootSome::$head->el('script',['src'=>'https://cdnjs.cloudflare.com/ajax/libs/pop
 BootSome::$head->el('script',['src'=>'../lib/BootSomeForms.js']);
 
 $main = BootSome::$body->container();
+$main->hidden('host',$_SERVER['REMOTE_ADDR']);
+
 $main->at(['class'=>'mb-5'],true);
 $main->el('h1')->te('Forms');
 
