@@ -73,7 +73,7 @@ $row->col('col-12','col-md-4')->input('Input','input4r')->datalist(['String1','S
 
 $row->col('col-12','col-md-4')->input('Number','input5r')->at(['type'=>'number'])->required();
 
-$row->col('col-12','col-md-4')->file('File','input6r')->required('File upload required');
+$row->col('col-12','col-md-4')->file('File','input6r',true,'file-pdf')->required('File upload required');
 
 $select = $row->col('col-12','col-md-4')->select('Select','input7r')->required('Select a value');
 $select->options([

@@ -35,8 +35,8 @@ class BootSomeFormsFloating extends \TRP\HealDocument\Plugin {
 		return new BootSomeFormsFloatingTextarea($parent, $label, $name, $value);
 	}
 
-	public static function file($parent, $label, $name = null, $icon = 'upload'){
-		return new BootSomeFormsFloatingFile($parent, $label, $name, $icon);
+	public static function file($parent, $label, $name = null, $multiple = false, $icon = 'upload'){
+		return new BootSomeFormsFloatingFile($parent, $label, $name, $multiple, $icon);
 	}
 
 	public static function select($parent, $label, $name = null){
@@ -148,7 +148,7 @@ class BootSomeFormsFloatingTextarea extends \TRP\HealDocument\Wrapper {
 class BootSomeFormsFloatingFile extends \TRP\HealDocument\Wrapper {
 	use BootSomeFormsFloatingInputBasic;
 	private $form_control, $button;
-	public function __construct($parent, $label, $name = null, $icon = null){
+	public function __construct($parent, $label, $name = null, $multiple = false, $icon = null){
 		if(is_a($parent, '\BootSomeFormsInputGroup')){
 			$this->input_group = $parent;
 		} else {
@@ -169,7 +169,8 @@ class BootSomeFormsFloatingFile extends \TRP\HealDocument\Wrapper {
 		}
 
 		if(isset($name)){
-			$this->primary_element->at(['name'=>$name]);
+			if($multiple) $this->primary_element->at(['multiple'])->at(['name'=>$name.'[]']);
+			else $this->primary_element->at(['name'=>$name]);
 		}
 	}
 
