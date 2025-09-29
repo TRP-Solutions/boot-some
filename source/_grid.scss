@@ -19,6 +19,13 @@
 		--bootsome-row-end: span var(--bootsome-rowspan);
 		grid-column: var(--bootsome-column) / var(--bootsome-column-end);
 		grid-row: var(--bootsome-row) / var(--bootsome-row-end);
+
+		@each $breakpoint in map-keys($grid-breakpoints) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+			--bootsome-rows#{$infix}: initial;
+			--bootsome-columns#{$infix}: initial;
+		}
+
 	}
 
 	&.bootsome-grid-horizontal {
