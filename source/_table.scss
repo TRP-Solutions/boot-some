@@ -59,3 +59,6 @@ table.bs-datepicker td:hover {
 	--bs-table-accent-bg: var(--bs-table-hover-bg);
 	color: var(--bs-table-hover-color);
 }
+table.table div.progress {
+	margin-top: 3px !important;
+}

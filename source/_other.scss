@@ -37,3 +37,7 @@ nav ul.pagination li.page-item button.page-link {
 pre {
 	margin-bottom: 0rem;
 }
+div.progress div.progress-bar {
+	@include gradient-striped();
+	background-size: var(--#{$prefix}progress-height) var(--#{$prefix}progress-height);
+}

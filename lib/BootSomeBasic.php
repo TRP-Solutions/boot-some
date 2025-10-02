@@ -35,6 +35,12 @@ class BootSomeBasic extends \TRP\HealDocument\Plugin {
 		return $parent->el('input',['type'=>'hidden','name'=>$name,'value'=>$value,'id'=>$name]);
 	}
 
+	public static function progress($parent, $value){
+		$div = $parent->el('div',['class'=>'progress']);
+		$div->el('div',['class'=>'progress-bar','style'=>'width: '.$value.'%']);
+		return $div;
+	}
+
 	public static function form($parent, $action = '', $method = 'get'){
 		$attr = [];
 		if(!empty($action)){

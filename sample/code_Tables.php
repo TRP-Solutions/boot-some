@@ -41,7 +41,7 @@ for($i=1;$i<=4;$i++) {
 $table = $main->table();
 $tbody = $table->tbody();
 
-for($i=1;$i<=20;$i++) {
+for($i=1;$i<=5;$i++) {
 	$tr = $tbody->tr()->at(['onclick'=>"alert('Clicked: '+".$i.")"]);
 	$tr->td()->te('Beef');
 	$tr->td()->checkbox('test_check');
@@ -53,4 +53,12 @@ for($i=1;$i<=20;$i++) {
 	$inputgroup = $tr->td()->inputgroup();
 	$inputgroup->button('Push');
 	$inputgroup->button('Pull');
+}
+
+$table = $main->table();
+$tbody = $table->tbody();
+for($i=1;$i<=3;$i++) {
+	$tr = $tbody->tr();
+	$tr->td()->at(['style'=>'width:75%'])->te('image'.$i.'.jpg');
+	$tr->td()->progress($i*10);
 }
