@@ -26,3 +26,14 @@ dialog#dialog {
 .modal-body *:last-child {
 	margin-bottom: 0rem;
 }
+@media print {
+	div.modal {
+		position:relative;
+	}
+
+	div.modal-dialog {
+		margin: 0px !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+}
